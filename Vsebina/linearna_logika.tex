@@ -79,7 +79,7 @@ Kot smo v zgornjem dokazu lahko videli, se za dokaz ekvivalence $\land$ ter $\la
 
 \subsection{Propozicijski vezniki}
 
-\begin{definicija}
+\begin{definicija} \label{in}
     Veznik $\land$, s pravili iz definicij \ref{inl} in \ref{inr}, se še vedno glasi \emph{in}, zapišemo pa ga s simbolom $\sqcap$. Zapišimo še enkrat njegovo levo in desno pravilo, tokrat s pravilnim pojmovanjem.
     \begin{center}
         \begin{bprooftree}
@@ -101,7 +101,7 @@ Kot smo v zgornjem dokazu lahko videli, se za dokaz ekvivalence $\land$ ter $\la
     \end{center}
 \end{definicija}
 
-\begin{definicija}
+\begin{definicija} \label{tenzor}
     Veznik $\land'$, s pravili iz definicij \ref{in'l} in \ref{in'r} pa preimenujemo v \emph{tenzor} ter ga zapišemo s simbolom $\star$.
     \begin{center}
         \begin{bprooftree}
@@ -122,7 +122,7 @@ Zakaj te dva veznika v kontekstu linearne logike nista enaka je razvidno že če
 
 Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni logiki se ta spet razdeli na dvoje, intuicija za to pa je simetična intuiciji za veznik $\land$, zato jo prepustimo bralcu.
 
-\begin{definicija}
+\begin{definicija} \label{ali}
 	Veznik \emph{ali}, označen z $\sqcup$, ima sledeče levo in desno pravilo vpeljave.
 	\begin{center}
         \begin{bprooftree}
@@ -145,7 +145,7 @@ Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni 
     Kot vidimo sta obe pravili popolnoma simetrični praviloma za veznik $\sqcap$.
 \end{definicija}
 
-\begin{definicija}
+\begin{definicija} \label{plus}
 	Veznik \emph{plus}, označen z + pa je analogno simetričen vezniku $\star$.
 	\begin{center}
         \begin{bprooftree}
@@ -351,12 +351,141 @@ Dokaz naslednje leme bomo opustili, saj je simetričen dokazu leme \ref{enoti}.
             \UnaryInfC{$\Gamma \Rightarrow \exists x A,\Delta$}
         \end{bprooftree}
 	\end{center}
-	Tokrat levo pravilo vsebuje prosto spremenjlivko $y$, desno pa specifičen term $t$. Če torej želimo dejstvo, da obstaja $x$, da velja $A$.
+	Tokrat levo pravilo vsebuje prosto spremenjlivko $y$, desno pa specifičen term $t$. Če torej želimo uporabiti dejstvo, da obstaja $x$, da velja $A$, fiksiramo poljuben $y$ in dokazujemo $A$, če pa želimo dokazati, da obstaja $x$, da velja $A$, le poščemo nek specifičen term $t$, da $A$ velja.
 \end{definicija}
 
+\subsection{Eksponenta}
 
+Včasih si želimo v linearni logiki emulirati tudi običajen sekventni račun, vključno torej z ošibitvijo ter skrčitvijo, a želimo to nelinearnost omejiti na specifične formule. Namen teh ,,nelinearnih'' formul je, da nam dovolijo v linearni logiki dokazati vse, kar je možno dokazati tudi v običajnem sekventnem računu, a da je iz dokaza takoj razvidno, kateri deli sekventa so bili dokazani linearno in kateri ne. Ker želimo označiti formulo kot nelinearno, jo modificiramo v novo formulo z veznikom. Imamo dva takšna veznika, ki ju imenujemo \emph{eksponenta}.
 
+\begin{definicija}
+    Veznik \emph{seveda} je označen s simbolom !, poleg levega in desnega pravila vpeljave pa zanj veljata še ošibitev in skrčitev na levi strani sekventa. Veznik \emph{zakaj ne} pa je označen s simbolom ?, zanj pa prav tako veljajo štiri pravila; levo in desno pravilo vpeljave ter skrčitev in ošibitev na desni strani sekventa.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \pravilo{L!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$!\Gamma \Rightarrow A,?\Delta$}
+            \pravilo{R!}
+            \UnaryInfC{$!\Gamma \Rightarrow \ !A,?\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{W!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,!A,!A \Rightarrow \Delta$}
+            \pravilo{C!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{bprooftree}
+    \end{center}
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$!\Gamma,A \Rightarrow ?\Delta$}
+            \pravilo{L?}
+            \UnaryInfC{$!\Gamma,?A \Rightarrow ?\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{R?}
+            \UnaryInfC{$\Gamma \Rightarrow \ !A,\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{W?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \ ?A,?A,\Delta$}
+            \pravilo{C?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{bprooftree}
+    \end{center}
+    Notacija $!\Gamma$ (ali $?\Delta$) označuje, da je vsaka formula v $\Gamma$ (ali $\Delta$) predznačena z veznikom ! (ali ?).
+\end{definicija}
 
-%TODO napisi na koncu Osnovni vezniki se da mas drugacno notacijo kot girard
-%TODO napisi se kako se intuicionisticno logiko dela in kaj to je, pa zakaj ne bomo obravnaval
-%TODO zapisi se, da ni nujno da se linearno logiko dela v sekventnem racunu ampak da je lahko tut v natural deductionu.
+Kar želimo z eksponenti označiti je, da imamo ,,poljubno mnogo'' označene formule na voljo. Ker vejice na levi beremo kot ,,in'', vejice na desni pa kot ,,ali'', je treba podati dva različna veznika. Formula $!A$ torej označuje ,,$A$ in $A$ in $\ldots$ $A$'', kolikor kopij pač potrebujemo, formula $?A$ pa označuje ,,$A$ ali $A$ ali $\ldots$ $A$''.
+
+Interpretacija levega pravila vpeljave za ! je dokaj enostavna. Pove le, da se kadarkoli v procesu dokazovanja lahko odločimo formulo označiti kot nelinearno. Desno pravilo pa je malce bolj komplicirano, saj veznika ! ni tako lahko razumeti na desni strani sekventa. Rabimo, da je že celoten sekvent nelinearen, da lahko ! vpeljemo na desni. Interpretacija levega in desnega pravila za ? je simetrična.
+
+\subsection{Notacija in druge formalnosti}
+
+Na koncu tega poglavja je potrebnih še nekaj opomb glede zapisa veznikov, strukture sekventov ter strukture linearne logike.
+
+\subsubsection{Poimenovanje veznikov}
+
+Notacija, uporabljena v tem diplomskem delu, je črpana iz vira ??daj vir??, ni pa najbolj standardna. Jean-Yves Girard, ki se je prvi ukvarjal z linearno logiko je veznike in konstante označil drugače, ta notacija pa se je tudi ohranila. Razlog za spremembo notacije v mojem delu je bolj slogoven kot zgodovinski. Načini kako je notacija spremenjena ter standardna imena veznikov v angleščini so prikazana v spodnji tabeli. ??Daj also vir??
+\begin{center}
+\begin{tabular}{||c|c|c||}
+    \hline
+    Simbol veznika & Simbol v standardni notaciji & Ime \\
+    \hline\hline
+    $\sqcap$ & $\&$ & with \\
+    \hline
+    $\star$ & $\otimes$ & tensor \\
+    \hline
+    $\sqcup$ & $\oplus$ & plus \\
+    \hline
+    + & $\parr$ & par \\
+    \hline
+    $\top$ & $\top$ & top \\
+    \hline
+    $\enota$ & $\enota$ & one \\
+    \hline
+    $\bot$ & $\nicla$ & zero \\
+    \hline
+    $\nicla$ & $\bot$ & bottom \\
+    \hline
+    \end{tabular}
+\end{center}
+
+??tudi tukej navedi troelstra vir kjer razlozi notacijo??
+Kot lahko vidimo so v standardni notaciji parni drugačni vezniki kot v naši notaciji. Razlog za to je, da veznik + distribuira čez veznik $\sqcap$, veznik $\star$ pa distribuira čez $\sqcup$. Velja torej:
+\begin{align*}
+    A + (B \sqcap C) &\equiv (A + B) \sqcap (A + C)\\
+    A \star (B \sqcup C) &\equiv (A \star B) \sqcup (A \star C)
+\end{align*}
+Toda če veznik + negiramo, ne dobimo veznika $\sqcap$, ampak $\star$, če negiramo veznik $\sqcap$ pa dobimo $\sqcup$ in seveda obratno. Dualna para sta torej $(\star,+)$ ter $(\sqcap,\sqcup)$, kar je veliko bolj razvidno pri naših oznakah. Poleg tega sta si že sami pravili za veznika $\star$ ter +, iz definicij \ref{tenzor} in \ref{plus}, simetrični, kot sta si pravili za $\sqcap$ ter $\sqcup$, iz definicij \ref{in} in \ref{ali}. Zdi se mi, da sta ta dva razloga dokaj pomembna za razumevanje veznikov, zato sem se odločila za takšno notacijo, kot jo imam.
+
+\subsubsection{Intuicionistična linearna logika}
+
+Ker je pogosto, da članki, ki govorijo o linearni logiki, govorijo specifično o intuicionistični linearni logiki, se mi zdi pomembno predstaviti slednje tudi v mojem delu.
+
+Intuicionistična logika je logika brez principa izključene tretje možnosti. To je aksiom, ki pravi, da za poljubno trditev $P$ velja $P\lor\neg P$. V sekventnem računu kot smo ga predstavili do sedaj, se da to pravilo izpeljati iz pravila aksioma. V linearni logiki ta princip velja le za veznik +, ne pa za veznik $\sqcup$.??citiraj??
+\begin{prooftree}
+	\AxiomC{}
+	\pravilo{Ax}
+	\UnaryInfC{$A \Rightarrow A$}
+	\pravilo{R$\negacija$}
+	\UnaryInfC{$\Rightarrow \negacija A,A$}
+	\pravilo{R+}
+	\UnaryInfC{$\Rightarrow \negacija A + A$}
+\end{prooftree}
+V običajnem sekventnem računu je pravilo za negacijo enako, linearnost je ne spremeni, veznika + in $\sqcap$ pa sta si ekvivalnetna in sta oba reprezentaciji veznika $\lor$. To pomeni, da izpeljava principa izključene tretje možnosti poteka enako kot zgoraj.
+
+Če torej želimo delati z intuicionistično linearno logiko, moramo strukturo sekventnega računa nekoliko spremeniti. Izkaže se, ??citiraj?? da je dovolj, da na desni strani sekventov ne dopustimo več kot ene formule. Kot lahko hitro vidimo, zgornja izpeljava ne deluje več, saj sekvent $\Rightarrow \negacija A,A$ ne more obstajati.
+
+Bistvo intuicionistične logike je poudarek na tem \emph{kako} dokazujemo izreke in trditve, ne le da jih dokažemo. A ker je linearna logika že zelo strukturirana, poleg tega pa bi dopuščanje le ene formule na desni strani sekventa uničilo simetrijo pravil, saj na primer ne bi smeli imeti desnega pravila za +, sem se odločila v tem delu uporabljati klasično -- torej neintuicionistično -- logiko.
+
+\subsubsection{Naravna dedukcija}
+
+%??lahko kle se o Gentzenu pises + glej simpsona??
+Poleg sekventnega računa je v matematiki zelo pogost sistem dokazovanja \emph{naravna dedukcija}. Naravna dedukcija je načeloma zelo podobna sekventnemu računu, glavna razlika je, da imajo namesto levega in desnega pravila vpeljave vezniki \emph{pravilo vpeljave} in \emph{pravilo eliminacije}??. Tudi naravna dedukcija ima -- prirejeni -- pravili ošibitve in skrčitve, ki ju lahko odstranimo iz sistema, kar pomeni, da sekventni račun ni edini način zapisovanja linearne logike. Za tiste, ki jih zanima linearna logika v naravni dedukciji, si več lahko preberejo ??tukaj??.
+%tuki ne dat not troelstre k tbh ne razlozi kaj je natural deduction, bauer!
+
+% \subsection{Pravilo reza}
+%
+% Poslednje pravilo, ki ga bomo v tem poglavju vpeljali, je \emph{pravilo reza}. To pravilo obstaja tudi v običajnem sekventnem računu, a nam je relevantno v kontekstu linearne logike, zato je vpeljano v tem poglavju.
+%
+% \begin{definicija}
+% 	\emph{Pravilo reza} je formalizacija koncepta dokazovanja z lemo. To pravilo pravi, da če znamo pod določenimi predpostavkami dokazati formulo $A$, potem pa iz te formule dokažemo nekaj drugega, lahko $A$ enostavno režemo iz procesa.
+% 	\begin{prooftree}
+%         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+%         \AxiomC{$\Gamma',A \Rightarrow \Delta'$}
+%         \pravilo{Rez}
+%         \BinaryInf$\Gamma,\Gamma' \fCenter \Delta,\Delta'$
+% 	\end{prooftree}
+% \end{definicija}
