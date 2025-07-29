@@ -1,0 +1,194 @@
+Sekventni račun je formalni sistem dokazovanja, ki sestoji iz t.~i.\ sekventov in vnaprej določenih pravil, kako jih smemo preoblikovati. Vsak korak dokaza torej uporabi enega izmed teh pravil, dokler začetnega sekventa ali sekventov ne preoblikujemo v tistega, ki smo ga želeli dokazati.
+
+Korake ločimo s horizontalno črto, nad katero so vsi sekventi, ki jih pravilo uporabljeno na tem koraku sprejme, velikokrat pomimenovani \emph{hipoteze}, pod njo pa je novo dobljeni sekvent, navadno imenovan \emph{sklep}. Označimo hipoteze s $\mathcal{H}_0, \mathcal{H}_1, \ldots, \mathcal{H}_n$, sklep pa s $\mathcal{C}$. Korak izpeljave bo torej izgledal takole:
+
+\begin{prooftree}
+    \AxiomC{$\mathcal{H}_0$}
+    \AxiomC{$\mathcal{H}_1$}
+    \AxiomC{$\dots$}
+    \AxiomC{$\mathcal{H}_n$}
+    \pravilo{Pravilo}
+    \QuaternaryInfC{$\mathcal{C}$}
+\end{prooftree}
+
+Na desni ponavadi označimo, katero pravilo smo uporabili na tem koraku, zavoljo preglednosti.
+
+\subsection{Sekvent in formula}
+
+\begin{definicija}
+    Naj bosta $A_0,A_1,\ldots,A_n$ ter $B_0,B_1,\ldots,B_n$ končni zaporedji logičnih formul. \emph{Sekvent} je izraz oblike $A_0,\dots,A_n \Rightarrow B_0,\dots,B_m$.
+\end{definicija}
+
+Formulam na levi strani sekventa navadno pravimo \emph{predpostavke}, formulam na desni pa \emph{sklepi}. Celotno zaporedje predpostavk bomo označevali z $\Gamma$, zaporedje sklepov pa z $\Delta$.
+
+Pomembno je omeniti še, da simbol $\Rightarrow$ v sekventu ne predstavlja običajne implikacije in ga raje beremo kot ,,dokaže''. Vejice na levi strani sekventa se bere kot ,,in'', vejice na desni strani pa kot ,,ali''. Sekvent $A,B \Rightarrow C,D$ bi se torej razumel kot ,,formuli $A$ in $B$ dokažeta formulo $C$ ali formulo $D$''.
+
+V zgornji definiciji smo uporabili besedo \emph{formula}, ki jo je potrebno bolj formalno definirati. Definicija je induktivna, kar pomeni, da se formule gradijo iz podformul, te iz svojih podformul in tako dalje, na dnu pa so t.~i.\ osnovne formule. Te pa so zgrajene iz termov, ki so prav tako induktivno definirani.
+
+%pr obeh tuki lahko citiram simpsonova predavanja
+\begin{definicija}
+    \emph{Term} je izraz, ki je lahko v treh različnih oblikah.
+    \begin{enumerate}
+        \item To je lahko neka spremenljivka.
+        \item Lahko je konstanta.
+        \item Lahko pa je rezultat funkcije, ki sprejme določeno število termov.
+    \end{enumerate}
+\end{definicija}
+\begin{primer*}
+    Na voljo imamo denimo naravna števila, na katerih je definirana funkcija $+$, ki sprejme dva terma. Možni termi, ki jih lahko tvorimo, so torej lahko npr.\ spremenljivka $x$, konstanta $3$ ali pa izraz $x+3$.
+\end{primer*}
+
+\begin{definicija}
+	\emph{Formula} je izraz v dveh oblikah.
+	\begin{enumerate}
+        \item \emph{Osnovna formula} je predikatni simbol ali relacija, ki sprejme določeno število termov.
+        \item \emph{Sestavljena formula} je -- kot pove ime -- sestavljena iz ene ali več podformul, med seboj povezanih z veznikom.
+	\end{enumerate}
+\end{definicija}
+\begin{primer*}
+    Imamo denimo terma $t_1$ in $t_2$ in relacijo $=$, ki sprejme dva terma. Tvorimo torej lahko osnovno formulo $t_1=t_2$.
+\end{primer*}
+\begin{primer*}
+    Če imamo dve formuli $A$ in $B$, so npr.\ $A \land B$, $\neg A$, $A \lor B$ tudi formule.
+\end{primer*}
+Katere sestavljene formule lahko tvorimo je odvisno od tega, s kakšnimi vezniki želimo delati. Če naša logika na primer ne uporablja veznika $\land$, formula $A \land B$ ne pomeni ničesar. Specifične veznike, ki jih bomo uporabljali pri linearni logiki, bomo natančneje definirali v ?? odseku.
+
+\subsection{Pravila pri sekventnem računu}
+
+Pravila pri sekventnem računu delimo na \emph{strukturna pravila}, ki nam povedo kako ravnati s poljubnimi zaporedji formul, \emph{logična pravila} ali \emph{pravila vpeljave}, ki nam povedo kako z različnimi vezniki tvorimo nove formule, in pa pravilo aksioma.
+
+\begin{definicija}
+    \emph{Aksiom} je vsak sekvent oblike $A \Rightarrow A$, kar lahko interpretiramo kot ,,formula dokaže sama sebe''. To je seveda vedno res, zato pravilo aksioma, skrajšano $Ax$, pravi, da aksiome lahko vedno tvorimo, t.~j.\ zanje ne potrebujemo predhodnih sekventov. Zapisano v sekventnem računu torej:
+    \begin{prooftree}
+        \AxiomC{}
+        \pravilo{Ax}
+        \UnaryInfC{$A \Rightarrow A$}
+    \end{prooftree}
+\end{definicija}
+
+\subsubsection{Pravila vpeljave}
+
+Pravila vpeljave pri sekventnem računu načeloma sestojijo iz \emph{levega pravila vpeljave} ter \emph{desnega pravila vpeljave}. Prvo nam pove kako veznik uporabiti med predpostavkami, drugo pa kako dani veznik dokazati.
+
+Oglejmo si kot primer pravilo vpeljave za veznik $\land$. Več veznikov bomo vpeljali in si podrobneje pogledali v poglavju ??.
+
+\begin{definicija} \label{inl}
+	\emph{Levo pravilo vpeljave veznika $\land$}, krajše $L\land$, pravi, da če znamo nekaj dokazati iz formule $A$, znamo isto dokazati iz $A \land B$ za poljubno formulo $B$. Ker je veznik $\land$ simetričen, je tudi to pravilo simetrično.
+	\begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma, A \Rightarrow \Delta$}
+            \pravilo{L$\land$}
+            \UnaryInfC{$\Gamma,A \land B \Rightarrow \Delta$}
+        \end{bprooftree}\qquad
+        in\qquad
+        \begin{bprooftree}
+            \AxiomC{$\Gamma, B \Rightarrow \Delta$}
+            \pravilo{L$\land$}
+            \UnaryInfC{$\Gamma,A \land B \Rightarrow \Delta$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+\begin{definicija} \label{inr}
+	\emph{Desno pravilo vpeljave veznika $\land$}, krajše $R\land$, pa pravi, da če znamo iz nekih predpostavk dobiti formulo $A$ ter iz istih predpostavk dobiti formulo $B$, znamo iz teh predpostavk dobiti tudi formulo $A \land B$.
+	\begin{prooftree}
+        \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+        \AxiomC{$\Gamma \Rightarrow B,\Delta$}
+        \pravilo{R$\land$}
+        \BinaryInf$\Gamma \fCenter A \land B,\Delta$
+    \end{prooftree}
+\end{definicija}
+
+\subsubsection{Strukturna pravila}
+
+Običajno je sekventni račun opremljen s tremi strukturnimi pravili.
+
+\begin{definicija}
+	\emph{Pravilo menjave}, krajše $Ex$, nam pove, da lahko vrstni red predpostavk in sklepov med seboj poljubno menjamo.
+	\begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A,B,\Gamma' \Rightarrow \Delta$}
+            \pravilo{Ex}
+            \UnaryInfC{$\Gamma,B,A,\Gamma' \Rightarrow \Delta$}
+        \end{bprooftree}\qquad
+        in \qquad
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta,A,B,\Delta'$}
+            \pravilo{Ex}
+            \UnaryInfC{$\Gamma \Rightarrow \Delta,B,A,\Delta'$}
+        \end{bprooftree}
+	\end{center}
+\end{definicija}
+
+\begin{opomba}
+	Do sedaj smo na $\Gamma$ in $\Delta$ gledali kot zaporedji formul. Če ju namesto tega definiramo kot \emph{multimnožici}, torej množici, kjer je vsakemu elementu prirejeno število pojavitev, lahko pravilo menjave zavržemo, saj sledi že iz same strukture predpostavk in sklepov. Zavoljo enostavnosti bomo torej na $\Gamma$ in $\Delta$ v nadaljevanju gledali kot multimnožici.
+
+	Tu je pomembno, da to ni le množica, saj nas še vedno zanima koliko formul, četudi istih, nastopa v sekventu.
+\end{opomba}
+
+\begin{definicija} \label{weakening}
+	\emph{Ošibitev}, krajše $W$, nam pove, da lahko tako predpostavke kot sklepe ,,ošibimo'' z dodatno formulo.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{W}
+            \UnaryInfC{$\Gamma,A \Rightarrow \Delta$}
+        \end{bprooftree} \qquad
+        in \qquad
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{W}
+            \UnaryInfC{$\Gamma \Rightarrow \Delta, A$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+Kar to pomeni na levi je, da če znamo že iz $\Gamma$ dokazati $\Delta$, potem lahko med predpostavke dodamo kakršnokoli odvečno formulo in bomo $\Delta$ še vedno znali dokazati. Odvečne predpostavke nam torej ne škodujejo.
+
+Na desni pa, ker tam vejico beremo kot ,,ali'' velja podobno. Če znamo iz $\Gamma$ dokazati $\Delta$, potem znamo iz $\Gamma$ dokazati tudi $\Delta$ ali $A$.
+
+\begin{definicija} \label{contraction}
+    \emph{Skrčitev}, krajše $C$, nam pove, da število ponovitev formule tako med predpostavkami kot sklepi ni pomembno.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A,A \Rightarrow \Delta$}
+            \pravilo{C}
+            \UnaryInfC{$\Gamma,A \Rightarrow \Delta$}
+        \end{bprooftree} \qquad
+        in \qquad
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta,A,A$}
+            \pravilo{C}
+            \UnaryInfC{$\Gamma \Rightarrow \Delta,A$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+Če torej znamo dokazati $\Delta$ iz dveh ponovitev formule $A$, znamo isto dokazati iz le ene kopije. Prav tako, če znamo dvakrat dokazati $A$, znamo to seveda narediti tudi enkrat.
+
+Preden preidemo specifično na linearno logiko je potrebno še omeniti, da pri sekventnem računu dokazujemo ,,od spodaj navzgor''. Začnemo torej s sekventom, ki bi ga želeli dokazati in poiščemo katera pravila, strukturna ali logična, so nam na voljo. Analogija pri dokazovanju v vsakdanji matematiki je, da začnemo s problemom, ki ga želimo dokazati, in ga razčlenimo na manjše podprobleme, dokler ne dobimo nečesa, za kar gotovo vemo da je res. Prav tako poskušamo pri sekventnem računu sekvente postopoma prevesti na aksiom, ki pa bo vedno veljal.
+
+Tudi pravila si zato lahko interpretiramo drugače. Levo pravilo za veznik $\land$ iz definicije \ref{inl} lahko sedaj razumemo kot; če želimo iz $A \land B$ dokazati neke sklepe $\Delta$ je dovolj da $\Delta$ dokažemo iz formule $A$ ali iz formule $B$. Desno pravilo za $\land$ iz definicije \ref{inr} pa razumemo kot; če želimo iz predpostavk $\Gamma$ dokazati $A \land B$, je dovolj da iz $\Gamma$ dokažemo $A$ ter da iz $\Gamma$ dokažemo $B$.
+
+Za primer dokaza v sekventnem računu si oglejmo skoraj trivialen dokaz komutativnosti veznika $\land$.
+
+\begin{prooftree}
+    \AxiomC{}
+    \pravilo{Ax}
+    \UnaryInfC{$B \Rightarrow B$}
+    \pravilo{L$\land$}
+    \UnaryInfC{$A \land B \Rightarrow B$}
+
+    \AxiomC{}
+    \pravilo{Ax}
+    \UnaryInfC{$A \Rightarrow A$}
+    \pravilo{L$\land$}
+    \UnaryInfC{$A \land B \Rightarrow A$}
+
+    \pravilo{R$\land$}
+    \BinaryInf$A \land B \fCenter B \land A$
+\end{prooftree}
+
+V besedah lahko ta dokaz razumemo sledeče. Želimo izpeljati, da $A \land B$ dokaže $B \land A$. Dovolj je, da dokažemo, da $A \land B$ dokaže $A$ ter da dokaže $B$. Na levi je potem dovolj pokazati, da že $B$ dokaže $B$, kar pa je vedno res. Na desni se zgodi podobno.
+
+Od sedaj naprej bomo vsa pravila in dokaze interpretirali od spodaj navzgor.

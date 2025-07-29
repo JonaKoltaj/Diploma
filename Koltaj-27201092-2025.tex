@@ -1,0 +1,108 @@
+\documentclass[mat1, tisk]{fmfdelo}
+% \documentclass[fin1, tisk]{fmfdelo}
+% Če pobrišete možnost tisk, bodo povezave obarvane,
+% na začetku pa ne bo praznih strani po naslovu, …
+
+\usepackage{bussproofs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newenvironment{bprooftree}
+  {\leavevmode\hbox\bgroup}
+  {\DisplayProof\egroup}
+
+\def\fCenter{\mbox{\ $\Rightarrow$\ }}
+\newcommand{\pravilo}[1]{\RightLabel{\footnotesize{#1}}}
+\newcommand{\levopravilo}[1]{\LeftLabel{\footnotesize{#1}}}
+\newcommand{\negacija}{\mathord{\sim}}
+\newcommand{\enota}{\mathbf{1}}
+\newcommand{\nicla}{\mathbf{0}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METAPODATKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% - vaše ime
+\avtor{Jona Koltaj}
+
+% - naslov dela v slovenščini
+\naslov{Eliminacija rezov v linearni logiki}
+
+% - naslov dela v angleščini
+\title{Cut elimination in linear logic}
+
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
+\mentor{prof.~dr.~Andrej Bauer}
+% \somentor{...}
+% \mentorica{...}
+% \somentorica{...}
+% \mentorja{...}{...}
+% \somentorja{...}{...}
+% \mentorici{...}{...}
+% \somentorici{...}{...}
+
+% - leto diplome
+\letnica{2025}
+
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
+\povzetek{...}
+
+% - povzetek v angleščini
+\abstract{...}
+
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
+\klasifikacija{..., ...}
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{...\sep ...}
+
+% - angleški prevod ključnih besed
+\keywords{...\sep ...} % angleški prevod ključnih besed
+
+% - angleško-slovenski slovar strokovnih izrazov
+% \slovar{
+% \geslo{angleški izraz}{slovenski izraz}
+% ...
+% }
+
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+% \literatura{....bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% naložite dodatne pakete, ki jih potrebujete
+% \usepackage{...}
+
+% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
+% \DeclareMathOperator{\...}{...}
+
+% vstavite svoje definicije ...
+% \newcommand{\...}{...}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% \section{Uvod}
+% ...
+
+\section{Sekventni račun}
+\input{Vsebina/sekventni_racun.tex}
+
+\section{Linearna logika}
+\input{Vsebina/linearna_logika.tex}
+
+% \section{Zaključek}
+% ...
+
+\end{document}
