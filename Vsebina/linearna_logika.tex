@@ -16,7 +16,7 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
         \pravilo{R$\land'$}
-        \BinaryInf$\Gamma,\Gamma' \fCenter A \land' B,\Delta,\Delta'$
+        \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \land' B,\Delta,\Delta'$}
     \end{prooftree}
 \end{definicija}
 
@@ -57,7 +57,7 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \UnaryInfC{$\Gamma,\Gamma' \Rightarrow B,\Delta,\Delta'$}
 
         \pravilo{R$\land$}
-        \BinaryInf$\Gamma,\Gamma' \fCenter A \land B,\Delta,\Delta'$
+        \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \land B,\Delta,\Delta'$}
     \end{prooftree}
     Ko zgoraj iz desnega pravila za $\land$ izpeljujemo desno pravilo za $\land'$, najprej uporabimo desno pravilo za $\land$, torej predpostavk (in sklepov) ne razdelimo na dva dela, zato se s pomočjo ošibitve na levi ,,znebimo'' (saj pravila beremo od spodaj navzgor) predpostavk $\Gamma'$ in sklepov $\Delta'$. To naredimo tako, da ošibitev iteriramo tolikokrat, kolikor je velikost multimnožice $\Gamma'\cup\Delta'$. Podobno naredimo na desni strani.
 
@@ -66,7 +66,7 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma \Rightarrow B,\Delta$}
         \pravilo{R$\land'$}
-        \BinaryInf$\Gamma, \Gamma \fCenter A \land' B, \Delta, \Delta$
+        \BinaryInfC{$\Gamma, \Gamma \Rightarrow A \land' B, \Delta, \Delta$}
         \pravilo{C$\times |\Gamma \cup \Delta|$}
         \UnaryInfC{$\Gamma \Rightarrow A \land' B, \Delta$}
     \end{prooftree}
@@ -96,7 +96,7 @@ Kot smo v zgornjem dokazu lahko videli, se za dokaz ekvivalence $\land$ ter $\la
             \AxiomC{$\Gamma \Rightarrow A,\Delta$}
             \AxiomC{$\Gamma \Rightarrow B,\Delta$}
             \pravilo{R$\sqcap$}
-            \BinaryInf$\Gamma \fCenter A \sqcap B,\Delta$
+            \BinaryInfC{$\Gamma \Rightarrow A \sqcap B,\Delta$}
         \end{bprooftree}
     \end{center}
 \end{definicija}
@@ -113,7 +113,7 @@ Kot smo v zgornjem dokazu lahko videli, se za dokaz ekvivalence $\land$ ter $\la
             \AxiomC{$\Gamma \Rightarrow A,\Delta$}
             \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
             \pravilo{R$\star$}
-            \BinaryInf$\Gamma,\Gamma' \fCenter A \star B,\Delta,\Delta'$
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \star B,\Delta,\Delta'$}
         \end{bprooftree}
     \end{center}
 \end{definicija}
@@ -129,7 +129,7 @@ Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni 
             \AxiomC{$\Gamma,A \Rightarrow \Delta$}
             \AxiomC{$\Gamma,B \Rightarrow \Delta$}
             \pravilo{L$\sqcup$}
-            \BinaryInf$\Gamma,A \sqcup B \fCenter \Delta$
+            \BinaryInfC{$\Gamma,A \sqcup B \Rightarrow \Delta$}
         \end{bprooftree}
         \begin{bprooftree}
             \AxiomC{$\Gamma \Rightarrow A,\Delta$}
@@ -152,7 +152,7 @@ Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni 
             \AxiomC{$\Gamma,A \Rightarrow \Delta$}
             \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
             \pravilo{L+}
-            \BinaryInf$\Gamma,\Gamma',A + B \fCenter \Delta,\Delta'$
+            \BinaryInfC{$\Gamma,\Gamma',A + B \Rightarrow \Delta,\Delta'$}
         \end{bprooftree}
         \begin{bprooftree}
             \AxiomC{$\Gamma \Rightarrow A,B,\Delta$}
@@ -173,7 +173,7 @@ Za vpeljavo implikacije zopet potrebujemo drugačen simbol kot smo ga vajeni, sa
             \AxiomC{$\Gamma \Rightarrow A,\Delta$}
             \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
             \pravilo{L$\multimap$}
-            \BinaryInf$\Gamma,\Gamma',A \multimap B \fCenter \Delta,\Delta'$
+            \BinaryInfC{$\Gamma,\Gamma',A \multimap B \Rightarrow \Delta,\Delta'$}
         \end{bprooftree}
         \begin{bprooftree}
             \AxiomC{$\Gamma,A \Rightarrow B,\Delta$}
@@ -258,7 +258,7 @@ V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki p
             \UnaryInfC{$\Rightarrow \enota$}
 
             \pravilo{R$\star$}
-            \BinaryInf$A \fCenter A \star \enota$
+            \BinaryInfC{$A \Rightarrow A \star \enota$}
         \end{bprooftree}
     \end{center}
     \vskip 10pt
@@ -280,7 +280,7 @@ V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki p
             \UnaryInfC{$A \Rightarrow \top$}
 
             \pravilo{R$\sqcap$}
-            \BinaryInf$A \fCenter A \sqcap \top$
+            \BinaryInfC{$A \Rightarrow A \sqcap \top$}
         \end{bprooftree}
     \end{center}
 \end{dokaz}
@@ -450,7 +450,7 @@ Kot lahko vidimo so v standardni notaciji parni drugačni vezniki kot v naši no
 \end{align*}
 Toda če veznik + negiramo, ne dobimo veznika $\sqcap$, ampak $\star$, če negiramo veznik $\sqcap$ pa dobimo $\sqcup$ in seveda obratno. Dualna para sta torej $(\star,+)$ ter $(\sqcap,\sqcup)$, kar je veliko bolj razvidno pri naših oznakah. Poleg tega sta si že sami pravili za veznika $\star$ ter +, iz definicij \ref{tenzor} in \ref{plus}, simetrični, kot sta si pravili za $\sqcap$ ter $\sqcup$, iz definicij \ref{in} in \ref{ali}. Zdi se mi, da sta ta dva razloga dokaj pomembna za razumevanje veznikov, zato sem se odločila za takšno notacijo, kot jo imam.
 
-\subsubsection{Intuicionistična linearna logika}
+\subsubsection{Intuicionistična linearna logika} \label{ill}
 
 Ker je pogosto, da članki, ki govorijo o linearni logiki, govorijo specifično o intuicionistični linearni logiki, se mi zdi pomembno predstaviti slednje tudi v mojem delu.
 
@@ -460,9 +460,9 @@ Intuicionistična logika je logika brez principa izključene tretje možnosti. T
 	\pravilo{Ax}
 	\UnaryInfC{$A \Rightarrow A$}
 	\pravilo{R$\negacija$}
-	\UnaryInfC{$\Rightarrow \negacija A,A$}
+	\UnaryInfC{$\Rightarrow A,\negacija A$}
 	\pravilo{R+}
-	\UnaryInfC{$\Rightarrow \negacija A + A$}
+	\UnaryInfC{$\Rightarrow A + (\negacija A)$}
 \end{prooftree}
 V običajnem sekventnem računu je pravilo za negacijo enako, linearnost je ne spremeni, veznika + in $\sqcap$ pa sta si ekvivalnetna in sta oba reprezentaciji veznika $\lor$. To pomeni, da izpeljava principa izključene tretje možnosti poteka enako kot zgoraj.
 
@@ -473,19 +473,5 @@ Bistvo intuicionistične logike je poudarek na tem \emph{kako} dokazujemo izreke
 \subsubsection{Naravna dedukcija}
 
 %??lahko kle se o Gentzenu pises + glej simpsona??
-Poleg sekventnega računa je v matematiki zelo pogost sistem dokazovanja \emph{naravna dedukcija}. Naravna dedukcija je načeloma zelo podobna sekventnemu računu, glavna razlika je, da imajo namesto levega in desnega pravila vpeljave vezniki \emph{pravilo vpeljave} in \emph{pravilo eliminacije}??. Tudi naravna dedukcija ima -- prirejeni -- pravili ošibitve in skrčitve, ki ju lahko odstranimo iz sistema, kar pomeni, da sekventni račun ni edini način zapisovanja linearne logike. Za tiste, ki jih zanima linearna logika v naravni dedukciji, si več lahko preberejo ??tukaj??.
+Poleg sekventnega računa je v matematiki zelo pogost sistem dokazovanja \emph{naravna dedukcija}. Naravna dedukcija je načeloma zelo podobna sekventnemu računu, glavna razlika je, da imajo namesto levega in desnega pravila vpeljave vezniki \emph{pravilo vpeljave} in \emph{pravilo eliminacije}??. Tudi naravna dedukcija ima pravili ošibitve in skrčitve, ki ju lahko odstranimo iz sistema, kar pomeni, da sekventni račun ni edini način zapisovanja linearne logike. Za tiste, ki jih zanima linearna logika v naravni dedukciji, si več lahko preberejo ??tukaj??.
 %tuki ne dat not troelstre k tbh ne razlozi kaj je natural deduction, bauer!
-
-% \subsection{Pravilo reza}
-%
-% Poslednje pravilo, ki ga bomo v tem poglavju vpeljali, je \emph{pravilo reza}. To pravilo obstaja tudi v običajnem sekventnem računu, a nam je relevantno v kontekstu linearne logike, zato je vpeljano v tem poglavju.
-%
-% \begin{definicija}
-% 	\emph{Pravilo reza} je formalizacija koncepta dokazovanja z lemo. To pravilo pravi, da če znamo pod določenimi predpostavkami dokazati formulo $A$, potem pa iz te formule dokažemo nekaj drugega, lahko $A$ enostavno režemo iz procesa.
-% 	\begin{prooftree}
-%         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
-%         \AxiomC{$\Gamma',A \Rightarrow \Delta'$}
-%         \pravilo{Rez}
-%         \BinaryInf$\Gamma,\Gamma' \fCenter \Delta,\Delta'$
-% 	\end{prooftree}
-% \end{definicija}

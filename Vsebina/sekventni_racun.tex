@@ -38,7 +38,7 @@ V zgornji definiciji smo uporabili besedo \emph{formula}, ki jo je potrebno bolj
     Na voljo imamo denimo naravna števila, na katerih je definirana funkcija $+$, ki sprejme dva terma. Možni termi, ki jih lahko tvorimo, so torej lahko npr.\ spremenljivka $x$, konstanta $3$ ali pa izraz $x+3$.
 \end{primer*}
 
-\begin{definicija}
+\begin{definicija} \label{formula}
 	\emph{Formula} je izraz v dveh oblikah.
 	\begin{enumerate}
         \item \emph{Osnovna formula} je predikatni simbol ali relacija, ki sprejme določeno število termov.
@@ -95,7 +95,7 @@ Oglejmo si kot primer pravilo vpeljave za veznik $\land$. Več veznikov bomo vpe
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma \Rightarrow B,\Delta$}
         \pravilo{R$\land$}
-        \BinaryInf$\Gamma \fCenter A \land B,\Delta$
+        \BinaryInfC{$\Gamma \Rightarrow A \land B,\Delta$}
     \end{prooftree}
 \end{definicija}
 
@@ -186,7 +186,7 @@ Za primer dokaza v sekventnem računu si oglejmo skoraj trivialen dokaz komutati
     \UnaryInfC{$A \land B \Rightarrow A$}
 
     \pravilo{R$\land$}
-    \BinaryInf$A \land B \fCenter B \land A$
+    \BinaryInfC{$A \land B \Rightarrow B \land A$}
 \end{prooftree}
 
 V besedah lahko ta dokaz razumemo sledeče. Želimo izpeljati, da $A \land B$ dokaže $B \land A$. Dovolj je, da dokažemo, da $A \land B$ dokaže $A$ ter da dokaže $B$. Na levi je potem dovolj pokazati, da že $B$ dokaže $B$, kar pa je vedno res. Na desni se zgodi podobno.
