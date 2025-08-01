@@ -162,18 +162,17 @@ Kaj pomeni, da je rez glaven, je odvisno od vsake rezane formule posebej. Elimin
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
 Izpeljava pred puščico in po njej je enaka, saj iz istih poddreves dokažemo isti sekvent. Tako smo lahko pravilo, ki reže $A \sqcap B$ zamenjali s pravilom, ki reže le $A$, zato je korak indukcije opravljen. Podobno lahko naredimo za glavni rez $A \star B$.
-
 \begin{prooftree}
     \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
-    \RightLabel{L$\star$}
+    \levopravilo{L$\star$}
     \UnaryInfC{$\Gamma,A \star B \Rightarrow \Delta$}
 
     \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
     \AxiomC{$\Gamma'' \Rightarrow B,\Delta''$}
-    \RightLabel{R$\star$}
+    \pravilo{R$\star$}
     \BinaryInfC{$\Gamma',\Gamma'' \Rightarrow A \star B,\Delta',\Delta''$}
 
-    \RightLabel{Rez}
+    \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
 \end{prooftree}
 \begin{center}
@@ -182,15 +181,112 @@ Izpeljava pred puščico in po njej je enaka, saj iz istih poddreves dokažemo i
 \begin{prooftree}
     \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
     \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
-    \RightLabel{Rez}
+    \levopravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',B \Rightarrow \Delta,\Delta'$}
 
     \AxiomC{$\Gamma'' \Rightarrow B,\Delta''$}
-
-    \RightLabel{Rez}
+    \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
 \end{prooftree}
-Tokrat smo sicer prvotni rez prevedli na dva, a oba novonastala reza režeta podformuli, zato zopet zadostimo indukcijski predpostavki.
+Tokrat smo sicer prvotni rez prevedli na dva, a oba novonastala reza režeta podformuli, zato zopet zadostimo indukcijski predpostavki. Zelo podobno kot zgornje dva primera izvedemo korak indukcije za $A \sqcup B$ ter $A+B$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \AxiomC{$\Gamma,B \Rightarrow \Delta$}
+    \levopravilo{L$\sqcup$}
+    \BinaryInfC{$\Gamma,A \sqcup B \Rightarrow \Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+    \pravilo{R$\sqcup$}
+    \UnaryInfC{$\Gamma' \Rightarrow A \sqcup B,\Delta'$}
+
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+\begin{center}
+    $\downarrow$
+\end{center}
+\begin{prooftree}
+    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Kot vidimo je zgornji korak indukcije popolnoma simetričen koraku indukcije za $A \sqcap B$, saj sta tudi veznika sama popolnoma simetrična. Prav tako je korak indukcije za $A+B$ popolnoma simetričen koraku indukcije za $A \star B$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \levopravilo{L+}
+    \BinaryInfC{$\Gamma,\Gamma',A + B \Rightarrow \Delta,\Delta'$}
+
+    \AxiomC{$\Gamma'' \Rightarrow A,B,\Delta''$}
+    \pravilo{R+}
+    \UnaryInfC{$\Gamma'' \Rightarrow A + B,\Delta''$}
+
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
+\end{prooftree}
+\begin{center}
+    $\downarrow$
+\end{center}
+\begin{prooftree}
+    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \AxiomC{$\Gamma'' \Rightarrow A,B,\Delta''$}
+    \levopravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow B,\Delta,\Delta''$}
+
+    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
+\end{prooftree}
+Naslednja eliminacija glavnega reza, ki jo je potrebno obravnavati je eliminacija glavnega reza implikacije. Zopet se rez prevede na dva manj kompleksna reza.
+\begin{prooftree}
+	\AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \levopravilo{L$\multimap$}
+    \BinaryInfC{$\Gamma,\Gamma',A \multimap B \Rightarrow \Delta,\Delta'$}
+
+    \AxiomC{$\Gamma'',A \Rightarrow B,\Delta''$}
+    \pravilo{R$\multimap$}
+    \UnaryInfC{$\Gamma'' \Rightarrow A \multimap B,\Delta''$}
+
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
+\end{prooftree}
+\begin{center}
+    $\downarrow$
+\end{center}
+\begin{prooftree}
+	\AxiomC{$\Gamma,A \Rightarrow \Delta$}
+	\AxiomC{$\Gamma'',A \Rightarrow B,\Delta''$}
+    \levopravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow B,\Delta,\Delta''$}
+
+    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
+\end{prooftree}
+Poslednji izmed veznikov, ki ga potrebujemo obravnavati je negacija.
+\begin{prooftree}
+    \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+	\levopravilo{L$\negacija$}
+	\UnaryInfC{$\Gamma,\negacija A \Rightarrow \Delta$}
+
+	\AxiomC{$\Gamma',A \Rightarrow \Delta'$}
+	\pravilo{R$\negacija$}
+	\UnaryInfC{$\Gamma' \Rightarrow \negacija A,\Delta'$}
+
+	\pravilo{Rez}
+	\BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+\begin{center}
+	$\downarrow$
+\end{center}
+\begin{prooftree}
+    \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+	\AxiomC{$\Gamma',A \Rightarrow \Delta'$}
+	\pravilo{Rez}
+	\BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
 
 % Dej bazo na konc, i think da leps pase
 % Baza indukcije na $\mathcal{D}_0$ in $\mathcal{D}_1$ pomeni, da je vsaj eden izmed $\mathcal{D}_0$ ter $\mathcal{D}_1$ list, torej pravilo aksioma, ter da tisto poddrevo, ki ni list, ne vsebuje pravila rez. Potrebno je dokazati, da lahko take vrste drevo izpeljave preobrazimo v drevo izpeljave brez rezov. Oglejmo si torej primer, ko je $\mathcal{D}_0$ list, $\mathcal{D}_1$ pa ni. Obratno je seveda simetrično.
