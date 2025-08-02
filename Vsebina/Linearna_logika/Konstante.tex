@@ -1,0 +1,112 @@
+V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki pa se v linearni logiki spet vsaka razdelita na dvoje. Resnici se delita na enoto za $\star$ ter enoto za $\sqcap$, neresnici pa na enoto za + ter enoto za $\sqcup$.
+
+\begin{definicija}
+    \emph{Enota}, označena z $\enota$, ima levo in desno pravilo vpeljave:
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{L$\enota$}
+            \UnaryInfC{$\Gamma,\enota \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{}
+            \pravilo{R$\enota$}
+            \UnaryInfC{$\Rightarrow \enota$}
+        \end{bprooftree}
+    \end{center}
+    Enoto torej lahko brez predpostavk vedno dokažemo, kar nam pove desno pravilo, če pa vemo da enota velja je to trivialna informacija, kar nam pove levo pravilo.
+\end{definicija}
+
+\begin{definicija}
+    \emph{Resnica}, označena z $\top$, ima le desno pravilo vpeljave. Ne moremo je torej uporabiti kot sklep.
+    \begin{prooftree}
+        \AxiomC{}
+        \pravilo{R$\top$}
+        \UnaryInfC{$\Gamma \Rightarrow \top,\Delta$}
+    \end{prooftree}
+    Kar nam to pove je, da resnica vedno velja.
+\end{definicija}
+
+\begin{lema} \label{enoti}
+	Enota $\enota$ je enota za za $\star$, resnica $\top$ pa je enota za $\sqcap$.
+\end{lema}
+\begin{dokaz}
+    Za dokaz leme potrebujemo izpeljati sekvente $A \star \enota \Rightarrow A$, $A \Rightarrow A \star \enota$, $A \sqcap \top \Rightarrow A$ ter $A \Rightarrow A \sqcap \top$.
+    \begin{center}
+        \vskip 10pt
+        \begin{bprooftree}
+            \AxiomC{}
+            \pravilo{Ax}
+            \UnaryInfC{$A \Rightarrow A$}
+            \pravilo{L$\enota$}
+            \UnaryInfC{$A,\enota \Rightarrow A$}
+            \pravilo{L$\star$}
+            \UnaryInfC{$A \star \enota \Rightarrow A$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{}
+            \levopravilo{Ax}
+            \UnaryInfC{$A \Rightarrow A$}
+
+            \AxiomC{}
+            \pravilo{R$\enota$}
+            \UnaryInfC{$\Rightarrow \enota$}
+
+            \pravilo{R$\star$}
+            \BinaryInfC{$A \Rightarrow A \star \enota$}
+        \end{bprooftree}
+    \end{center}
+    \vskip 10pt
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{}
+            \pravilo{Ax}
+            \UnaryInfC{$A \Rightarrow A$}
+            \pravilo{L$\sqcap$}
+            \UnaryInfC{$A \sqcap \top \Rightarrow A$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{}
+            \levopravilo{Ax}
+            \UnaryInfC{$A \Rightarrow A$}
+
+            \AxiomC{}
+            \pravilo{R$\top$}
+            \UnaryInfC{$A \Rightarrow \top$}
+
+            \pravilo{R$\sqcap$}
+            \BinaryInfC{$A \Rightarrow A \sqcap \top$}
+        \end{bprooftree}
+    \end{center}
+\end{dokaz}
+
+Pri neresnici je razlog za razdvojitev enak, pravila vpeljave pa so simetrična, zato interpretacijo prepustimo bralcu.
+
+\begin{definicija}
+	\emph{Ničla}, označena z $\nicla$ ima levo in desno pravilo vpeljave:
+	 \begin{center}
+        \begin{bprooftree}
+            \AxiomC{}
+            \pravilo{L$\nicla$}
+            \UnaryInfC{$\nicla \Rightarrow$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{R$\nicla$}
+            \UnaryInfC{$\Gamma \Rightarrow \nicla,\Delta$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+\begin{definicija}
+    \emph{Neresnica}, označena z $\bot$, ima le levo pravilo vpeljave. Ne moremo je torej uporabiti kot predpostavko.
+    \begin{prooftree}
+        \AxiomC{}
+        \pravilo{L$\bot$}
+        \UnaryInfC{$\Gamma, \bot \Rightarrow \Delta$}
+    \end{prooftree}
+\end{definicija}
+
+Dokaz naslednje leme bomo opustili, saj je simetričen dokazu leme \ref{enoti}.
+\begin{lema}
+	Ničla $\nicla$ je enota za +, neresnica $\bot$ pa je enota za $\sqcup$.
+\end{lema}

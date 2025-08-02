@@ -1,0 +1,112 @@
+Poslednje pravilo, ki ga je potrebno vpeljati, je \emph{pravilo reza}. To pravilo obstaja tudi v običajnem sekventnem računu in formalizira koncept dokazovanja s pomočjo leme.
+
+\begin{definicija}
+	\emph{Pravilo reza} pravi, da če znamo pod določenimi predpostavkami dokazati formulo $A$, potem pa iz te formule dokažemo nekaj drugega, lahko $A$ enostavno režemo iz procesa.
+	\begin{prooftree}
+        \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+        \AxiomC{$\Gamma',A \Rightarrow \Delta'$}
+        \pravilo{Rez}
+        \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+	\end{prooftree}
+\end{definicija}
+
+\begin{opomba}
+	Vsa dosedanja pravila v linearni logiki so bila na nek način deterministična. Če smo imeli v sekventu določen veznik, smo lahko uporabili pravilo vpeljave tega veznika, če pa v sekvetnu ni nastopal, tega nismo mogli narediti. Pravilo reza pa je v tem smislu drugačno, saj lahko drevo izpeljave poljubno razvejamo z novimi ,,vrinjenimi'' sekventi.
+\end{opomba}
+Preden smo v naš sekventni račun vpeljali pravilo reza, je bilo torej dokaj enostavno videti, če sekvent ne velja. Oglejmo si na primer iz podpoglavja \ref{ill}, kjer trdimo, da pricip izključene tretje možnosti ne velja za veznik $\sqcup$, tudi pri klasični linearni logiki.
+\begin{center}
+    \begin{bprooftree}
+        \AxiomC{$\Rightarrow A$}
+        \pravilo{R$\sqcup$}
+        \UnaryInfC{$\Rightarrow A \sqcup (\negacija A)$}
+    \end{bprooftree}
+    \begin{bprooftree}
+        \AxiomC{$\Rightarrow \negacija A$}
+        \pravilo{R$\sqcup$}
+        \UnaryInfC{$\Rightarrow A \sqcup (\negacija A)$}
+    \end{bprooftree}
+\end{center}
+Ko dokazujemo sekvent $\Rightarrow A \sqcup (\negacija A)$ brez uporabe pravila reza, imamo na voljo le desno pravilo vpeljave veznika $\sqcup$ in nič drugega. Edina dva možna koraka sta torej prikazana zgoraj, sekvent $\Rightarrow A$ ali $\Rightarrow \negacija A$ pa ne bo veljal za poljubno formulo $A$, torej lahko trdimo, da sekvent, ki ga želimo dokazati, ne velja.
+
+Če pa dopustimo uporabo pravila reza, lahko drevo neskončno razvejamo z vrivanjem poljubnih formul, na primer:
+\begin{prooftree}
+	\AxiomC{.}
+	\noLine
+	\UnaryInfC{.}
+	\noLine
+	\UnaryInfC{.}
+	\noLine
+	\UnaryInfC{$\Rightarrow B$}
+
+	\AxiomC{.}
+	\noLine
+	\UnaryInfC{.}
+	\noLine
+	\UnaryInfC{.}
+	\noLine
+	\UnaryInfC{$B \Rightarrow A \sqcup (\negacija A)$}
+
+	\pravilo{Rez}
+	\BinaryInfC{$\Rightarrow A \sqcup (\negacija A)$}
+\end{prooftree}
+Drevo izpeljave se lahko razvejuje v neskončnost, zato ne moremo nikoli z gotovostjo trditi, da sekventa ne moremo izpeljati. A če pravilo reza res interpretiramo kot dokaz z uporabo leme, bi bilo smiselno, da če sekventa ne moremo dokazati brez uporabe rezov, ga tudi z rezi ne moremo dokazati. Tu nastopi naslednji izrek.
+
+\begin{izrek}[Izrek o eliminaciji rezov] \label{izrek}
+    Vsak sekvent, dokazan z uporabo reza, lahko dokažemo tudi brez uporabe reza.
+\end{izrek}
+
+\begin{posledica} %lah pises se o gentzenu etc
+    Problem, opisan zgoraj, se torej ne pojavi. Ker sekventa brez reza ne moremo dokazati, ga tudi z rezom ne moremo, ne glede na to, kako razvejamo drevo izpeljave. Izrek nam torej zagotavlja konsistentnost sistema dokazovanja.
+\end{posledica}
+
+\subsection{Potrebne definicije} \label{defs}
+\input{Vsebina/Eliminacija_rezov/Defs.tex}
+
+\subsection{Dokaz izreka o eliminaciji rezov}
+
+Razlog, da izrek \ref{izrek} imenujemo izrek o \emph{eliminaciji rezov}, leži v tem, da dokaz poteka s postopno eliminacijo rezov iz poljubnega drevesa izpeljave, dokler na koncu ne dobimo drevesa izpeljave brez kakeršnegakoli pravila reza. Kot smo omenili na začetku podpoglavja \ref{defs}, dokaz poteka z dvojno indukcijo. Zunanja indukcija, je strukturna indukcija na drevesoma izpeljave nad rezom, notranja pa je strukturna indukcija na rezani formuli. Označimo z $\mathcal{D}_0$ ter $\mathcal{D}_1$ drevesi izpeljave nad rezom, torej:
+\begin{prooftree}
+    \AxiomC{$\mathcal{D}_0$}
+    \AxiomC{$\mathcal{D}_1$}
+    \pravilo{Rez}
+    \BinaryInfC{$\mathcal{S}$}
+\end{prooftree}
+
+Začnimo z indukcijskim korakom. Predpostavljamo torej, da iz poddreves $\mathcal{D}_0$ in $\mathcal{D}_1$ znamo eliminirati reze. Da se izognemo problemu, kjer je bilo na primer zadnje pravilo v $\mathcal{D}_0$ ali $\mathcal{D}_1$ rez, predpostavimo, da smo reze tudi že eliminirali iz poddreves. Sedaj dokazujemo, da lahko zgornje drevo izpeljave preobrazimo v drevo izpeljave, kjer se rez pojavi višje v drevesu, torej v poddrevesu tega drevesa. To ustreza indukcijski predpostavki, zato je korak indukcije opravljen.
+
+Znotraj tega koraka, pa seveda delamo tudi indukcijo na strukturi formule. Če torej zgornjega drevesa izpeljave ne uspemo prevesti na drevo, kjer se pravilo reza sedaj pojavi višje, ga lahko prevedemo na rez, ki reže podformulo prvotne formule. Baza notranje indukcije je, da pravilo reza, ki reže osnovno formulo, res prestavimo višje.
+
+\begin{opomba}
+    Zgoraj opisano indukcijo si lahko predstavljamo kot algoritem, ki sproti eliminira reze iz drevesa izpeljave. Začnemo z poddrevesom, ki kot zadnje pravilo uporabi rez, v nobenem izmed poddreves pa reza ne uporablja več, torej začnemo z ,,najvišjim'' rezom. Če je takih poddreves več, si arbitrarno izberemo enega izmed njih. V tem poddrevesu postopoma potiskamo rez višje ali pa vsaj znižujemo njegovo kompleksnost, dokler reza ne eliminiramo iz poddrevesa. To ponovimo za vsak rez v drevesu izpeljave. Ker je slednje končno, se proces ustavi in drevo izpeljave ne vključuje več rezov.
+\end{opomba}
+
+Vrnimo se h koraku indukcije. Pri obravnavi eliminacije reza je potrebno ločiti, ali je rez, ki ga eliminiramo \emph{glaven}, kot ga opiše definicija \ref{gl rez}, ali pa ni.
+
+\subsubsection{Eliminacija glavnega reza} \label{gl rez vezniki}
+\input{Vsebina/Eliminacija_rezov/Glavni_rez.tex}
+
+\subsubsection{Glavni rez eksponentov}
+\input{Vsebina/Eliminacija_rezov/!?Glavni_rez.tex}
+
+% Dej bazo na konc, i think da leps pase
+% Baza indukcije na $\mathcal{D}_0$ in $\mathcal{D}_1$ pomeni, da je vsaj eden izmed $\mathcal{D}_0$ ter $\mathcal{D}_1$ list, torej pravilo aksioma, ter da tisto poddrevo, ki ni list, ne vsebuje pravila rez. Potrebno je dokazati, da lahko take vrste drevo izpeljave preobrazimo v drevo izpeljave brez rezov. Oglejmo si torej primer, ko je $\mathcal{D}_0$ list, $\mathcal{D}_1$ pa ni. Obratno je seveda simetrično.
+%
+% \begin{center}
+%     \begin{bprooftree}
+%         \AxiomC{}
+%         \pravilo{Ax}
+%         \UnaryInfC{$A \Rightarrow A$}
+%
+%         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+%         \pravilo{Rez}
+%         \BinaryInfC{$\Gamma,A \Rightarrow \Delta$}
+%     \end{bprooftree}\qquad
+%     $\rightarrow$ \qquad
+%     \begin{bprooftree}
+%         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+%     \end{bprooftree}
+% \end{center}
+% Kot lahko vidimo,
+
+% TODO baza notranje indukcije (aka osnovno formulo lah gor fuknemo, figure it out)
+% TODO baza indukcije za Cut!?

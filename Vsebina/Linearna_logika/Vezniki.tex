@@ -1,0 +1,121 @@
+\begin{definicija} \label{in}
+    Veznik $\land$, s pravili iz definicij \ref{inl} in \ref{inr}, se še vedno glasi \emph{in}, zapišemo pa ga s simbolom $\sqcap$. Zapišimo še enkrat njegovo levo in desno pravilo, tokrat s pravilnim pojmovanjem.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma, A \Rightarrow \Delta$}
+            \pravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma, B \Rightarrow \Delta$}
+            \pravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \AxiomC{$\Gamma \Rightarrow B,\Delta$}
+            \pravilo{R$\sqcap$}
+            \BinaryInfC{$\Gamma \Rightarrow A \sqcap B,\Delta$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+\begin{definicija} \label{tenzor}
+    Veznik $\land'$, s pravili iz definicij \ref{in'l} in \ref{in'r} pa preimenujemo v \emph{tenzor} ter ga zapišemo s simbolom $\star$.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
+            \pravilo{L$\star$}
+            \UnaryInfC{$\Gamma,A \star B \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+            \pravilo{R$\star$}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \star B,\Delta,\Delta'$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+Zakaj te dva veznika v kontekstu linearne logike nista enaka je razvidno že če primerjamo njuni levi in desni pravili. Kot smo omenili na začetku tega poglavja je pomembno, da vsako predpostavko uporabimo natanko enkrat. Veznik $\sqcap$ med predpostavkami na nek način vsebuje le eno izmed predpostavk, ki ju združuje, medtem ko veznik $\star$ vsebuje obe. Ko torej uporabimo $A \sqcap B$¸ da dokažemo neki $\Delta$, uporabimo le $A$ ali $B$, medtem ko pri $A \star B$ uporabimo tako $A$ kot $B$. Če pa želimo dokazati, da velja $A \sqcap B$, pa je dovolj, da iz istih predpostavk dokažemo $A$ ter $B$, prav tako ostale sklepe na desni strani sekventa pustimo pri miru. To spet implicira, da vsebuje $A\sqcap B$ enako število informacij kot le $A$ ali $B$. Če pa dokazujemo $A\star B$, pa moramo posebej dokazati $A$, nato pa iz ločenega sklopa predpostavk dokazati $B$. Ostale sklepe poleg $A\star B$ je tudi potrebno posebej dokazati. Vse to spet implicira, da vsebuje tenzor informacij tako za $A$ kot $B$.
+
+Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni logiki se ta spet razdeli na dvoje, intuicija za to pa je simetična intuiciji za veznik $\land$, zato jo prepustimo bralcu.
+
+\begin{definicija} \label{ali}
+	Veznik \emph{ali}, označen z $\sqcup$, ima sledeče levo in desno pravilo vpeljave.
+	\begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \AxiomC{$\Gamma,B \Rightarrow \Delta$}
+            \pravilo{L$\sqcup$}
+            \BinaryInfC{$\Gamma,A \sqcup B \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{R$\sqcup$}
+            \UnaryInfC{$\Gamma \Rightarrow A \sqcup B,\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow B, \Delta$}
+            \pravilo{R$\sqcup$}
+            \UnaryInfC{$\Gamma \Rightarrow A \sqcup B,\Delta$}
+        \end{bprooftree}
+    \end{center}
+    Kot vidimo sta obe pravili popolnoma simetrični praviloma za veznik $\sqcap$.
+\end{definicija}
+
+\begin{definicija} \label{plus}
+	Veznik \emph{plus}, označen z + pa je analogno simetričen vezniku $\star$.
+	\begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+            \pravilo{L+}
+            \BinaryInfC{$\Gamma,\Gamma',A + B \Rightarrow \Delta,\Delta'$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,B,\Delta$}
+            \pravilo{R+}
+            \UnaryInfC{$\Gamma \Rightarrow A + B,\Delta$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+Vsi nadaljni vezniki imajo v linearni logiki enaka pravila vpeljave kot v navadnem sekventnem računu in se ne delijo na dva dela, še vseeno pa so to \emph{linearni} vezniki, že samo zaradi pogojev pod katerimi so vpeljani. Če na primer $A$ linearno implicira $B$ to pomeni, da natanko en $A$ implicira natanko en $B$, linearna negacija formule $A$ pa negira natanko en $A$.
+
+Za vpeljavo implikacije zopet potrebujemo drugačen simbol kot smo ga vajeni, saj se $\Rightarrow$ že uporablja v strukturi sekventa samega. Običajni sekventni račun v ta namen uporablja $\rightarrow$, linearna implikacija pa, da se loči od nelinearne, spet uporabi svoj simbol.
+
+\begin{definicija}
+	\emph{Implikacija}, označena s simbolom $\multimap$, je vpeljana z naslednjimi pravili.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+            \pravilo{L$\multimap$}
+            \BinaryInfC{$\Gamma,\Gamma',A \multimap B \Rightarrow \Delta,\Delta'$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow B,\Delta$}
+            \pravilo{R$\multimap$}
+            \UnaryInfC{$\Gamma \Rightarrow A \multimap B,\Delta$}
+        \end{bprooftree}
+    \end{center}
+    Kot lahko vidimo je desno pravilo vpeljave dokaj jasno za interpretacijo. Če dokazujemo $A \multimap B$, je dovolj da pod predpostavko $A$ dokažemo $B$. Levo pravilo pa je morda lažje brati od zgoraj navzdol. Če torej z $\Gamma$ dokažemo $A$ ter neke druge sklepe $\Delta$, iz $\Gamma'$ in $B$ pa dokažemo $\Delta'$, lahko iz združenih predpostavk $\Gamma,\Gamma'$ ter dejstva, da iz $A$ sledi $B$ dokažemo združene sklepe $\Delta,\Delta'$.
+\end{definicija}
+
+\begin{definicija}
+    \emph{Negacija}, označena s simbolom $\negacija$, ima naslednji pravili vpeljave.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{L$\negacija$}
+            \UnaryInfC{$\Gamma,\negacija A \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \pravilo{R$\negacija$}
+            \UnaryInfC{$\Gamma \Rightarrow \negacija A,\Delta$}
+        \end{bprooftree}
+    \end{center}
+    ?? Kaj je tuki sploh intuicija lmao??
+\end{definicija}

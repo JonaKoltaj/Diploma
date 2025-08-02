@@ -1,0 +1,54 @@
+Včasih si želimo v linearni logiki emulirati tudi običajen sekventni račun, vključno torej z ošibitvijo ter skrčitvijo, a želimo to nelinearnost omejiti na specifične formule. Namen teh ,,nelinearnih'' formul je, da nam dovolijo v linearni logiki dokazati vse, kar je možno dokazati tudi v običajnem sekventnem računu, a da je iz dokaza takoj razvidno, kateri deli sekventa so bili dokazani linearno in kateri ne. Ker želimo označiti formulo kot nelinearno, jo modificiramo v novo formulo z veznikom. Imamo dva takšna veznika, ki ju imenujemo \emph{eksponenta}.
+
+\begin{definicija}
+    Veznik \emph{seveda} je označen s simbolom !, poleg levega in desnega pravila vpeljave pa zanj veljata še ošibitev in skrčitev na levi strani sekventa. Veznik \emph{zakaj ne} pa je označen s simbolom ?, zanj pa prav tako veljajo štiri pravila; levo in desno pravilo vpeljave ter skrčitev in ošibitev na desni strani sekventa.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \pravilo{L!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$!\Gamma \Rightarrow A,?\Delta$}
+            \pravilo{R!}
+            \UnaryInfC{$!\Gamma \Rightarrow \ !A,?\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{W!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,!A,!A \Rightarrow \Delta$}
+            \pravilo{C!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{bprooftree}
+    \end{center}
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$!\Gamma,A \Rightarrow ?\Delta$}
+            \pravilo{L?}
+            \UnaryInfC{$!\Gamma,?A \Rightarrow ?\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{R?}
+            \UnaryInfC{$\Gamma \Rightarrow \ !A,\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{W?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{bprooftree}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma \Rightarrow \ ?A,?A,\Delta$}
+            \pravilo{C?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{bprooftree}
+    \end{center}
+    Notacija $!\Gamma$ (ali $?\Delta$) označuje, da je vsaka formula v $\Gamma$ (ali $\Delta$) predznačena z veznikom ! (ali ?).
+\end{definicija}
+
+Kar želimo z eksponenti označiti je, da imamo ,,poljubno mnogo'' označene formule na voljo. Ker vejice na levi beremo kot ,,in'', vejice na desni pa kot ,,ali'', je treba podati dva različna veznika. Formula $!A$ torej označuje ,,$A$ in $A$ in $\ldots$ $A$'', kolikor kopij pač potrebujemo, formula $?A$ pa označuje ,,$A$ ali $A$ ali $\ldots$ $A$''.
+
+Interpretacija levega pravila vpeljave za ! je dokaj enostavna. Pove le, da se kadarkoli v procesu dokazovanja lahko odločimo formulo označiti kot nelinearno. Desno pravilo pa je malce bolj komplicirano, saj veznika ! ni tako lahko razumeti na desni strani sekventa. Rabimo, da je že celoten sekvent nelinearen, da lahko ! vpeljemo na desni. Interpretacija levega in desnega pravila za ? je simetrična.

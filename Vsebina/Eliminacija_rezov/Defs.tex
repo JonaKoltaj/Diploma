@@ -1,0 +1,54 @@
+Dokaz zgornjega izreka poteka z dvojno indukcijo, zunanjo na velikosti dreves izpeljave nad rezom, notranjo pa na kompleksnosti formule, ki jo režemo. Eden izmed načinov kako to izvesti je, da drevesom izpeljave pripišemo ,,višino'', formulam pa ,,rang'', dokaz pa potem poteka z dvojno naravno indukcijo na dani višini ter rangu. Tak način je malce zamuden, saj potrebuje dve novi in nekoliko zahtevni definiciji, poleg tega pa je že sama definicija formule -- in kot bomo videli definicija drevesa izpeljave -- induktivna, kot navedeno v definiciji \ref{formula}, kar se lepo ponuja \emph{strukturni indukciji}.
+
+\begin{definicija}
+    Kot pove že ime, \emph{strukturna indukcija} temelji na strukturi objekta, na katerem delamo indukcijo. Če želimo torej dokazati, da trditev $P$ velja za poljubno formulo, so baza indukcije $P(A)$, kjer je $A$ neka \emph{osnovna formula} ter $P(\enota),P(\nicla),P(\top)$ in $P(\bot)$. Indukcijska predpostavka trdi, da za poljubni formuli $B$ in $C$ velja $P(B)$ in $P(C)$, korak indukcije pa nato pove, da velja $P(B \star C),P(B + C),P(B \sqcap C),P(B \sqcup C),P(B \multimap C),P(\negacija B),P(\forall x B),P(\exists x B),P(!B)$ ter $P(?B)$. Če so vezniki, ki jih uporabljamo drugačni, je seveda tudi korak indukcije drugačen.
+\end{definicija}
+
+Kot smo zgoraj omenili, je potrebna tudi strukturna indukcija na drevesu izpeljave nad rezom, zato bolj formalno definirajmo drevo izpeljave. Definicija je, tako kot definicija formule, induktivna.
+
+\begin{definicija}
+    \emph{Drevo izpeljave} je -- kot katerokoli drevo -- sestavljeno iz \emph{vozlišča} in poljubnega števila poddreves, ki pa se končajo z \emph{listi}. V tem primeru je list pravilo aksioma, vozlišče pa je katerokoli pravilo. Drevo izpeljave je torej lahko v naslednjih dveh oblikah, za poljubna poddrevesa $\mathcal{D}_0,\mathcal{D}_1,\dots,\mathcal{D}_n$ in sklep $\mathcal{S}$.
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{}
+            \pravilo{Ax}
+            \UnaryInfC{$A \Rightarrow A$}
+        \end{bprooftree}
+        \qquad
+        \begin{bprooftree}
+            \AxiomC{$\mathcal{D}_0$}
+            \AxiomC{$\mathcal{D}_1$}
+            \AxiomC{$\dots$}
+            \AxiomC{$\mathcal{D}_n$}
+            \pravilo{Pravilo}
+            \QuaternaryInfC{$\mathcal{S}$}
+        \end{bprooftree}
+    \end{center}
+\end{definicija}
+
+\begin{definicija}
+    Strukturna indukcija na drevesih izpeljave bo potekala podobno kot strukturna indukcija na formulah, kjer tokrat za bazo indukcije vzamemo da trditev, ki jo želimo dokazati, velja za list drevesa, indukcijski korak pa pomeni, da če trditev velja za vsa poddrevesa, velja tudi za drevo, zgrajeno iz teh poddreves.
+\end{definicija}
+
+Še ena potrebna definicija, preden začnemo z dokazom izreka o eliminaciji rezov, je pojem glavnega reza.
+
+\begin{definicija} \label{gl rez}
+    Če je bila rezana formula ravnokar vpeljana v obeh poddrevesih nad pravilom reza, to imenujemo \emph{glavni rez}.
+\end{definicija}
+
+\begin{primer} \label{gl rez in}
+    Glavni rez za formulo $A \sqcap B$.
+    \begin{prooftree}
+        \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+        \levopravilo{L$\sqcap$}
+        \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
+
+        \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+        \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+        \pravilo{R$\sqcap$}
+        \BinaryInfC{$\Gamma' \Rightarrow A \sqcap B,\Delta'$}
+
+        \pravilo{Rez}
+        \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+    \end{prooftree}
+\end{primer}
