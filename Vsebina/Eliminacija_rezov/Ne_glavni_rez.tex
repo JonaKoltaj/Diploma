@@ -1,0 +1,204 @@
+Če rez ni bil glaven, se je moralo na levi ali desni strani tik pred rezom zgoditi pravilo, ki ni vpeljalo ravnokar rezane formule. Denimo, da je bil na levi ravnokar vpeljan veznik $\sqcap$, nato pa smo rezali z veznikom nepovezano formulo $C$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,A,C \Rightarrow \Delta$}
+    \levopravilo{L$\sqcap$}
+    \UnaryInfC{$\Gamma,A \sqcap B,C \Rightarrow \Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',A \sqcap B \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+To lahko, ne glede na to kakšna je formula $C$ in ne glede na to ali je bila na desni vpeljana kakšna druga formula ali ne, preobrazimo tako, da bo zadoščalo indukcijski predpostavki.
+\begin{prooftree}
+    \AxiomC{$\Gamma,A,C \Rightarrow \Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',A \Rightarrow \Delta,\Delta'$}
+    \pravilo{L$\sqcap$}
+    \UnaryInfC{$\Gamma,\Gamma',A \sqcap B \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Rez smo res premaknili višje v drevesu izpeljave in kot lahko vidimo sama formula $C$ za indukcijski korak ni bila pomembna. Zato namesto glede na rezano formulo, ločimo primere glede na ravnokar vpeljano formulo, ki ni $C$. Seveda tudi ni pomembno, ali se ta vpeljava zgodi v levem ali desnem poddrevesu nad rezom, saj je to asimetrično le če obravnavamo rezano formulo. Pomembno pa je, ali je bil veznik vpeljan z levim pravilom vpeljave ali je bil vpeljan z desnim, zato si oglejmo še drugi primer, ko je vpeljana formula $A \sqcap B$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma,C \Rightarrow B,\Delta$}
+    \levopravilo{R$\sqcap$}
+    \BinaryInfC{$\Gamma,C \Rightarrow A \sqcap B,\Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \sqcap B,\Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \levopravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A,\Delta,\Delta'$}
+
+    \AxiomC{$\Gamma,C \Rightarrow B,\Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow B,\Delta,\Delta'$}
+
+    \pravilo{R$\sqcap$}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \sqcap B,\Delta,\Delta'$}
+\end{prooftree}
+Tu smo sicer pridelali dva reza, a sta oba višje v drevesu izpeljave, zato zadostimo indukcijski predpostavki. Poglejmo si še, kaj se zgodi če na levi vpeljemo veznik $\star$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,A,B,C \Rightarrow \Delta$}
+    \levopravilo{L$\star$}
+    \UnaryInfC{$\Gamma,A \star B,C \Rightarrow \Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',A \star B \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,A,B,C \Rightarrow \Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',A,B \Rightarrow \Delta,\Delta'$}
+
+    \pravilo{L$\star$}
+    \UnaryInfC{$\Gamma,\Gamma',A \star B \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Kot pri primeru levega pravila vpeljave za veznik $\sqcap$, pravilo reza ter pravilo vpeljave le zamenjamo, zato enostavno zadostimo indukcijski predpostavki.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+    \levopravilo{R$\star$}
+    \BinaryInfC{$\Gamma,\Gamma',C \Rightarrow A \star B,\Delta,\Delta'$}
+
+    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow A \star B,\Delta,\Delta',\Delta''$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
+    \levopravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow A,\Delta,\Delta''$}
+
+    \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+    \pravilo{R$\star$}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow A \star B,\Delta,\Delta',\Delta''$}
+\end{prooftree}
+Pri zgornjem koraku indukcije je pomembno, da se formula $C$, ki jo režemo, kot predpostavka dodatno pojavi le v enem izmed skventov $\Gamma \Rightarrow A,\Delta$ ter $\Gamma' \Rightarrow B,\Delta'$, ne v obeh, saj desno pravilo vpeljave veznika $\star$ združi konteksta in bi morali drugače $C$ iz sekventa rezati dvakrat. To pa nam tudi omogoči zelo enostaven korak indukcije, kot je izveden zgoraj. Primeri za veznika $\sqcup$ ter + so popolnoma simetrični prejšnjim štirim primerom, zato jih prepustimo bralcu. Oglejmo si sedaj primer, ko na levi tik pred rezom vpeljemo implikacijo.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \levopravilo{L$\multimap$}
+    \BinaryInfC{$\Gamma,\Gamma',C,A \multimap B \Rightarrow \Delta,\Delta'$}
+
+    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'',A \multimap B \Rightarrow \Delta,\Delta',\Delta''$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
+    \levopravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow A,\Delta,\Delta''$}
+
+    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \pravilo{L$\multimap$}
+    \BinaryInfC{$\Gamma,\Gamma',\Gamma'',A \multimap B \Rightarrow \Delta,\Delta',\Delta''$}
+\end{prooftree}
+Kot lahko vidimo, je ta primer zelo podoben primeru, ko tik nad rezom vpeljemo $\star$ z desnim pravilom vpeljave. Prav tako je primer, ko je $\multimap$ vpeljan na desni, zelo podoben primeru, ko je $\star$ vpeljan na levi.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C,A \Rightarrow B,\Delta$}
+    \levopravilo{R$\multimap$}
+    \UnaryInfC{$\Gamma,C \Rightarrow A \multimap B,\Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \multimap B,\Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C,A \Rightarrow B,\Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',A \Rightarrow B,\Delta,\Delta'$}
+
+    \pravilo{R$\multimap$}
+    \UnaryInfC{$\Gamma,\Gamma' \Rightarrow A \multimap B,\Delta,\Delta'$}
+\end{prooftree}
+Zadnji izmed propozicijskih veznikov je zopet negacija. Obravnavali bomo le levo pravilo vpeljave, saj je desno popolnoma simetrično in je zato tudi postopek eliminacije take vrste reza simetričen.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \levopravilo{L$\negacija$}
+    \UnaryInfC{$\Gamma,C,\negacija A \Rightarrow \Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\negacija A \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A,\Delta,\Delta'$}
+    \pravilo{L$\negacija$}
+    \UnaryInfC{$\Gamma,\Gamma',\negacija A \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Oglejmo si še konstante. Tokrat seveda obravnavamo tudi konstanti $\top$ ter $\bot$, saj rez ni glaven in nimamo več težave z dejstvom, da imata vsaka le po eno pravilo vpeljave.
+\begin{prooftree}
+    \AxiomC{}
+    \levopravilo{R$\top$}
+    \UnaryInfC{$\Gamma,C \Rightarrow \top,\Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \top,\Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{}
+    \levopravilo{R$\top$}
+    \UnaryInfC{$\Gamma,\Gamma' \Rightarrow \top,\Delta,\Delta'$}
+\end{prooftree}
+Ker lahko $\top$ med sklepi vedno dokažemo, lahko končni sekvent dobimo tudi ne da bi rezali formulo $C$, saj je ta že od začetka med predpostavkami nastala ,,umetno''. Korak indukcije za konstanto $\bot$ izvedemo popolnoma simetrično, saj zanjo velja ista lastnost, le da velja med predpostavkami. Pri obravnavi konstante $\enota$ desnega pravila vpeljave ne moremo obravnavati, saj ob formuli $\enota$ v sekventu ni nobene druge formule, ki bi jo lahko rezali. Zato obravnavamo le levo pravilo vpeljave.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow \Delta$}
+    \levopravilo{L$\enota$}
+    \UnaryInfC{$\Gamma,C,\enota \Rightarrow \Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\enota \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C \Rightarrow \Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+
+    \pravilo{L$\enota$}
+    \UnaryInfC{$\Gamma,\Gamma',\enota \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Korak indukcije pri konstanti $\nicla$ je simetričen, obravnavamo pa le njeno desno pravilo vpeljave, iz enakih razlogov. Pri kvantifikatorjih je ta korak spet precej enostaven in simetričen za vse štiri primere, zato bomo prikazali le enega, namreč primer, ko na levi tik pred rezom vpeljemo formulo $\forall x A$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,C,A[t/x] \Rightarrow \Delta$}
+    \levopravilo{L$\forall$}
+    \UnaryInfC{$\Gamma,C,\forall x A \Rightarrow \Delta$}
+
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',\forall x A \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,C,A[t/x] \Rightarrow \Delta$}
+    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,\Gamma',A[t/x] \Rightarrow \Delta,\Delta'$}
+
+    \pravilo{L$\forall$}
+    \UnaryInfC{$\Gamma,\Gamma',\forall x A \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Lotimo se sedaj eksponentov. Tu bomo zopet morali ločiti primere glede na to, ali je bil rez, ki ga obravnavamo posplošeni rez ali ne. Pri vseh prejšnjih primerih namreč to ni bilo pomembno za korak indukcije, saj se rez pravzaprav ni bistveno interaktiral s formulo, glede na katero smo ločili primere.

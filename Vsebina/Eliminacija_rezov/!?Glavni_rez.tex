@@ -33,7 +33,7 @@ Mikalo nas bi zgornje drevo izpeljave zamenjati s sledečim.
     \pravilo{C?$\times|\Delta'|$}
     \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Vendar s tem nismo zmanjšali niti velikosti poddreves nad rezom, saj je spodnji izmed novo pridelanih rezov na isti višini kot prvotni rez, niti kompleksnosti rezane formule, saj ohranimo rezanje formule $!A$. Zavoljo tega, da lahko ta korak indukcije vseeno opravimo, potrebujemo pomožno razširjeno pravilo reza.
+Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad spodnjim izmed novo pridelanih rezov ni poddrevo prvotnih dveh dreves nad rezom, poleg tega pa se je ohranila tudi kompleskonst rezane formule, saj še vedno režemo $!A$. Zavoljo tega, da lahko ta korak indukcije vseeno opravimo, potrebujemo pomožno razširjeno pravilo reza.
 \begin{definicija}
     \emph{Posplošeni pravili reza}, označeni z Rez!$_n$ ter Rez?$_{n}$, sta definirani za vsak $n \in \mathbb{N}$.
     \begin{prooftree}
@@ -78,8 +78,8 @@ Sedaj izrek \ref{izrek}, ki ga dokazujemo, preoblikujmo, tako da bo namesto le n
 \begin{izrek}
     Vsak sekvent, dokazan z uporabo pravila reza ali posplošenega pravila reza, lahko dokažemo tudi brez uporabe pravila reza ali posplošenega pravila reza.
 \end{izrek}
-%TODO popravi ta godforsaken odstavek
-Ker je posplošeni rez izpeljan iz vseh pravil, ki smo jih vpeljali že pred izrekom \ref{izrek}, mu je novo formulirani izrek ekvivalenten. Vendar si sedaj lahko pomagamo s posplošenim pravilom reza in med indukcijskim korakom preobrazimo drevo tako, da bo indukcijski predpostavki zadoščeno za kateregakoli izmed rezov, posplošenega ali navadnega. Vendar, ko rečemo, da želimo drevo izpeljave preobraziti tako da ne vključuje pravila reza, to sedaj seveda pomeni tudi, da ne vključuje posplošenega pravila reza. To pomeni, da je v vsakem koraku indukcije potrebno obravnati tudi eliminacijo posplošenega reza. Seveda pa slednje obravnava le rezanje eksponentov, zato ni relevantno pri primerih koraka indukcije, kjer eksponentov ni, kot na primer pri vseh primerih eliminacije glavnega reza iz podpoglavja \ref{gl rez vezniki}.
+
+Ker je posplošeno pravilo reza dopustno, je novo formulirani izrek ekvivalenten izreku \ref{izrek}. Vendar si sedaj v dokazu lahko pomagamo s posplošenim pravilom reza. Med indukcijskim korakom torej lahko drevo izpeljave preobrazimo tako, da bo zadoščalo indukcijski predpostavki za kateregakoli izmed rezov, navadnega ali posplošenega. A sedaj je potrebno znati eliminirati tudi slednjega. To pomeni, da je potrebno obravnavati korak indukcije tako za pravilo Rez, kot za pravili Rez!$_n$ in Rez?$_n$, vsakič ko obravnavamo rez veznika ! ali ?. V določenih primerih lahko obravnavamo tako posplošeno pravilo reza kot navadno hkrati, saj korak indukcije za Rez!$_n$ lahko izgleda enako tudi pri $n=1$.
 
 Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo, tokrat s posplošenim pravilom reza v žepu.
 \begin{prooftree}
@@ -105,7 +105,7 @@ Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo
     \pravilo{Rez!$_{n+1}$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Zgornje seveda velja tudi za $n=1$, torej za navadno pravilo reza. Pri novem drevesu izpeljave sta sedaj drevesi nad rezom poddrevesi dreves nad rezom pri prejšnjem drevesu izpeljave in korak indukcije je opravljen. Oglejmo si sedaj še glavni rez¸ kjer je formula $!A$ na levi vpeljana z ošibitvijo. Tu korak indukcije za posplošeni, kjer $n\neq1$, ter navadni rez ni združljiv, zato primera ločimo.
+Zgornje seveda velja tudi za $n=1$, torej za navadno pravilo reza. Pri novem drevesu izpeljave je sedaj levo drevo nad rezom poddrevo levega drevesa nad prejšnjim rezom in korak indukcije je opravljen. Oglejmo si sedaj še glavni rez¸ kjer je formula $!A$ na levi vpeljana z ošibitvijo. Tu korak indukcije za posplošeni rez, kjer $n\neq1$, ter navadni rez ni združljiv, zato primera ločimo.
 \begin{prooftree}
     \AxiomC{$\Gamma \Rightarrow \Delta$}
     \levopravilo{W!}
@@ -126,7 +126,7 @@ Zgornje seveda velja tudi za $n=1$, torej za navadno pravilo reza. Pri novem dre
     \pravilo{W?$\times|\Delta'|$}
     \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Tako smo v tem primeru korak indukcije opravili za navadni rez, za Rez!$_n$, kjer $n\geq2$ pa je postopek sledeč.
+Tako smo v tem primeru korak indukcije opravili za navadni rez, za Rez!$_n$, kjer je $n\geq2$ pa je postopek sledeč.
 \begin{prooftree}
     \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
     \levopravilo{W!}
@@ -170,5 +170,38 @@ Pri obravnavi glavnega reza formule $!A$ z levim pravilom vpeljave na levi je zo
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-%anyway pac na desni je eno nizje aka level je nizji
-%TODO dej si od odstavka naprej poglej kako si stvari formulirala in jih spremeni, da bo smiselno kaj delas
+Za eliminacijo pravila Rez!$_n$, ko je $n\geq2$, pa bo korak indukcije spet malce bolj zahteven.
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^{n-1},A \Rightarrow \Delta$}
+    \levopravilo{L!}
+    \UnaryInfC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+
+    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \pravilo{R!}
+    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^{n-1},A \Rightarrow \Delta$}
+
+    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \pravilo{R!}
+    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+
+    \levopravilo{Rez!$_{n-1}$}
+    \BinaryInfC{$\Gamma,!\Gamma',A \Rightarrow \Delta,?\Delta'$}
+
+    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,!\Gamma',!\Gamma' \Rightarrow \Delta,?\Delta',?\Delta'$}
+    \pravilo{C!$\times|\Gamma'|$}
+    \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta',?\Delta'$}
+    \pravilo{C?$\times|\Delta'|$}
+    \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
+\end{prooftree}
+Novonastalo drevo izpeljave bi nas lahko spominjalo na problem iz začetka tega podpoglavja, a smo tu za spremembo res zadostili indukcijski predpostavki, saj je desno poddrevo nad najnižjim izmed rezov res poddrevo desnega izmed dreves nad prvotnim rezom.
+
+Eliminacija glavnega reza, ki reže formulo $?A$, je popolnoma simetrična in sledi natanko vsem korakom, opisanim v procesu eliminacije glavnega reza, ki reže formulo $!A$, zato je v tem delu ne bomo posebej obravnavali.

@@ -72,7 +72,7 @@ Razlog, da izrek \ref{izrek} imenujemo izrek o \emph{eliminaciji rezov}, leži v
     \BinaryInfC{$\mathcal{S}$}
 \end{prooftree}
 
-Začnimo z indukcijskim korakom. Predpostavljamo torej, da iz poddreves $\mathcal{D}_0$ in $\mathcal{D}_1$ znamo eliminirati reze. Da se izognemo problemu, kjer je bilo na primer zadnje pravilo v $\mathcal{D}_0$ ali $\mathcal{D}_1$ rez, predpostavimo, da smo reze tudi že eliminirali iz poddreves. Sedaj dokazujemo, da lahko zgornje drevo izpeljave preobrazimo v drevo izpeljave, kjer se rez pojavi višje v drevesu, torej v poddrevesu tega drevesa. To ustreza indukcijski predpostavki, zato je korak indukcije opravljen.
+Začnimo z indukcijskim korakom. Predpostavljamo torej, da iz poddreves $\mathcal{D}_0$ in $\mathcal{D}_1$ znamo eliminirati reze. Da se izognemo problemu, kjer je bilo na primer zadnje pravilo v $\mathcal{D}_0$ ali $\mathcal{D}_1$ rez, predpostavimo, da smo reze tudi že eliminirali iz poddreves. Sedaj dokazujemo, da lahko zgornje drevo izpeljave preobrazimo v drevo izpeljave, kjer se rez pojavi višje v drevesu, torej da je vsaj eno izmed dreves nad novim rezom poddrevo $\mathcal{D}_0$ ali poddrevo $\mathcal{D}_1$. To ustreza indukcijski predpostavki, zato je korak indukcije opravljen.
 
 Znotraj tega koraka, pa seveda delamo tudi indukcijo na strukturi formule. Če torej zgornjega drevesa izpeljave ne uspemo prevesti na drevo, kjer se pravilo reza sedaj pojavi višje, ga lahko prevedemo na rez, ki reže podformulo prvotne formule. Baza notranje indukcije je, da pravilo reza, ki reže osnovno formulo, res prestavimo višje.
 
@@ -87,6 +87,9 @@ Vrnimo se h koraku indukcije. Pri obravnavi eliminacije reza je potrebno ločiti
 
 \subsubsection{Glavni rez eksponentov}
 \input{Vsebina/Eliminacija_rezov/!?Glavni_rez.tex}
+
+\subsubsection{Eliminacija reza, ki ni glaven}
+\input{Vsebina/Eliminacija_rezov/Ne_glavni_rez.tex}
 
 % Dej bazo na konc, i think da leps pase
 % Baza indukcije na $\mathcal{D}_0$ in $\mathcal{D}_1$ pomeni, da je vsaj eden izmed $\mathcal{D}_0$ ter $\mathcal{D}_1$ list, torej pravilo aksioma, ter da tisto poddrevo, ki ni list, ne vsebuje pravila rez. Potrebno je dokazati, da lahko take vrste drevo izpeljave preobrazimo v drevo izpeljave brez rezov. Oglejmo si torej primer, ko je $\mathcal{D}_0$ list, $\mathcal{D}_1$ pa ni. Obratno je seveda simetrično.
