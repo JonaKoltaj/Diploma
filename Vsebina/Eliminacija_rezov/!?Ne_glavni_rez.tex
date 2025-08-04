@@ -1,0 +1,10 @@
+Kot smo že omenili, ko smo vpeljali posplošeni pravili reza, je potrebno vse korake indukcije opraviti tudi zanju. Pravili Rez!$_n$ ter Rez?$_n$ sta si simetrični, zato bomo zopet obravnavali le pravilo Rez!$_n$. Drevo izpeljave, ki ga torej obravnavamo v tem poglavju je sledeče.
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+    \AxiomC{$\Gamma' \Rightarrow !A,\Delta'$}
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+Posplošeni glavni rez smo že obravnavali, zato nam zopet preostane primer, ko smo v enem izmed poddreves tik nad rezom ravnokar vpeljali neko drugo formulo. Za razliko od prejšnjega poglavja, je tokrat pomembno, ali se je to zgodilo na levem ali desnem poddrevesu, saj ti nista več simetrični. Če je bila nova formula vpeljana na desni strani nad rezom, je to ne glede na veznik, ki je bil vpeljan, popolnoma enako primerom iz prejšnjega poglavja. Tam smo namreč rezali le eno formulo $C$, za katero nam ni bilo pomembno, ali je oblike $!C$ ali ne, prav tako pa ni bilo pomembno, kakšne oblike ali kako je bil vpeljan $C$ v drugem poddrevesu nad rezom.
+
+%TODO R! aaa se v prejsnjem poglavju
