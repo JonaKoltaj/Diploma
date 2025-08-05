@@ -62,7 +62,7 @@ Drevo izpeljave se lahko razvejuje v neskončnost, zato ne moremo nikoli z gotov
 \subsection{Potrebne definicije} \label{defs}
 \input{Vsebina/Eliminacija_rezov/Defs.tex}
 
-\subsection{Dokaz izreka o eliminaciji rezov}
+\subsection{Dokaz izreka o eliminaciji rezov} \label{dokaz}
 
 Razlog, da izrek \ref{izrek} imenujemo izrek o \emph{eliminaciji rezov}, leži v tem, da dokaz poteka s postopno eliminacijo rezov iz poljubnega drevesa izpeljave, dokler na koncu ne dobimo drevesa izpeljave brez kakeršnegakoli pravila reza. Kot smo omenili na začetku podpoglavja \ref{defs}, dokaz poteka z dvojno indukcijo. Zunanja indukcija, je strukturna indukcija na drevesoma izpeljave nad rezom, notranja pa je strukturna indukcija na rezani formuli. Označimo z $\mathcal{D}_0$ ter $\mathcal{D}_1$ drevesi izpeljave nad rezom, torej:
 \begin{prooftree}
@@ -88,31 +88,11 @@ Vrnimo se h koraku indukcije. Pri obravnavi eliminacije reza je potrebno ločiti
 \subsubsection{Glavni rez eksponentov ter posplošeno pravilo reza}
 \input{Vsebina/Eliminacija_rezov/!?Glavni_rez.tex}
 
-\subsubsection{Eliminacija reza, ki ni glaven}
+\subsubsection{Eliminacija reza, ki ni glaven} \label{non principal}
 \input{Vsebina/Eliminacija_rezov/Ne_glavni_rez.tex}
 
 \subsubsection{Eliminacija posplošenega reza, ki ni glaven}
 \input{Vsebina/Eliminacija_rezov/!?Ne_glavni_rez.tex}
 
-% Dej bazo na konc, i think da leps pase
-% Baza indukcije na $\mathcal{D}_0$ in $\mathcal{D}_1$ pomeni, da je vsaj eden izmed $\mathcal{D}_0$ ter $\mathcal{D}_1$ list, torej pravilo aksioma, ter da tisto poddrevo, ki ni list, ne vsebuje pravila rez. Potrebno je dokazati, da lahko take vrste drevo izpeljave preobrazimo v drevo izpeljave brez rezov. Oglejmo si torej primer, ko je $\mathcal{D}_0$ list, $\mathcal{D}_1$ pa ni. Obratno je seveda simetrično.
-%
-% \begin{center}
-%     \begin{bprooftree}
-%         \AxiomC{}
-%         \pravilo{Ax}
-%         \UnaryInfC{$A \Rightarrow A$}
-%
-%         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-%         \pravilo{Rez}
-%         \BinaryInfC{$\Gamma,A \Rightarrow \Delta$}
-%     \end{bprooftree}\qquad
-%     $\rightarrow$ \qquad
-%     \begin{bprooftree}
-%         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-%     \end{bprooftree}
-% \end{center}
-% Kot lahko vidimo,
-
-% TODO baza notranje indukcije (aka osnovno formulo lah gor fuknemo, figure it out)
-% TODO baza indukcije za Cut!?
+\subsubsection{Baza indukcije}
+\input{Vsebina/Eliminacija_rezov/Baza.tex}

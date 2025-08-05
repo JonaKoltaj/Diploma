@@ -6,7 +6,7 @@ Lotimo se sedaj eksponentov. Ker imata oba eksponenta štiri pravila, moramo lo�
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -17,14 +17,14 @@ Mikalo nas bi zgornje drevo izpeljave zamenjati s sledečim.
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma',!A \Rightarrow \Delta,?\Delta'$}
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma',!\Gamma' \Rightarrow \Delta,?\Delta',?\Delta'$}
@@ -38,7 +38,7 @@ Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad 
     \emph{Posplošeni pravili reza}, označeni z Rez!$_n$ ter Rez?$_{n}$, sta definirani za vsak $n \in \mathbb{N}$.
     \begin{prooftree}
         \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
-        \AxiomC{$\Gamma' \Rightarrow !A,\Delta'$}
+        \AxiomC{$\Gamma' \Rightarrow \ !A,\Delta'$}
         \pravilo{Rez!$_n$}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
     \end{prooftree}
@@ -67,7 +67,7 @@ Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad 
         \UnaryInfC{$\Gamma,(!A)^{n-1},!A \Rightarrow \Delta$}
         \UnaryInfC{$\Gamma,(!A)^n \Rightarrow \Delta$}
 
-        \AxiomC{$\Gamma' \Rightarrow !A,\Delta'$}
+        \AxiomC{$\Gamma' \Rightarrow \ !A,\Delta'$}
         \pravilo{Rez!$_n$}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
     \end{prooftree}
@@ -89,7 +89,7 @@ Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_n$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -100,7 +100,7 @@ Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_{n+1}$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -113,7 +113,7 @@ Zgornje seveda velja tudi za $n=1$, torej za navadno pravilo reza. Pri novem dre
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -134,7 +134,7 @@ Tako smo v tem primeru korak indukcije opravili za navadni rez, za Rez!$_n$, kje
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_{n+1}$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -145,7 +145,7 @@ Tako smo v tem primeru korak indukcije opravili za navadni rez, za Rez!$_n$, kje
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_n$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -158,7 +158,7 @@ Pri obravnavi glavnega reza formule $!A$ z levim pravilom vpeljave na levi je zo
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -178,7 +178,7 @@ Za eliminacijo pravila Rez!$_n$, ko je $n\geq2$, pa bo korak indukcije spet malc
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_n$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
@@ -189,7 +189,7 @@ Za eliminacijo pravila Rez!$_n$, ko je $n\geq2$, pa bo korak indukcije spet malc
 
     \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \levopravilo{Rez!$_{n-1}$}
     \BinaryInfC{$\Gamma,!\Gamma',A \Rightarrow \Delta,?\Delta'$}

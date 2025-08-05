@@ -1,0 +1,38 @@
+Začnimo z bazo indukcije na navadnem rezu. Vrnimo se k opisu indukcije, kot je definirana na začetku tega podpoglavja, torej \ref{dokaz} in se zopet nanašajmo na poddrevesi nad rezom s simboloma $\mathcal{D}_0$ in $\mathcal{D}_1$. Baza zunanje indukcije v tem kontekstu pomeni, da je vsaj eden izmed $\mathcal{D}_0$ ter $\mathcal{D}_1$ list, torej pravilo aksioma, ter da tisto pravilo, ki ni list, že ne vsebuje pravila rez. Potrebno je dokazati, da lahko take vrste drevo izpeljave preobrazimo v drevo izpeljave brez rezov. Oglejmo si torej primer, ko je $\mathcal{D}_0$ list, $\mathcal{D}_1$ pa ni. Obratno je seveda simetrično.
+\begin{prooftree}
+    \AxiomC{}
+    \pravilo{Ax}
+    \UnaryInfC{$A \Rightarrow A$}
+
+    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \pravilo{Rez}
+    \BinaryInfC{$\Gamma,A \Rightarrow \Delta$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+\end{prooftree}
+Kot lahko vidimo je to precej trivialen korak, saj rezanje formule, ki je bila ravnokar vpeljana z aksiomom, ne spremeni ničesar.
+
+\begin{opomba}
+    Baze notranje indukcije nam ni treba posebej obravnavati, saj je bila pravzaprav obravnavana že v podpoglavju \ref{non principal}. Če je namreč rezana formula osnovna formula, ni bila vpeljana v nobenem poddrevesu nad rezom, saj lahko vpeljemo le sestavljene formule. Pokazali smo, da lahko vsak tak rez premaknemo višje in s tem zadostimu koraku zunanje indukcije, kar pa je ravno baza notranje indukcije.
+\end{opomba}
+
+Oglejmo si še bazo indukcije pri posplošenem rezu, zopet le pri pravilu Rez!$_n$. Tokrat se je aksiom kot zadnje pravilo lahko seveda pojavil le v desnem poddrevesu nad rezom, saj je na levi nujno več kot ena predpostavka v sekventu, drugače bi to bil le navadni rez.
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+    \AxiomC{}
+    \pravilo{Ax}
+    \UnaryInfC{$!A \Rightarrow !A$}
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+    \pravilo{C!$\times (n-1)$}
+    \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+\end{prooftree}
+Tudi ta korak dokaza je dokaj enostaven, saj je bistvo veznika ! ravno to, da je število formul $!A$ -- na levi strani sekventa -- nepomembno.
+
+S tem smo dokaz izreka o eliminaciji rezov zaključili, saj smo obdelali vse primere koraka indukcije ter bazni primer za obe vrsti rezov.

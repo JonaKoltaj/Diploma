@@ -225,31 +225,43 @@ Pri desnem pravilu vpeljave fomrule $!A$ ter pri levem pravilu vpeljave formule 
 \begin{prooftree}
     \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
     \levopravilo{R!}
-    \UnaryInfC{$!\Gamma,!C \Rightarrow !A,?\Delta$}
+    \UnaryInfC{$!\Gamma,!C \Rightarrow \ !A,?\Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow !C,\Delta'$}
+    \AxiomC{$\Gamma' \Rightarrow \ !C,\Delta'$}
     \pravilo{Rez}
-    \BinaryInfC{$!\Gamma,\Gamma' \Rightarrow !A,?\Delta,\Delta'$}
+    \BinaryInfC{$!\Gamma,\Gamma' \Rightarrow \ !A,?\Delta,\Delta'$}
 \end{prooftree}
 Tu pa nastopi težava, saj drevesa izpeljave ne moremo preoblikovati, ne da bi vedeli kaj več o desnem poddrevesu nad rezom.
 \begin{prooftree}
     \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow !C,\Delta'$}
+    \AxiomC{$\Gamma' \Rightarrow \ !C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$!\Gamma,\Gamma' \Rightarrow A,?\Delta,\Delta'$}
     \UnaryInfC{?}
 \end{prooftree}
-Če namreč $\Gamma'$ ni oblike $!\Gamma'$ in $\Delta'$ ni oblike $?\Delta'$, desnega pravila vpeljave za veznik ! ne moremo več uporabiti. Ločiti je treba primer, ko je bila formula $!C$ na desni ravnokar vpeljana z desnim pravilom vpeljave veznika ! in ko ni bila. Če formula $!C$ ni bila ravnokar vpeljana, je moral biti vpeljan nek drug veznik, vse take primere pa smo že obravnavali. Edini primer, ki bi nam lahko povzročal težave, bi bil prav tako na desni vpeljan veznik !, a je to povsem enako primeru, ko je bila formula $!C$ ravnokar vpeljana, zato si oglejmo le slednje.
+Če namreč $\Gamma'$ ni oblike $!\Gamma'$ in $\Delta'$ ni oblike $?\Delta'$, desnega pravila vpeljave za veznik ! ne moremo več uporabiti. Ločiti je treba primera, ko je bila formula $!C$ na desni ravnokar vpeljana z desnim pravilom vpeljave veznika ! in ko ni bila. Če formula $!C$ ni bila ravnokar vpeljana, je moral biti vpeljan nek drug veznik, vse take primere, razen seveda R!, pa smo že obravnavali, ne da bi nam bilo pomembno, kaj se dogaja v drugem poddrevesu. Vendar pa se primer, ko na desni uporabimo pravilo R!, a z njim ne upeljemo formule $!C$, ne more zgoditi. Drevo izpeljave bi namreč želelo izgledati tako:
 \begin{prooftree}
     \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
     \levopravilo{R!}
-    \UnaryInfC{$!\Gamma,!C \Rightarrow !A,?\Delta$}
+    \UnaryInfC{$!\Gamma,!C \Rightarrow \ !A,?\Delta$}
+
+    \AxiomC{$!\Gamma' \Rightarrow \ !C,B,?\Delta'$}
+    \pravilo{\textcolor{red}{R!}}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !C,?B,?\Delta'$}
+    \pravilo{Rez}
+    \BinaryInfC{$!\Gamma,!\Gamma' \Rightarrow \ !A,?B,?\Delta,?\Delta'$}
+\end{prooftree}
+Toda se rdeče obarvano pravilo R! ni moglo zgoditi, saj kontekst na desni ni bil v celoti predznačen z veznikom ?. Tako je v resnici treba obravnavati le primer, ko je na desni vpeljana prav formula $!C$.
+\begin{prooftree}
+    \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
+    \levopravilo{R!}
+    \UnaryInfC{$!\Gamma,!C \Rightarrow \ !A,?\Delta$}
 
     \AxiomC{$!\Gamma' \Rightarrow C,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !C,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !C,?\Delta'$}
     \pravilo{Rez}
-    \BinaryInfC{$!\Gamma,!\Gamma' \Rightarrow !A,?\Delta,?\Delta'$}
+    \BinaryInfC{$!\Gamma,!\Gamma' \Rightarrow \ !A,?\Delta,?\Delta'$}
 \end{prooftree}
 \dol
 \begin{prooftree}
@@ -257,10 +269,10 @@ Tu pa nastopi težava, saj drevesa izpeljave ne moremo preoblikovati, ne da bi v
 
     \AxiomC{$!\Gamma' \Rightarrow C,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma' \Rightarrow !C,?\Delta'$}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !C,?\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$!\Gamma,!\Gamma' \Rightarrow A,?\Delta,?\Delta'$}
     \pravilo{R!}
-    \UnaryInfC{$!\Gamma,!\Gamma' \Rightarrow !A,?\Delta,?\Delta'$}
+    \UnaryInfC{$!\Gamma,!\Gamma' \Rightarrow \ !A,?\Delta,?\Delta'$}
 \end{prooftree}
 Enak problem nastane, če je formula $!A$ vpeljana z desnim pravilom vpeljave v desnem poddrevesu nad rezom. V tem primeru je morala formula $C$ biti oblike $?C$ in je bila v levem poddrevesu vpeljana kot predpostavka. To ima seveda enako rešitev kot primer zgoraj.

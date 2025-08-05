@@ -1,10 +1,79 @@
 Kot smo že omenili, ko smo vpeljali posplošeni pravili reza, je potrebno vse korake indukcije opraviti tudi zanju. Pravili Rez!$_n$ ter Rez?$_n$ sta si simetrični, zato bomo zopet obravnavali le pravilo Rez!$_n$. Drevo izpeljave, ki ga torej obravnavamo v tem poglavju je sledeče.
 \begin{prooftree}
     \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow !A,\Delta'$}
+    \AxiomC{$\Gamma' \Rightarrow \ !A,\Delta'$}
     \pravilo{Rez!$_n$}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Posplošeni glavni rez smo že obravnavali, zato nam zopet preostane primer, ko smo v enem izmed poddreves tik nad rezom ravnokar vpeljali neko drugo formulo. Za razliko od prejšnjega poglavja, je tokrat pomembno, ali se je to zgodilo na levem ali desnem poddrevesu, saj ti nista več simetrični. Če je bila nova formula vpeljana na desni strani nad rezom, je to ne glede na veznik, ki je bil vpeljan, popolnoma enako primerom iz prejšnjega poglavja. Tam smo namreč rezali le eno formulo $C$, za katero nam ni bilo pomembno, ali je oblike $!C$ ali ne, prav tako pa ni bilo pomembno, kakšne oblike ali kako je bil vpeljan $C$ v drugem poddrevesu nad rezom.
+Posplošeni glavni rez smo že obravnavali, zato nam zopet preostane primer, ko smo v enem izmed poddreves tik nad rezom ravnokar vpeljali neko drugo formulo. Za razliko od prejšnjega poglavja, je tokrat pomembno, ali se je to zgodilo na levem ali desnem poddrevesu, saj ti nista več simetrični. Če je bila nova formula vpeljana na desni strani nad rezom, je to ne glede na veznik, ki je bil vpeljan, popolnoma enako primerom iz prejšnjega poglavja. Tam smo namreč rezali le eno formulo $C$, za katero nam ni bilo pomembno, ali je oblike $!C$ ali ne, prav tako pa ni bilo pomembno, kakšne oblike ali kako je bil vpeljan $C$ v drugem poddrevesu nad rezom. Edino pravilo vpeljave, ki je bilo na to pozorno, je bilo pravilo R! (ter seveda L?), ki pa se zopet ne moreta pojaviti kot zadnji pravili v desnem poddrevesu, saj nabor sklepov v sekventu $\Gamma' \Rightarrow \ !A,?\Delta'$ ni oblike $?\Delta''$.
 
-%TODO R! aaa se v prejsnjem poglavju
+Preostane nam torej preveriti, kaj se zgodi, ko je formula $!A$ na v desnem poddrevesu ravnokar vpeljana. Obravnavamo torej naslednje drevo izpeljave.
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+
+    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \pravilo{R!}
+    \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow ?\Delta,\Delta'$}
+\end{prooftree}
+Sedaj moramo ločiti primere glede na to, kaj je bilo zadnje pravilo uporabljeno v levem poddrevesu nad rezom. Obravnavali bomo le nekaj nazornih primerov, začenši z desnim pravilom za veznik $\sqcap$. Desnega pravila vpeljave formule $!A$ ne bomo pisali vsakič posebej, saj ni relevantno za korak indukcije. Kar je pomembno pri tem, da je bilo to pravilo ravnokar uporabljeno, sta le konteksta $!\Gamma$ ter $?\Delta$, kot bomo videli pri nekaterih izmed obravnavanih primerov.
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow B,\Delta$}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow C,\Delta$}
+    \levopravilo{R$\sqcap$}
+    \BinaryInfC{$\Gamma,(!A)^n \Rightarrow B \sqcap C,\Delta$}
+
+    \AxiomC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow B \sqcap C,\Delta,?\Delta'$}
+\end{prooftree}
+\dol
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow B,\Delta$}
+    \AxiomC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \levopravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow B,\Delta,?\Delta'$}
+
+
+    \AxiomC{$\Gamma,(!A)^n \Rightarrow C,\Delta$}
+    \AxiomC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow C,\Delta,?\Delta'$}
+
+    \levopravilo{R$\sqcap$}
+    \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow B \sqcap C,\Delta,?\Delta'$}
+\end{prooftree}
+Kot lahko vidimo je korak indukcije, kjer formule $(!A)^n$ ostanejo nespremenjene, čisto enak primerom, kjer obravnavamo navadni rez, saj dejstvo, da je bilo rezanih več formul naenkrat ne pride v poštev. Zato bomo obravnavali le še primer, kjer se predpostavke v pravilu vpeljave razdelijo na dva dela. Dober primer takega pravila je R$\star$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,(!A)^p \Rightarrow B,\Delta$}
+    \AxiomC{$\Gamma',(!A)^q \Rightarrow C,\Delta'$}
+    \levopravilo{R$\star$}
+    \BinaryInfC{$\Gamma,\Gamma',(!A)^{p+q} \Rightarrow B \star C,\Delta,\Delta'$}
+
+    \AxiomC{$!\Gamma'' \Rightarrow \ !A,?\Delta''$}
+    \pravilo{Rez!$_{p+q}$}
+    \BinaryInfC{$\Gamma,\Gamma',!\Gamma'' \Rightarrow B \star C,\Delta,\Delta',?\Delta''$}
+\end{prooftree}
+\dol
+\begin{prooftree} \footnotesize
+    \AxiomC{$\Gamma,(!A)^p \Rightarrow B,\Delta$}
+    \AxiomC{$!\Gamma'' \Rightarrow !A,?\Delta''$}
+    \levopravilo{Rez!$_p$}
+    \BinaryInfC{$\Gamma,!\Gamma'' \Rightarrow B,\Delta,?\Delta''$}
+
+    \AxiomC{$\Gamma',(!A)^q \Rightarrow C,\Delta'$}
+    \AxiomC{$!\Gamma'' \Rightarrow !A,?\Delta''$}
+    \pravilo{Rez!$_q$}
+    \BinaryInfC{$\Gamma',!\Gamma'' \Rightarrow C,\Delta',?\Delta''$}
+
+    \pravilo{R$\star$}
+    \BinaryInfC{$\Gamma,\Gamma',!\Gamma'',!\Gamma'' \Rightarrow B \star C,\Delta,\Delta',?\Delta'',?\Delta''$}
+    \pravilo{C!$\times|\Gamma''|$}
+    \UnaryInfC{$\Gamma,\Gamma',!\Gamma'' \Rightarrow B \star C,\Delta,\Delta',?\Delta'',?\Delta''$}
+    \pravilo{C?$\times|\Delta''|$}
+    \UnaryInfC{$\Gamma,\Gamma',!\Gamma'' \Rightarrow B \star C,\Delta,\Delta',?\Delta''$}
+\end{prooftree}
+Tu je bilo res pomembno, da so bile predpostavke v desnem poddrevesu oblike $!\Gamma''$, sklepi pa oblike $?\Delta''$, saj smo jih tako lahko dvakrat uporabili.
+
+Z zgornjim poddrevesom smo prikazali, kako bi korak indukcije potekal za vsa pravila, kjer je število formul, ki jih režemo naenkrat, pomembno, torej pravila, kjer se predpostavke delijo na dva. S tem pa smo tudi obdelali vse možne korake indukcije tega dokaza.
