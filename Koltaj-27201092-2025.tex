@@ -51,25 +51,43 @@
 % - povzetek v slovenščini
 %   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
 %   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
-\povzetek{...}
+\povzetek{Vpeljemo sekventni račun, njegova strukturna pravila ter pravili vpeljave za veznik $\land$, nato pa se omejimo na linearno logiko ter veznik $\land$ razdelimo na dva. Vpeljemo še vse ostale veznike v linearni logiki ter razložimo njihov pomen, nato vpeljemo pravilo reza. Formuliramo izrek o eliminaciji reza ter ga dokažemo z dvojno strukturno indukcijo, zunanjo na strukturi drevesa izpeljave, notranjo na strukturi rezane formule. Definiramo glavni rez in ga eliminiramo za vsak veznik posebej, pri eksponentih pa definiramo in nato eliminiramo še posplošeni rez. Rez (in posplošeni rez) eliminiramo tudi ko ni glaven, nato pa opravimo še korak baze indukcije. Po končanem dokazu izreka, dokažemo še Grishinovo vložitev nelinearnega sekventnega računa v linearni sekventni račun.}
 
 % - povzetek v angleščini
-\abstract{...}
+\abstract{We introduce sequent calculus, its structural rules and the introduction rules for the logical connective $\land$. We then limit the sequent calculus to linear logic nad split $\land$ into two connectives. We further introduce all other connectives in linear logic and explain their interpretations, then we introduce the cut rule. We formulate the cut elimination theorem and prove it with double structural induction, the outer induction on the structure of the proof tree and the inner induction on the structure of the cut formula. We define the principal cut and eliminate it for each connective seperately. We define and eliminate the generalised cut rule for the exponentials. We eliminate the cut rule (and the generalised cut rule) when it is not principal as well and then proceed to the induction base. After the proof of the cut eliminaiton theorem we also prove the Grishin embedding of the non-linear sequent calculus into the linear one.}
 
 % - klasifikacijske oznake, ločene z vejicami
 %   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
-\klasifikacija{..., ...}
+\klasifikacija{03B47,03F05}
 
 % - ključne besede, ki nastopajo v delu, ločene s \sep
-\kljucnebesede{...\sep ...}
+\kljucnebesede{sekventni račun\sep linearna logika\sep eliminacija rezov\sep Grishinova vložitev}
 
 % - angleški prevod ključnih besed
-\keywords{...\sep ...} % angleški prevod ključnih besed
+\keywords{sequent calculus\sep linear logic\sep cut elimination\sep Grishin embedding} % angleški prevod ključnih besed
 
 % - angleško-slovenski slovar strokovnih izrazov
 % \slovar{
-% \geslo{angleški izraz}{slovenski izraz}
-% ...
+% \geslo{sequent}{sekvent}
+% \geslo{term}{term}
+% \geslo{atomic formula}{osnovna formula}
+% \geslo{introduction rule}{pravilo vpeljave}
+% \geslo{axiom}{aksiom}
+% \geslo{exchange}{menjava}
+% \geslo{weakening}{ošibitev}
+% \geslo{contraction}{skrčitev}
+% \geslo{intuitionistic logic}{intuicionistična logika}
+% \geslo{exponentials}{eksponenti}
+% \geslo{connective ,,of course''}{veznik ,,seveda''}
+% \geslo{connective ,,why not''}{veznik ,,zakaj ne''}
+% \geslo{cut rule}{pravilo reza}
+% \geslo{cut elimination}{eliminacija rezov}
+% \geslo{proof tree}{drevo izpeljave}
+% \geslo{leaf}{list}
+% \geslo{subtree}{poddrevo}
+% \geslo{principal cut}{glavni rez}
+% \geslo{generalised cut rule}{posplošeno pravilo reza}
+% \geslo{embedding}{vložitev}
 % }
 
 % - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
@@ -94,22 +112,21 @@
 
 \begin{document}
 
-% \section{Uvod}
-% ...
+\section{Uvod}
+\input{Vsebina/Uvod.tex}
 
 \section{Sekventni račun} \label{seq_calc}
 \input{Vsebina/Sekventni_racun/MainSR.tex}
 
-\section{Linearna logika}
+\section{Linearna logika} \label{ll}
 \input{Vsebina/Linearna_logika/MainLL.tex}
 
-\section{Izrek o eliminaciji rezov}
+\section{Izrek o eliminaciji rezov} \label{ier}
 \input{Vsebina/Eliminacija_rezov/MainER.tex}
 
-% \section{Zaključek}
-% ...
+\section{Povezava med linearno in nelinearno logiko} \label{cl v cll}
+\input{Vsebina/Embedding.tex}
 
 \end{document}
 
 %TODO general stvar, maybe introduce the fact da so nad vsemi temi pravili se neka druga drevesa izpeljave
-%TODO i guess da ne bo slo s strukturno indukcijo?? L + ratio
