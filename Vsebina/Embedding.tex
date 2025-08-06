@@ -1,14 +1,16 @@
 %Tuki citiraj troelstro pa maybe grishina
 Dokazali smo, da je linearna logika konsistenten sistem dokazovanja. Kot smo lahko videli, smo imeli največ težav z dokazom pri eliminaciji eksponentov. To nam da misliti, da je dokaz eliminacije rezov v nelinearnem sekventnem računu težji, saj lahko na vsakem koraku uporabimo ošibitev ter skrčitev. Koristno bi torej bilo, če bi lahko že z dokazom eliminacije rezov v linearni logiki poskrbeli za eliminacijo rezov v nelinearni logiki. Zato si oglejmo vložitev običajnega sekventnega računa v linearni sekventni račun.
 
-\begin{primer}
-    - def poz plus neg vezniki (pomoje ni treba obrnljivosti ampak lahko k se itak rabi v dokazu) <- actually pomoje sploh ne rabis, samo uporabi notacijo +-
+Vsak sekvent oblike $\Gamma \Rightarrow \Delta$, dokazan v običajnem sekventnem računu bomo torej želeli preobraziti v nek sekvent $\Gamma' \Rightarrow \Delta'$, dokazan linearno. Možnih načinov, kako dobiti ta sekvent je več. Lahko bi enostavno vse predznačili z eksponenti in nato dokazali, da je sekvent $\Gamma' \Rightarrow \Delta'$ res izpeljiv v linearni logiki, a mi se bomo lotili bolj varčne vložitve, ki poudari kater deli dokaza so bili linearni in kateri ne. Za začetek bomo induktivno definirali operaciji $^+$ ter $^-$, ki nam bosta pri vložitvi pomagali.
+\begin{definicija}
+    Operacija $^+$ je funkcija, ki slika iz običajnega sekventnega računa v linearnega. Njen predpis je definiran induktivno, glede na strukturo formule.
+    \begin{enumerate}
+        \item Če je $P$ neka osnovna formula, je $P^+ := \nicla\sqcup P$.
+    \end{enumerate}
+\end{definicija}
 
-    - def A+ in A- in formuliraj izrek gamma -> delta sledi gamma+ -> delta-
+- formuliraj izrek gamma -> delta sledi gamma+ -> delta-
 
-    - dokazi weakening + contraction na levi, pa use veznike na levi, to je simetricno
+- dokazi weakening + contraction na levi, pa use veznike na levi, to je simetricno
 
-    - quantifiers also!
-\end{primer}
-
-Vse kar torej lahko dokažemo nelinearno, lahko torej dokažemo tudi linearno. To nam po eni strani olajša dokaz eliminacije reza, kot že omenjeno na začetku tega poglavja, po drugi strani pa nam tudi omeji nelinearnost le na del dokaza. To je lahko zelo uporabno pri razumevanju strukture dokaza samega, še posebej če želimo biti pozorni na to, koliko predpostavk uporabimo in kolikokrat dokažemo sklepe.
+Vse kar torej lahko dokažemo nelinearno, lahko dokažemo tudi linearno. To nam po eni strani olajša dokaz eliminacije reza, kot že omenjeno na začetku tega poglavja, po drugi strani pa nam tudi omeji nelinearnost le na del dokaza. To je lahko zelo uporabno pri razumevanju strukture dokaza samega, še posebej če želimo biti pozorni na to, koliko predpostavk uporabimo in kolikokrat dokažemo sklepe.
