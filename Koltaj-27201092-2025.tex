@@ -8,16 +8,6 @@
 \usepackage{amssymb}
 \usepackage{cmll}
 
-\newenvironment{bprooftree}
-  {\leavevmode\hbox\bgroup}
-  {\DisplayProof\egroup}
-
-\newcommand{\pravilo}[1]{\RightLabel{\footnotesize{#1}}}
-\newcommand{\levopravilo}[1]{\LeftLabel{\footnotesize{#1}}}
-\newcommand{\negacija}{\mathord{\sim}}
-\newcommand{\enota}{\mathbf{1}}
-\newcommand{\nicla}{\mathbf{0}}
-\newcommand{\dol}{\begin{center}$\downarrow$\end{center}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % METAPODATKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,16 +86,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DODATNE DEFINICIJE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{bprooftree}
+  {\leavevmode\hbox\bgroup}
+  {\DisplayProof\egroup}
 
-% naložite dodatne pakete, ki jih potrebujete
-% \usepackage{...}
-
-% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
-% \DeclareMathOperator{\...}{...}
-
-% vstavite svoje definicije ...
-% \newcommand{\...}{...}
-
+\newcommand{\pravilo}[1]{\RightLabel{\footnotesize{#1}}}
+\newcommand{\levopravilo}[1]{\LeftLabel{\footnotesize{#1}}}
+\newcommand{\negacija}{\mathord{\sim}}
+\newcommand{\enota}{\mathbf{1}}
+\newcommand{\nicla}{\mathbf{0}}
+\newcommand{\dol}{\begin{center}$\downarrow$\end{center}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ZAČETEK VSEBINE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,4 +125,4 @@
 %TODO levo pravilo -> L* etc
 
 
-%Sources: simpson, troelstra
+%Sources: simpson, troelstra, girard

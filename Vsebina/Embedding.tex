@@ -3,14 +3,23 @@ Dokazali smo, da je linearna logika konsistenten sistem dokazovanja. Kot smo lah
 
 Vsak sekvent oblike $\Gamma \Rightarrow \Delta$, dokazan v običajnem sekventnem računu bomo torej želeli preobraziti v nek sekvent $\Gamma' \Rightarrow \Delta'$, dokazan linearno. Možnih načinov, kako dobiti ta sekvent je več. Lahko bi enostavno vse predznačili z eksponenti in nato dokazali, da je sekvent $\Gamma' \Rightarrow \Delta'$ res izpeljiv v linearni logiki, a mi se bomo lotili bolj varčne vložitve, ki poudari kater deli dokaza so bili linearni in kateri ne. Za začetek bomo induktivno definirali operaciji $^+$ ter $^-$, ki nam bosta pri vložitvi pomagali.
 \begin{definicija}
-    Operacija $^+$ je funkcija, ki slika iz običajnega sekventnega računa v linearnega. Njen predpis je definiran induktivno, glede na strukturo formule.
-    \begin{enumerate}
-        \item Če je $P$ neka osnovna formula, je $P^+ := \nicla\sqcup P$.
-    \end{enumerate}
+    Operaciji $^-$ in $^+$ sta funkciji, ki slikata iz običajnega sekventnega računa v linearnega. Njun predpis je definiran induktivno, glede na strukturo formule. Naj bo $P$ neka osnovna formula, $A$ in $B$ pa poljubni formuli:
+    \begin{align*}
+        P^- &:= \enota\sqcap P & P^+ &:= \nicla\sqcup P\\
+        (\neg A)^- &:= \negacija(A^+) & (\neg A)^+ &:= \negacija(A^-)\\
+        (A\rightarrow B)^- &:= (\negacija A^+)\sqcup B^- & (A\rightarrow B)^+ &:= A^-\multimap B^+\\
+        (A\land B)^- &:= A^-\star B^- & (A\land B)^+ &:= A^+\sqcap B^+\\
+        (A\lor B)^- &:= A^-\sqcup B^- & (A\lor B)^+ &:= A^++ B^+\\
+        (\forall x A)^- &:=\ !\forall x (A^-) & (\forall x A)^+ &:= \forall x (A^+)\\
+        (\exists x A)^- &:= \exists x (A^-) & (\exists x A)^+ &:=\ ?\forall x (A^+)
+    \end{align*}
 \end{definicija}
 
-- formuliraj izrek gamma -> delta sledi gamma+ -> delta-
-
-- dokazi weakening + contraction na levi, pa use veznike na levi, to je simetricno
+\begin{izrek}[Grishinova vložitev]
+    Sekvent $\Gamma \Rightarrow \Delta$ drži v običajnem sekventnem računu natanko tedaj, ko v linearnem sekventnem računu drži sekvent $\Gamma^- \Rightarrow \Delta^+$.
+\end{izrek}
+\begin{dokaz}
+    W + C + vezniki na levi
+\end{dokaz}
 
 Vse kar torej lahko dokažemo nelinearno, lahko dokažemo tudi linearno. To nam po eni strani olajša dokaz eliminacije reza, kot že omenjeno na začetku tega poglavja, po drugi strani pa nam tudi omeji nelinearnost le na del dokaza. To je lahko zelo uporabno pri razumevanju strukture dokaza samega, še posebej če želimo biti pozorni na to, koliko predpostavk uporabimo in kolikokrat dokažemo sklepe.
