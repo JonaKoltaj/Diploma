@@ -1,5 +1,5 @@
 \begin{definicija} \label{in}
-    Veznik $\land$, s pravili iz definicij \ref{inl} in \ref{inr}, se še vedno glasi \emph{in}, zapišemo pa ga s simbolom $\sqcap$. Zapišimo še enkrat njegovo levo in desno pravilo, tokrat s pravilnim pojmovanjem.
+    Veznik $\land$ se še vedno glasi \emph{in}, zapišemo pa ga s simbolom $\sqcap$. Zapišimo še enkrat njegovo levo in desno pravilo, tokrat s pravilnimi simboli:
     \begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma, A \Rightarrow \Delta$}
@@ -21,7 +21,7 @@
 \end{definicija}
 
 \begin{definicija} \label{tenzor}
-    Veznik $\land'$, s pravili iz definicij \ref{in'l} in \ref{in'r} pa preimenujemo v \emph{tenzor} ter ga zapišemo s simbolom $\star$.
+    Veznik $\land'$ pa preimenujemo v \emph{tenzor} ter ga zapišemo s simbolom $\star$:
     \begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
@@ -37,12 +37,12 @@
     \end{center}
 \end{definicija}
 
-Zakaj te dva veznika v kontekstu linearne logike nista enaka je razvidno že če primerjamo njuni levi in desni pravili. Kot smo omenili na začetku tega poglavja je pomembno, da vsako predpostavko uporabimo natanko enkrat. Veznik $\sqcap$ med predpostavkami na nek način vsebuje le eno izmed predpostavk, ki ju združuje, medtem ko veznik $\star$ vsebuje obe. Ko torej uporabimo $A \sqcap B$¸ da dokažemo neki $\Delta$, uporabimo le $A$ ali $B$, medtem ko pri $A \star B$ uporabimo tako $A$ kot $B$. Če pa želimo dokazati, da velja $A \sqcap B$, pa je dovolj, da iz istih predpostavk dokažemo $A$ ter $B$, prav tako ostale sklepe na desni strani sekventa pustimo pri miru. To spet implicira, da vsebuje $A\sqcap B$ enako število informacij kot le $A$ ali $B$. Če pa dokazujemo $A\star B$, pa moramo posebej dokazati $A$, nato pa iz ločenega sklopa predpostavk dokazati $B$. Ostale sklepe poleg $A\star B$ je tudi potrebno posebej dokazati. Vse to spet implicira, da vsebuje tenzor informacij tako za $A$ kot $B$.
+Zakaj te dva veznika v kontekstu linearne logike nista enaka, je razvidno že če primerjamo njuni levi in desni pravili. Pomembno nam je namreč, koliko ,,informacij'' vsebujejo z vezniki zgrajene formule, saj nam je pomembno koliko predpostavk smo za njih porabili in pa koliko sklepov lahko z njimi dokažemo. Veznik $\sqcap$ med predpostavkami na nek način vsebuje le eno izmed predpostavk, ki ju združuje, medtem ko veznik $\star$ vsebuje obe. Ko torej uporabimo $A \sqcap B$¸ da dokažemo neki $\Delta$, uporabimo le $A$ ali $B$, medtem ko pri $A \star B$ uporabimo tako $A$ kot $B$. Če pa želimo dokazati, da velja $A \sqcap B$, pa je dovolj, da iz istih predpostavk dokažemo tako $A$ kot $B$, kar spet namiguje, da $A\sqcap B$ vsebuje enako število informacij kot le $A$ ali $B$. Če pa dokazujemo $A\star B$, pa moramo posebej dokazati $A$, nato pa iz ločenega sklopa predpostavk dokazati $B$, kar pomeni da vsebuje $\star$ informacij tako za $A$ kot $B$.
 
 Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni logiki se ta spet razdeli na dvoje, intuicija za to pa je simetična intuiciji za veznik $\land$, zato jo prepustimo bralcu.
 
 \begin{definicija} \label{ali}
-	Veznik \emph{ali}, označen z $\sqcup$, ima sledeče levo in desno pravilo vpeljave.
+	Veznik \emph{ali} $\sqcup$, ima sledeče levo in desno pravilo:
 	\begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma,A \Rightarrow \Delta$}
@@ -65,7 +65,7 @@ Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni 
 \end{definicija}
 
 \begin{definicija} \label{plus}
-	Veznik \emph{plus}, označen z + pa je analogno simetričen vezniku $\star$.
+	Veznik \emph{plus} + pa je analogno simetričen vezniku $\star$:
 	\begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma,A \Rightarrow \Delta$}
@@ -81,12 +81,12 @@ Oglejmo si sedaj še preostale veznike, začenši z veznikom $\lor$. V linearni 
     \end{center}
 \end{definicija}
 
-Vsi nadaljni vezniki imajo v linearni logiki enaka pravila vpeljave kot v navadnem sekventnem računu in se ne delijo na dva dela, še vseeno pa so to \emph{linearni} vezniki, že samo zaradi pogojev pod katerimi so vpeljani. Če na primer $A$ linearno implicira $B$ to pomeni, da natanko en $A$ implicira natanko en $B$, linearna negacija formule $A$ pa negira natanko en $A$.
+Vsi nadaljni vezniki imajo v linearni logiki enaka pravila kot v navadnem sekventnem računu in se ne delijo na dva dela, še vseeno pa so to \emph{linearni} vezniki, že samo zaradi pogojev pod katerimi so vpeljani. Če na primer $A$ linearno implicira $B$ to pomeni, da natanko en $A$ implicira natanko en $B$, linearna negacija formule $A$ pa negira natanko en $A$.
 
 Za vpeljavo implikacije zopet potrebujemo drugačen simbol kot smo ga vajeni, saj se $\Rightarrow$ že uporablja v strukturi sekventa samega. Običajni sekventni račun v ta namen uporablja $\rightarrow$, linearna implikacija pa, da se loči od nelinearne, spet uporabi svoj simbol.
 
 \begin{definicija}
-	\emph{Implikacija}, označena s simbolom $\multimap$, je vpeljana z naslednjimi pravili.
+	\emph{Implikacija} $\multimap$, je definirana z naslednjimi pravili:
     \begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma \Rightarrow A,\Delta$}
@@ -100,11 +100,11 @@ Za vpeljavo implikacije zopet potrebujemo drugačen simbol kot smo ga vajeni, sa
             \UnaryInfC{$\Gamma \Rightarrow A \multimap B,\Delta$}
         \end{bprooftree}
     \end{center}
-    Kot lahko vidimo je desno pravilo vpeljave dokaj jasno za interpretacijo. Če dokazujemo $A \multimap B$, je dovolj da pod predpostavko $A$ dokažemo $B$. Levo pravilo pa je morda lažje brati od zgoraj navzdol. Če torej z $\Gamma$ dokažemo $A$ ter neke druge sklepe $\Delta$, iz $\Gamma'$ in $B$ pa dokažemo $\Delta'$, lahko iz združenih predpostavk $\Gamma,\Gamma'$ ter dejstva, da iz $A$ sledi $B$ dokažemo združene sklepe $\Delta,\Delta'$.
+    Kot lahko vidimo je desno pravilo dokaj jasno za interpretacijo. Če dokazujemo $A \multimap B$, je dovolj da pod predpostavko $A$ dokažemo $B$. Levo pravilo pa je morda lažje brati od zgoraj navzdol. Če torej z $\Gamma$ dokažemo $A$ ter neke druge sklepe $\Delta$, iz $\Gamma'$ in $B$ pa dokažemo $\Delta'$, lahko iz združenih predpostavk $\Gamma,\Gamma'$ ter dejstva, da $A$ implicira $B$ dokažemo združene sklepe $\Delta,\Delta'$.
 \end{definicija}
 
 \begin{definicija}
-    \emph{Negacija}, označena s simbolom $\negacija$, ima naslednji pravili vpeljave.
+    \emph{Negacija}, označena s simbolom $\negacija$, ima naslednji pravili:
     \begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma \Rightarrow A,\Delta$}
@@ -117,5 +117,5 @@ Za vpeljavo implikacije zopet potrebujemo drugačen simbol kot smo ga vajeni, sa
             \UnaryInfC{$\Gamma \Rightarrow \negacija A,\Delta$}
         \end{bprooftree}
     \end{center}
-    Tudi interpretacija veznika $\negacija$ je lažja od zgoraj navzdol, pomembno pa je tudi dejstvo, da vejice na desni interpretiramo kot ,,ali'', vejice na levi pa kot ,,in''. Levo pravilo vpeljave nam pove, da če znamo iz predpostavk $\Gamma$ dokazati $A$ \emph{ali} $\Delta$, lahko preprosto predpostavimo, da ne velja $A$ in dokažemo $\Delta$. Desno pravilo pa pravi, da če znamo iz $\Gamma$ \emph{in} $A$ dokazati $\Delta$, lahko iz $\Gamma$ dokažemo ali da $A$ ne velja, ali pa da velja $\Delta$.
+    Tudi interpretacija veznika $\negacija$ je lažja od zgoraj navzdol, pomembno pa je tudi dejstvo, da vejice na desni interpretiramo kot ,,ali'', vejice na levi pa kot ,,in''. Levo pravilo nam pove, da če znamo iz predpostavk $\Gamma$ dokazati $A$ \emph{ali} $\Delta$, lahko preprosto predpostavimo, da ne velja $A$ in dokažemo $\Delta$. Desno pravilo pa pravi, da če znamo iz $\Gamma$ \emph{in} $A$ dokazati $\Delta$, lahko iz $\Gamma$ dokažemo ali da $A$ ne velja, ali pa da velja $\Delta$.
 \end{definicija}

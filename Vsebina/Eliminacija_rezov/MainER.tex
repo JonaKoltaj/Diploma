@@ -1,13 +1,14 @@
 Poslednje pravilo, ki ga je potrebno vpeljati, je \emph{pravilo reza}. To pravilo obstaja tudi v običajnem sekventnem računu in formalizira koncept dokazovanja s pomočjo leme.
 
 \begin{definicija}
-	\emph{Pravilo reza} pravi, da če znamo pod določenimi predpostavkami dokazati formulo $A$, potem pa iz te formule dokažemo nekaj drugega, lahko $A$ enostavno režemo iz procesa.
+	\emph{Pravilo reza}, krajše $Rez$:
 	\begin{prooftree}
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma',A \Rightarrow \Delta'$}
         \pravilo{Rez}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 	\end{prooftree}
+	To pravilo pravi, da če znamo pod določenimi predpostavkami dokazati formulo $A$, potem pa iz te formule dokažemo nekaj drugega, lahko $A$ enostavno režemo iz procesa.
 \end{definicija}
 
 \begin{opomba}

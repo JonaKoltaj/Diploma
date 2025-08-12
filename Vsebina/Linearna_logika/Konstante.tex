@@ -1,7 +1,7 @@
-V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki pa se v linearni logiki spet vsaka razdelita na dvoje. Resnici se delita na enoto za $\star$ ter enoto za $\sqcap$, neresnici pa na enoto za + ter enoto za $\sqcup$.
+V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki pa se v linearni logiki spet razdelita. Resnici se delita na enoto za $\star$ ter enoto za $\sqcap$, neresnici pa na enoto za + ter enoto za $\sqcup$.
 
 \begin{definicija}
-    \emph{Enota}, označena z $\enota$, ima levo in desno pravilo vpeljave:
+    \emph{Enota} $\enota$, ima levo in desno pravilo:
     \begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma \Rightarrow \Delta$}
@@ -14,24 +14,24 @@ V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki p
             \UnaryInfC{$\Rightarrow \enota$}
         \end{bprooftree}
     \end{center}
-    Enoto torej lahko brez predpostavk vedno dokažemo, kar nam pove desno pravilo, če pa vemo da enota velja je to trivialna informacija, kar nam pove levo pravilo.
+    Lahko jo brez predpostavk dokažemo, kar nam pove desno pravilo, levo pravilo pa pove, da če pa vemo da enota velja je to trivialna informacija.
 \end{definicija}
 
 \begin{definicija}
-    \emph{Resnica}, označena z $\top$, ima le desno pravilo vpeljave. Ne moremo je torej uporabiti kot sklep.
+    \emph{Resnica} $\top$, ima le desno pravilo:
     \begin{prooftree}
         \AxiomC{}
         \pravilo{R$\top$}
         \UnaryInfC{$\Gamma \Rightarrow \top,\Delta$}
     \end{prooftree}
-    Kar nam to pove je, da resnica vedno velja.
+    Ker levega pravila nima, je med predpostavkami ne moremo uporabiti. Kar pa nam desno pravilo pove, je da resnica vedno velja.
 \end{definicija}
 
 \begin{lema} \label{enoti}
-	Enota $\enota$ je enota za za $\star$, resnica $\top$ pa je enota za $\sqcap$.
+	Konstanta $\enota$ je enota za za veznik $\star$, konstanta $\top$ pa je enota za veznik $\sqcap$.
 \end{lema}
 \begin{dokaz}
-    Za dokaz leme potrebujemo izpeljati sekvente $A \star \enota \Rightarrow A$, $A \Rightarrow A \star \enota$, $A \sqcap \top \Rightarrow A$ ter $A \Rightarrow A \sqcap \top$.
+    Za dokaz leme nam je potrebno izpeljati sekvente $A \star \enota \Rightarrow A$, $A \Rightarrow A \star \enota$, $A \sqcap \top \Rightarrow A$ ter $A \Rightarrow A \sqcap \top$:
     \begin{center}
         \vskip 10pt
         \begin{bprooftree}
@@ -78,12 +78,11 @@ V običajnem sekventnem računu imamo dvoje konstant; resnico in neresnico, ki p
             \BinaryInfC{$A \Rightarrow A \sqcap \top$}
         \end{bprooftree}
     \end{center}
+    \vskip -15pt \qedhere
 \end{dokaz}
 
-Pri neresnici je razlog za razdvojitev enak, pravila vpeljave pa so simetrična, zato interpretacijo prepustimo bralcu.
-
 \begin{definicija}
-	\emph{Ničla}, označena z $\nicla$ ima levo in desno pravilo vpeljave:
+	\emph{Ničla} $\nicla$ ima levo in desno pravilo:
 	 \begin{center}
         \begin{bprooftree}
             \AxiomC{}
@@ -98,7 +97,7 @@ Pri neresnici je razlog za razdvojitev enak, pravila vpeljave pa so simetrična,
     \end{center}
 \end{definicija}
 \begin{definicija}
-    \emph{Neresnica}, označena z $\bot$, ima le levo pravilo vpeljave. Ne moremo je torej uporabiti kot predpostavko.
+    \emph{Neresnica} $\bot$ ima le levo pravilo, kar pomeni, da ne more biti uporabljena kot sklep:
     \begin{prooftree}
         \AxiomC{}
         \pravilo{L$\bot$}
@@ -106,7 +105,8 @@ Pri neresnici je razlog za razdvojitev enak, pravila vpeljave pa so simetrična,
     \end{prooftree}
 \end{definicija}
 
-Dokaz naslednje leme bomo opustili, saj je simetričen dokazu leme \ref{enoti}.
+Kot lahko vidimo, so zgornja pravila za ničlo in neresnico simetrična pravilom za enoto in resnico, prav tako pa je simetričen dokaz naslednje leme dokazu leme \ref{enoti}, zato ga bomo opustili.
+
 \begin{lema}
-	Ničla $\nicla$ je enota za +, neresnica $\bot$ pa je enota za $\sqcup$.
+	Konstanta $\nicla$ je enota za za veznik +, konstanta $\bot$ pa je enota za veznik $\sqcup$.
 \end{lema}

@@ -1,7 +1,6 @@
 \begin{definicija}
-	\emph{Univerzalni kvantifikator}, označen kot navadno s simbolom $\forall$, je definiran z naslednjima praviloma vpeljave. Tu $y$ ne sme biti prost v $\Gamma$ in $\Delta$.
+	\emph{Univerzalni kvantifikator} $\forall$ je definiran z naslednjima praviloma:
 	%notacija tuki bo t/x means substitute vsak x s tjem
-	%also citiras simpsona as well
 	\begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma, A[t/x] \Rightarrow \Delta$}
@@ -12,13 +11,14 @@
             \AxiomC{$\Gamma \Rightarrow A[y/x],\Delta$}
             \pravilo{R$\forall$}
             \UnaryInfC{$\Gamma \Rightarrow \forall x A,\Delta$}
-        \end{bprooftree}
+        \end{bprooftree} \qquad
+        ; $y$ ni prost v $\Gamma$ in $\Delta$
 	\end{center}
-	Notacija $A[y/x]$ pomeni, da vsako instanco spremenljivke $x$ zamenjamo s spremenljivko $y$. Spremenljivka $t$ v definiciji označuje nek specifičen term $t$, ki si ga izberemo. Levo pravilo vpeljave torej pomeni, da če želimo iz dejstva, da za vsak $x$ velja formula $A$ dokazati $\Delta$, je dovolj, da spremenljivko $x$ v $A$ zamenjamo z nekim specifičnim termom in z njim dokažemo $\Delta$. Spremenljivka $y$ v definiciji pa označuje prosto spremenljivko. Desno pravilo vpeljave je ekvivalentno temu, da pri dokazovanju, da za vsak $x$ velja $A$, fiksiramo poljuben $y$ in dokazujemo $A$.
+	Zapis $A[a/x]$ pomeni, da vsako prosto pojavitev spremenljivke $x$ zamenjamo s termom $a$. V L$\forall$ s $t$ označujemo specifičen term $t$, v R$\forall$ pa z $y$ označujemo poljubno spremenljivko. Levo pravilo nam torej pravi, da če želimo iz dejstva, da za vsak $x$ velja formula $A$, dokazati $\Delta$, je dovolj, da spremenljivko $x$ v $A$ nadomestimo z nekim specifičnim termom in s tem dokažemo $\Delta$. Desno pravilo pa je ekvivalentno temu, da pri dokazovanju tega, da za vsak $x$ velja $A$, fiksiramo poljuben $y$ in dokazujemo $A$.
 \end{definicija}
 
 \begin{definicija}
-    \emph{Eksistenčni kvantifikator} je spet brez sprememb označen s simbolom $\exists$. Spremenljivka $y$ spet ne sme  biti prosta v $\Gamma$ ter $\Delta$.
+    \emph{Eksistenčni kvantifikator} $\exists$ je simetričen univerzalnemu kvantifikatorju:
     \begin{center}
         \begin{bprooftree}
             \AxiomC{$\Gamma,A[y/x] \Rightarrow \Delta$}
@@ -29,7 +29,8 @@
             \AxiomC{$\Gamma \Rightarrow A[t/x],\Delta$}
             \pravilo{R$\exists$}
             \UnaryInfC{$\Gamma \Rightarrow \exists x A,\Delta$}
-        \end{bprooftree}
+        \end{bprooftree} \qquad
+        ; $y$ ni prost v $\Gamma$ in $\Delta$
 	\end{center}
-	Tokrat levo pravilo vsebuje prosto spremenjlivko $y$, desno pa specifičen term $t$. Če torej želimo uporabiti dejstvo, da obstaja $x$, da velja $A$, fiksiramo poljuben $y$ in dokazujemo $A$, če pa želimo dokazati, da obstaja $x$, da velja $A$, le poščemo nek specifičen term $t$, da $A$ velja.
+	Tokrat levo pravilo vsebuje prosto spremenjlivko $y$, desno pa specifičen term $t$. Če torej želimo uporabiti dejstvo, da obstaja $x$, da velja $A$, je dovolj da $\Delta$ dokažemo pri poljubnem $y$ na mestu spremenljivke $x$, če pa želimo dokazati, da obstaja $x$, da velja $A$, le poščemo nek specifičen term $t$, da $A$ velja.
 \end{definicija}

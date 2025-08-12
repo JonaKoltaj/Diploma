@@ -2,11 +2,11 @@ Na koncu tega poglavja je potrebnih še nekaj opomb glede zapisa veznikov ter st
 
 \subsubsection{Poimenovanje veznikov}
 
-Notacija, uporabljena v tem diplomskem delu, je črpana iz vira ??daj vir??, ni pa najbolj standardna. Jean-Yves Girard, ki se je prvi ukvarjal z linearno logiko je veznike in konstante označil drugače, ta notacija pa se je tudi ohranila. Razlog za spremembo notacije v mojem delu je bolj slogoven kot zgodovinski. Načini kako je notacija spremenjena ter standardna imena veznikov v angleščini so prikazana v spodnji tabeli. ??Daj also vir??
+Zapis, uporabljen v tem diplomskem delu, je črpan iz vira ??daj vir??, ni pa najbolj standarden. Jean-Yves Girard, ki se je prvi ukvarjal z linearno logiko je veznike in konstante označil drugače, ta zapis pa se je tudi ohranil. Razlog za spremembo zapisa v mojem delu je bolj slogoven kot zgodovinski. Načini kako je zapis spremenjen ter standardna imena veznikov v angleščini so prikazana v spodnji tabeli. ??Daj also vir?? %lahko citiras girarda
 \begin{center}
 \begin{tabular}{||c|c|c||}
     \hline
-    Simbol veznika & Simbol v standardni notaciji & Ime \\
+    Simbol veznika & Simbol v standardnem zapisu & Ime \\
     \hline\hline
     $\sqcap$ & $\&$ & with \\
     \hline
@@ -26,18 +26,16 @@ Notacija, uporabljena v tem diplomskem delu, je črpana iz vira ??daj vir??, ni 
     \hline
     \end{tabular}
 \end{center}
-
-??tudi tukej navedi troelstra vir kjer razlozi notacijo??
-Kot lahko vidimo so v standardni notaciji parni drugačni vezniki kot v naši notaciji. Razlog za to je, da veznik + distribuira čez veznik $\sqcap$, veznik $\star$ pa distribuira čez $\sqcup$. Velja torej:
+Kot lahko vidimo so v standardnem zapisu parni drugačni vezniki kot v našem. Razlog za to je, da veznik + distribuira čez veznik $\sqcap$, veznik $\star$ pa distribuira čez $\sqcup$. Velja torej ??cite troelstra str 21 22??:
 \begin{align*}
     A + (B \sqcap C) &\equiv (A + B) \sqcap (A + C)\\
     A \star (B \sqcup C) &\equiv (A \star B) \sqcup (A \star C)
 \end{align*}
-Toda če veznik + negiramo, ne dobimo veznika $\sqcap$, ampak $\star$, če negiramo veznik $\sqcap$ pa dobimo $\sqcup$ in seveda obratno. Dualna para sta torej $(\star,+)$ ter $(\sqcap,\sqcup)$, kar je veliko bolj razvidno pri naših oznakah. Poleg tega sta si že sami pravili za veznika $\star$ ter +, iz definicij \ref{tenzor} in \ref{plus}, simetrični, kot sta si pravili za $\sqcap$ ter $\sqcup$, iz definicij \ref{in} in \ref{ali}. Zdi se mi, da sta ta dva razloga dokaj pomembna za razumevanje veznikov, zato sem se odločila za takšno notacijo, kot jo imam.
+Toda če veznik + negiramo, ne dobimo veznika $\sqcap$, ampak $\star$, če negiramo veznik $\sqcap$ pa dobimo $\sqcup$ in seveda obratno. Dualna para sta torej $(\star,+)$ ter $(\sqcap,\sqcup)$, kar je veliko bolj razvidno pri naših oznakah. Poleg tega sta si že sami pravili za veznika $\star$ ter +, iz definicij \ref{tenzor} in \ref{plus}, simetrični, kot sta si pravili za $\sqcap$ ter $\sqcup$, iz definicij \ref{in} in \ref{ali}. Zdi se mi, da sta to dovolj pomembna razloga za razumevanje veznikov, da sem se odločila za nestandarden zapis.
 
 \subsubsection{Intuicionistična linearna logika} \label{ill}
 
-Ker je pogosto, da članki, ki govorijo o linearni logiki, govorijo specifično o intuicionistični linearni logiki, se mi zdi pomembno predstaviti slednje tudi v mojem delu.
+Članki o linearni logiki pogosto omenajo tudi intuicionistično linearno logiko, zato se mi zdi pomembno slednje vsaj predstaviti tudi v mojem delu.
 
 Intuicionistična logika je logika brez principa izključene tretje možnosti. To je aksiom, ki pravi, da za poljubno trditev $P$ velja $P\lor\neg P$. V sekventnem računu kot smo ga predstavili do sedaj, se da to pravilo izpeljati iz pravila aksioma. V linearni logiki ta princip velja le za veznik +, ne pa za veznik $\sqcup$.??citiraj??
 \begin{prooftree}
@@ -49,8 +47,8 @@ Intuicionistična logika je logika brez principa izključene tretje možnosti. T
 	\pravilo{R+}
 	\UnaryInfC{$\Rightarrow A + (\negacija A)$}
 \end{prooftree}
-V običajnem sekventnem računu je pravilo za negacijo enako, linearnost je ne spremeni, veznika + in $\sqcap$ pa sta si ekvivalnetna in sta oba reprezentaciji veznika $\lor$. To pomeni, da izpeljava principa izključene tretje možnosti poteka enako kot zgoraj.
+V običajnem sekventnem računu je pravilo za negacijo enako, linearnost je ne spremeni, veznika + in $\sqcap$ pa sta si ekvivalnetna in sta oba reprezentaciji veznika $\lor$. To pomeni, da izpeljava principa izključene tretje možnosti v nelinearnem poteka enako kot zgoraj.
 
-Če torej želimo delati z intuicionistično linearno logiko, moramo strukturo sekventnega računa nekoliko spremeniti. Izkaže se, ??citiraj?? da je dovolj, da na desni strani sekventov ne dopustimo več kot ene formule. Kot lahko hitro vidimo, zgornja izpeljava ne deluje več, saj sekvent $\Rightarrow \negacija A,A$ ne more obstajati.
+Če torej želimo delati z intuicionistično linearno logiko, moramo strukturo sekventnega računa nekoliko spremeniti. Dovolj je??cite troelstra??, da na desni strani sekventov ne dopustimo več kot ene formule. Kot lahko hitro vidimo, zgornja izpeljava ne deluje več, saj sekvent $\Rightarrow \negacija A,A$ ne more obstajati.
 
-Bistvo intuicionistične logike je poudarek na tem \emph{kako} dokazujemo izreke in trditve, ne le da jih dokažemo. A ker je linearna logika že zelo strukturirana, poleg tega pa bi dopuščanje le ene formule na desni strani sekventa uničilo simetrijo pravil, saj na primer ne bi smeli imeti desnega pravila za +, sem se odločila v tem delu uporabljati klasično -- torej neintuicionistično -- logiko.
+Intuicionistična logika daje poudarek na tem \emph{kako} dokazujemo izreke in trditve, ne le da jih dokažemo. A ker je linearna logika že zelo strukturirana, poleg tega pa bi dopuščanje le ene formule na desni strani sekventa uničilo simetrijo pravil, saj na primer ne bi smeli imeti desnega pravila za +, sem se odločila v tem delu uporabljati klasično -- torej neintuicionistično -- logiko.

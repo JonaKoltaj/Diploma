@@ -1,8 +1,8 @@
-Linearna logika je različica logike sekventnega računa, kjer zavržemo pravili ošibitve in skrčitve iz definicij \ref{weakening} in \ref{contraction}. To pomeni, da moramo vsako predpostavko uporabiti natanko enkrat ter da ne smemo imeti odvečnih predpostavk. Prav tako moramo vsak sklep dokazati natanko enkrat, brez odvečnih sklepov.
+Linearna logika je različica logike sekventnega računa, kjer zavržemo pravili ošibitve in skrčitve iz definicij \ref{weakening} in \ref{contraction}. To pomeni, da moramo vsako predpostavko uporabiti in vsak sklep dokazati natanko enkrat.
 
-Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} ter \ref{inr} , označimo ga v tem primeru z $\land'$.
+To dejstvo znatno vpliva tudi na same veznike. Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} ter \ref{inr} , označimo ga v tem primeru z $\land'$.
 \begin{definicija} \label{in'l}
-    \emph{Levo pravilo vpeljave veznika $\land'$} pravi, če želimo iz $A \land' B$ dokazati $\Delta$, lahko veznik na levi enostavno prevedemo nazaj v vejico in iz $A$ ter $B$ dokazujemo $\Delta$.
+    \emph{Levo pravilo za veznik $\land'$}, krajše L$\land'$, enostavno prevede vejico na levi v konjunkcijo:
     \begin{prooftree}
         \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
         \pravilo{L$\land'$}
@@ -11,21 +11,21 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
 \end{definicija}
 
 \begin{definicija} \label{in'r}
-	\emph{Desno pravilo vpeljave veznika $\land'$} pa pravi, da če želimo $A \land' B$ dokazati, lahko predpostavke (in preostale sklepe, ki niso povezani z $A$ in $B$) ločimo na dva dela ter z enim delom dokažemo $A$, z drugim pa $B$. Obratno gledano, če znamo iz $\Gamma$ dokazati $A$ ter iz $\Gamma'$ dokazati $B$, lahko predpostavke združimo in dokažemo $A \land' B$.
+	\emph{Desno pravilo za veznik $\land'$}, krajše R$\land'$:
     \begin{prooftree}
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
         \pravilo{R$\land'$}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \land' B,\Delta,\Delta'$}
     \end{prooftree}
+    To pravilo pove, da če želimo $A \land' B$ dokazati, lahko predpostavke ločimo na dva dela ter z enim delom dokažemo $A$, z drugim pa $B$. Obratno gledano, če znamo iz $\Gamma$ dokazati $A$ ter iz $\Gamma'$ dokazati $B$, lahko predpostavke združimo in dokažemo $A \land' B$.
 \end{definicija}
 
 \begin{lema}
-    Če dopustimo uporabo ošibitve in skrčitve, sta si levi in desni pravili vpeljave za $\land$ ter $\land'$ ekvivalentni.
+    Če dopustimo uporabo ošibitve in skrčitve, sta levi in desni pravili za $\land$ ter $\land'$ medsebojno izpeljivi.
 \end{lema}
 \begin{dokaz}
-    Začnimo z dokazom ekvivalence levih pravil za veznika $\land$ ter $\land'$. Dokaz ekvivalence v tem kontekstu pomeni, da sta pravili medsebojno izpeljivi.
-    Izpeljava levega pravila za $\land'$ iz definicije \ref{in'l} na podlagi levega pravila za $\land$ iz definicije \ref{inl} poteka s pomočjo skrčitve.
+    Začnimo z dokazom medsebojne izpeljivosti levih pravil za veznika $\land$ iz definicije \ref{inl} ter $\land'$ iz definicije \ref{in'l}. To pomeni, da lahko s pomočjo L$\land$ dokažemo L$\land'$ in obratno.
     \begin{prooftree}
         \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
         \pravilo{L$\land$}
@@ -35,9 +35,7 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \pravilo{C}
         \UnaryInfC{$\Gamma,A \land B \Rightarrow \Delta$}
     \end{prooftree}
-    Najprej torej predpostavko $A \land B$ ,,podvojimo'', nato pa dvakrat uporabimo levo pravilo za $\land$, vsakič ne eni izmed podvojenih predpostavk.
-
-    Obratna izpeljava pa poteka s pomočjo ošibitve. Tu najprej uporabimo levo pravilo za $\land'$, nato pa odvečno izmed predpostavk odstranimo s pomočjo ošibitve.
+    Najprej torej predpostavko $A \land B$ ,,podvojimo'', s pomočjo skrčitve, nato pa dvakrat uporabimo L$\land$, vsakič ne eni izmed podvojenih predpostavk. Obratna izpeljava pa poteka tako, da najprej uporabimo L$\land'$, nato pa odvečno izmed predpostavk odstranimo s pomočjo ošibitve.
     \begin{prooftree}
         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
         \pravilo{W}
@@ -45,8 +43,7 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \pravilo{L$\land'$}
         \UnaryInfC{$\Gamma,A \land' B \Rightarrow \Delta$}
     \end{prooftree}
-
-    Podobno dokažemo ekvivalenco desnega pravila za $\land$ iz definicije \ref{inr} ter desnega pravila za $\land'$ iz definicije \ref{in'r}.
+    Podobno dokažemo medsebojno izpeljivost R$\land$ iz definicije \ref{inr} ter R$\land'$ iz definicije \ref{in'r}.
     \begin{prooftree}
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \levopravilo{W$\times |\Gamma' \cup \Delta'|$}
@@ -59,9 +56,7 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \pravilo{R$\land$}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \land B,\Delta,\Delta'$}
     \end{prooftree}
-    Ko zgoraj iz desnega pravila za $\land$ izpeljujemo desno pravilo za $\land'$, najprej uporabimo desno pravilo za $\land$, torej predpostavk (in sklepov) ne razdelimo na dva dela, zato se s pomočjo ošibitve na levi ,,znebimo'' (saj pravila beremo od spodaj navzgor) predpostavk $\Gamma'$ in sklepov $\Delta'$. To naredimo tako, da ošibitev iteriramo tolikokrat, kolikor je velikost multimnožice $\Gamma'\cup\Delta'$. Podobno naredimo na desni strani.
-
-    Ko pa iz desnega pravila za $\land'$ izpeljujemo desno pravilo za $\land$, najprej ,,podvojimo'' vse predpostavke v $\Gamma$ in vse sklepe v $\Delta$, nato pa uporabimo desno pravilo za $\land'$ in podvojene predpostavke spet razpolovimo.
+    Najprej torej uporabimo R$\land$, kar pomeni da predpostavk (in sklepov) ne razdelimo, zato se s pomočjo ošibitve na levi ,,znebimo'' predpostavk $\Gamma'$ in sklepov $\Delta'$. To naredimo tako, da ošibitev iteriramo tolikokrat, kolikor je velikost multimnožice $\Gamma'\cup\Delta'$. Enako naredimo z odvečnimi $\Gamma$ ter $\Delta$ na desni. Ko pa iz R$\land'$ izpeljujemo R$\land$, najprej ,,podvojimo'' vse predpostavke v $\Gamma$ in vse sklepe v $\Delta$, nato pa uporabimo R$\land'$ in podvojena konteksta spet razpolovimo.
     \begin{prooftree}
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma \Rightarrow B,\Delta$}
@@ -70,17 +65,14 @@ Za primer si oglejmo še eno možno definicijo veznika $\land$, poleg \ref{inl} 
         \pravilo{C$\times |\Gamma \cup \Delta|$}
         \UnaryInfC{$\Gamma \Rightarrow A \land' B, \Delta$}
     \end{prooftree}
+    \vskip -15pt \qedhere
 \end{dokaz}
-\begin{opomba}
-	V zgornjem dokazu smo se malce podrobneje spustili v intuicijo posameznega dela dokaza, saj je to prvi formalen dokaz v sekventnem računu v tem delu. V nadaljnem je intuicija za posamezne vrstice dokaza načeloma prepuščena bralcu.
-\end{opomba}
+Kot smo v zgornjem dokazu lahko videli, se za dokaz medsebojne izpeljivost $\land$ ter $\land'$ na bistven način uporabi tako skrčitev kot ošibitev. Brez teh dveh pravil veznika pravzaprav nista medsebojno izpeljiva, zato se ju v linearni logiki obravnava kot ločena veznika.
 
-Kot smo v zgornjem dokazu lahko videli, se za dokaz ekvivalence $\land$ ter $\land'$ na bistven način uporabi tako skrčitev kot ošibitev. Slutimo lahko, da brez teh dveh pravil veznika pravzaprav nista ekvivalentna, kar se tudi izkaže za resnično ??cite??. Zato sta v linearni logiki to dva ločena veznika.
-
-\subsection{Propozicijski vezniki}
+\subsection{Izjavni vezniki}
 \input{Vsebina/Linearna_logika/Vezniki.tex}
 
-\subsection{Propozicijske konstante}
+\subsection{Izjavne konstante}
 \input{Vsebina/Linearna_logika/Konstante.tex}
 
 \subsection{Kvantifikatorja}
@@ -89,5 +81,5 @@ Kot smo v zgornjem dokazu lahko videli, se za dokaz ekvivalence $\land$ ter $\la
 \subsection{Eksponenta}
 \input{Vsebina/Linearna_logika/Eksponenta.tex}
 
-\subsection{Notacija in druge formalnosti}
+\subsection{Nekaj opomb o zapisu}
 \input{Vsebina/Linearna_logika/Notacija.tex}
