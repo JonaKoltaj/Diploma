@@ -4,10 +4,13 @@
 % na začetku pa ne bo praznih strani po naslovu, …
 
 \usepackage{bussproofs}
+\usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{cmll}
-
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\graphicspath{ {./Slike/} }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % METAPODATKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,9 +89,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DODATNE DEFINICIJE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{bprooftree}
-  {\leavevmode\hbox\bgroup}
-  {\DisplayProof\egroup}
+\newenvironment{bprooftree}{\leavevmode\hbox\bgroup}{\DisplayProof\egroup}
 
 \newcommand{\pravilo}[1]{\RightLabel{\footnotesize{#1}}}
 \newcommand{\levopravilo}[1]{\LeftLabel{\footnotesize{#1}}}
@@ -96,6 +97,12 @@
 \newcommand{\enota}{\mathbf{1}}
 \newcommand{\nicla}{\mathbf{0}}
 \newcommand{\dol}{\begin{center}$\downarrow$\end{center}}
+\newcommand{\R}{\mathfrak{R}}
+\newcommand{\h}{\mathfrak{h}}
+\newcommand{\D}{\mathcal{D}}
+
+\theoremstyle{definition}
+\newtheorem*{summary}{Oris dokaza}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ZAČETEK VSEBINE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,8 +121,8 @@
 \section{Izrek o eliminaciji rezov} \label{ier}
 \input{Vsebina/Eliminacija_rezov/MainER.tex}
 
-\section{Povezava med linearno in nelinearno logiko} \label{cl v cll}
-\input{Vsebina/Embedding.tex}
+% \section{Povezava med linearno in nelinearno logiko} \label{cl v cll}
+% \input{Vsebina/Embedding.tex}
 
 \end{document}
 

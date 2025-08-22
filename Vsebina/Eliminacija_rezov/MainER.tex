@@ -12,76 +12,36 @@ Poslednje pravilo, ki ga je potrebno vpeljati, je \emph{pravilo reza}. To pravil
 \end{definicija}
 
 \begin{opomba}
-	Vsa dosedanja pravila v linearni logiki so bila na nek način deterministična. Če smo imeli v sekventu določen veznik, smo lahko uporabili pravilo vpeljave tega veznika, če pa v sekvetnu ni nastopal, tega nismo mogli narediti. Pravilo reza pa je v tem smislu drugačno, saj lahko drevo izpeljave poljubno razvejamo z novimi ,,vrinjenimi'' sekventi.
+    Sekventni račun brez uporabe pravila reza ima pomembno lastnost, namreč da vsak dokaz sekventa $\Gamma \Rightarrow \Delta$ v svoji izpeljavi uporabi le podformule formul, ki nastopajo v $\Gamma$ in $\Delta$. To je osnova za mnoge algoritme, ki iščejo dokaze, pa tudi sicer ima ta lastnost mnogo koristnih posledic.??lahko dam to tukaj??. Ko vpeljemo pravilo reza, se ta lastnost izgubi, saj lahko na vsakem koraku ,,vrinemo'' poljubno formulo.
 \end{opomba}
-Preden smo v naš sekventni račun vpeljali pravilo reza, je bilo torej dokaj enostavno videti, če sekvent ne velja. Oglejmo si na primer iz podpoglavja \ref{ill}, kjer trdimo, da pricip izključene tretje možnosti ne velja za veznik $\sqcup$, tudi pri klasični linearni logiki.
-\begin{center}
-    \begin{bprooftree}
-        \AxiomC{$\Rightarrow A$}
-        \pravilo{R$\sqcup$}
-        \UnaryInfC{$\Rightarrow A \sqcup (\negacija A)$}
-    \end{bprooftree}
-    \begin{bprooftree}
-        \AxiomC{$\Rightarrow \negacija A$}
-        \pravilo{R$\sqcup$}
-        \UnaryInfC{$\Rightarrow A \sqcup (\negacija A)$}
-    \end{bprooftree}
-\end{center}
-Ko dokazujemo sekvent $\Rightarrow A \sqcup (\negacija A)$ brez uporabe pravila reza, imamo na voljo le desno pravilo vpeljave veznika $\sqcup$ in nič drugega. Edina dva možna koraka sta torej prikazana zgoraj, sekvent $\Rightarrow A$ ali $\Rightarrow \negacija A$ pa ne bo veljal za poljubno formulo $A$, torej lahko trdimo, da sekvent, ki ga želimo dokazati, ne velja.
 
-Če pa dopustimo uporabo pravila reza, lahko drevo neskončno razvejamo z vrivanjem poljubnih formul, na primer:
-\begin{prooftree}
-	\AxiomC{.}
-	\noLine
-	\UnaryInfC{.}
-	\noLine
-	\UnaryInfC{.}
-	\noLine
-	\UnaryInfC{$\Rightarrow B$}
-
-	\AxiomC{.}
-	\noLine
-	\UnaryInfC{.}
-	\noLine
-	\UnaryInfC{.}
-	\noLine
-	\UnaryInfC{$B \Rightarrow A \sqcup (\negacija A)$}
-
-	\pravilo{Rez}
-	\BinaryInfC{$\Rightarrow A \sqcup (\negacija A)$}
-\end{prooftree}
-Drevo izpeljave se lahko razvejuje v neskončnost, zato ne moremo nikoli z gotovostjo trditi, da sekventa ne moremo izpeljati. A če pravilo reza res interpretiramo kot dokaz z uporabo leme, bi bilo smiselno, da če sekventa ne moremo dokazati brez uporabe rezov, ga tudi z rezi ne moremo dokazati. Tu nastopi naslednji izrek.
+Če pravilo reza res interpretiramo kot uporabo leme, bi imelo smisel sklepati, da z uporabo rezov ne moremo pridelati sekventov, ki jih brez tega pravila nismo mogli dokazati. Ravno temu služi naslednji izrek.
 
 \begin{izrek}[Izrek o eliminaciji rezov] \label{izrek}
-    Vsak sekvent, dokazan z uporabo reza, lahko dokažemo tudi brez uporabe reza.
+    Vsak sekvent, izpeljan z uporabo reza, lahko izpeljemo tudi brez uporabe reza.
 \end{izrek}
-
-\begin{posledica} %lah pises se o gentzenu etc
-    Problem, opisan zgoraj, se torej ne pojavi. Ker sekventa brez reza ne moremo dokazati, ga tudi z rezom ne moremo, ne glede na to, kako razvejamo drevo izpeljave. Izrek nam torej zagotavlja konsistentnost sistema dokazovanja.
-\end{posledica}
 
 \subsection{Potrebne definicije} \label{defs}
 \input{Vsebina/Eliminacija_rezov/Defs.tex}
 
 \subsection{Dokaz izreka o eliminaciji rezov} \label{dokaz}
 
-Razlog, da izrek \ref{izrek} imenujemo izrek o \emph{eliminaciji rezov}, leži v tem, da dokaz poteka s postopno eliminacijo rezov iz poljubnega drevesa izpeljave, dokler na koncu ne dobimo drevesa izpeljave brez kakeršnegakoli pravila reza. Kot smo omenili na začetku podpoglavja \ref{defs}, dokaz poteka z dvojno indukcijo. Zunanja indukcija, je strukturna indukcija na drevesoma izpeljave nad rezom, notranja pa je strukturna indukcija na rezani formuli. Označimo z $\mathcal{D}_0$ ter $\mathcal{D}_1$ drevesi izpeljave nad rezom, torej:
-\begin{prooftree}
-    \AxiomC{$\mathcal{D}_0$}
-    \AxiomC{$\mathcal{D}_1$}
-    \pravilo{Rez}
-    \BinaryInfC{$\mathcal{S}$}
-\end{prooftree}
+Izrek 4.3 imenujemo izrek o \emph{eliminaciji} rezov, ker v njegovem dokazu postopoma odstranjujemo (eliminiramo) reze iz drevesa izpeljave, dokler nam na koncu ne ostane drevo izpeljave brez rezov. Dokaz poteka z dvojno indukcijo, zunanjo na številu rezov v dokazu, notranjo pa na stopnji reza, kot je definirana v \ref{stopnja}.
 
-Začnimo z indukcijskim korakom. Predpostavljamo torej, da iz poddreves $\mathcal{D}_0$ in $\mathcal{D}_1$ znamo eliminirati reze. Da se izognemo problemu, kjer je bilo na primer zadnje pravilo v $\mathcal{D}_0$ ali $\mathcal{D}_1$ rez, predpostavimo, da smo reze tudi že eliminirali iz poddreves. Sedaj dokazujemo, da lahko zgornje drevo izpeljave preobrazimo v drevo izpeljave, kjer se rez pojavi višje v drevesu, torej da je vsaj eno izmed dreves nad novim rezom poddrevo $\mathcal{D}_0$ ali poddrevo $\mathcal{D}_1$. To ustreza indukcijski predpostavki, zato je korak indukcije opravljen.
+Začnimo z indukcijo na številu rezov. Če je drevo brez rezov, smo dokaz končali. Bazi indukcije, torej primeru ko je $n=0$, smo tako avtomatično zadostili. Sedaj denimo, da imamo v drevesu izpeljave $n+1$ rezov. Ker je to drevo končno, si lahko izberemo enega izmed najnižjih rezov, denimo mu Rez$_0$. Oglejmo si poddrevo, ki se konča z Rez$_0$:
+\begin{figure}[h]
+    \centering \includegraphics{polj_drevo.png}
+\end{figure}
 
-Znotraj tega koraka, pa seveda delamo tudi indukcijo na strukturi formule. Če torej zgornjega drevesa izpeljave ne uspemo prevesti na drevo, kjer se pravilo reza sedaj pojavi višje, ga lahko prevedemo na rez, ki reže podformulo prvotne formule. Baza notranje indukcije je, da pravilo reza, ki reže osnovno formulo, res prestavimo višje.
+Drevesi $\D$ in $\D'$ ne vsebujeta pravila rez. Če znamo torej eliminirati rez iz takšnega poddrevesa, lahko zgornje drevo izpeljave prevedemo na drevo, ki vsebuje le $n$ rezov. Po indukcijski predpostavki znamo sedaj eliminirati še ostale reze. Dokaz eliminacije rezov smo tako prevedli na dokaz eliminacije rezov iz drevesa, kjer je zadnje pravilo rez, nad njim pa ni drugih rezov.
 
-\begin{opomba}
-    Zgoraj opisano indukcijo si lahko predstavljamo kot algoritem, ki sproti eliminira reze iz drevesa izpeljave. Začnemo z poddrevesom, ki kot zadnje pravilo uporabi rez, v nobenem izmed poddreves pa reza ne uporablja več, torej začnemo z ,,najvišjim'' rezom. Če je takih poddreves več, si arbitrarno izberemo enega izmed njih. V tem poddrevesu postopoma potiskamo rez višje ali pa vsaj znižujemo njegovo kompleksnost, dokler reza ne eliminiramo iz poddrevesa. To ponovimo za vsak rez v drevesu izpeljave. Ker je slednje končno, se proces ustavi in drevo izpeljave ne vključuje več rezov.
-\end{opomba}
+Za eliminiacijo zgoraj opisanega reza pa potrebujemo indukcijo na stopnjo reza. Indukcijski ķorak poteka tako, da drevo, ki se konča z rezom stopnje $(\R,\h)$ preobrazimo v drevo, ki vsebuje končno mnogo -- lahko tudi nobenega -- rezov stopenj $(\R_0,\h_0)$, $(\R_1,\h_1)$, $\ldots$ , $(\R_n,\h_n)$, kjer je $(\R_i,\h_i) < (\R,\h)$ za vsak $i\in[n]$. Ker vsakič ,,pridelamo'' le končno mnogo rezov, vsak izmed katerih je strogo nižje stopnje od začetnega, se bo proces zaključil v končno mnogo korakih. Če res pridelamo več rezov in je kateri izmed njih nad drugim, zopet nadaljujemo indukcijo na najnižjem izmed njih. Baza indukcije je primer, ko je $(\R,\h) = (1,h)$, za poljuben $h\in\mathbb(N)$.
 
-Vrnimo se h koraku indukcije. Pri obravnavi eliminacije reza je potrebno ločiti, ali je rez, ki ga eliminiramo \emph{glaven}, kot ga opiše definicija \ref{gl rez}, ali pa ni.
+\begin{summary}
+    Ko imamo poljubno drevo izpeljave, iz njega eliminiramo reze tako, da si izberemo poddrevo izpeljave, ki se konča z rezom in nad katerim ni drugih rezov. Nato preobrazimo omenjeno poddrevo v drevo, ki vsebuje reze kvečjemu nižje stopnje in to ponavljamo, dokler rezov iz drevesa ne eliminiramo.
+\end{summary}
+
+Pri tem postopku pa moramo ločiti primere glede na to, kakšne vrste rez je bil na dnu našega poddrevesa, namreč če je bil rez glaven, kot definirano v \ref{gl rez}, ali če ni bil. Začnimo z eliminacijo glavnega reza.
 
 \subsubsection{Eliminacija glavnega reza} \label{gl rez vezniki}
 \input{Vsebina/Eliminacija_rezov/Glavni_rez.tex}
