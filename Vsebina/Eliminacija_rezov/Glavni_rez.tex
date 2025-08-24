@@ -1,11 +1,13 @@
-Kaj pomeni, da je rez glaven, je odvisno od vsake rezane formule posebej. Eliminacijo glavnega reza je torej potrebno ločiti na vse možne veznike. Začnimo kar z veznikom $\sqcap$, ki smo ga že uporabili v primeru \ref{gl rez in}.
+Od tu naprej bomo zavoljo preglednosti nad sekventi označevali še drevesa izpeljave, ki so do sekventov vodila.
+
+Oblika glavnega reza je odvisna od vsake rezane formule posebej, zato je njegovo eliminacijo potrebno ločiti glede na veznik, ki rezano formulo sestavlja. Začnimo kar z glavnim rezom veznika $\sqcap$, kot v primeru \ref{gl rez in}:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
     \levopravilo{L$\sqcap$}
     \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
-    \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{2}{$\Gamma' \Rightarrow B,\Delta'$}
     \pravilo{R$\sqcap$}
     \BinaryInfC{$\Gamma' \Rightarrow A \sqcap B,\Delta'$}
 
@@ -14,19 +16,19 @@ Kaj pomeni, da je rez glaven, je odvisno od vsake rezane formule posebej. Elimin
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow A,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Izpeljava pred puščico in po njej je enaka, saj iz istih poddreves dokažemo isti sekvent. Tako smo lahko pravilo, ki reže $A \sqcap B$ zamenjali s pravilom, ki reže le $A$, zato je korak indukcije opravljen. Podobno lahko naredimo za glavni rez $A \star B$.
+Izpeljava pred puščico in po njej je enaka, saj iz istih poddreves dokažemo isti sekvent. Tako smo rez stopnje $(\R(A) + \R(B) + 1,\h)$ zamenjali z rezom stopnje $(\R(A),\h')$, ki je očitno nižja. Podobno lahko naredimo za glavni rez $A \star B$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A,B \Rightarrow \Delta$}
     \levopravilo{L$\star$}
     \UnaryInfC{$\Gamma,A \star B \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
-    \AxiomC{$\Gamma'' \Rightarrow B,\Delta''$}
+    \derivation{1}{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{2}{$\Gamma'' \Rightarrow B,\Delta''$}
     \pravilo{R$\star$}
     \BinaryInfC{$\Gamma',\Gamma'' \Rightarrow A \star B,\Delta',\Delta''$}
 
@@ -35,23 +37,23 @@ Izpeljava pred puščico in po njej je enaka, saj iz istih poddreves dokažemo i
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{0}{$\Gamma,A,B \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow A,\Delta'$}
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',B \Rightarrow \Delta,\Delta'$}
 
-    \AxiomC{$\Gamma'' \Rightarrow B,\Delta''$}
+    \derivation{2}{$\Gamma'' \Rightarrow B,\Delta''$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
 \end{prooftree}
-Tokrat smo sicer prvotni rez prevedli na dva, a oba novonastala reza režeta podformuli, zato zopet zadostimo indukcijski predpostavki. Zelo podobno kot zgornje dva primera izvedemo korak indukcije za $A \sqcup B$ ter $A+B$.
+Tokrat smo prvotno drevo izpeljave prevedli na drevo z dvema rezoma, a imata oba nižjo stopnjo, saj je rang rezane formule očitno nižji. Zelo podobno kot zgornje dva primera izvedemo korak indukcije za $A \sqcup B$ ter $A+B$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma,B \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma,B \Rightarrow \Delta$}
     \levopravilo{L$\sqcup$}
     \BinaryInfC{$\Gamma,A \sqcup B \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{2}{$\Gamma' \Rightarrow A,\Delta'$}
     \pravilo{R$\sqcup$}
     \UnaryInfC{$\Gamma' \Rightarrow A \sqcup B,\Delta'$}
 
@@ -60,19 +62,19 @@ Tokrat smo sicer prvotni rez prevedli na dva, a oba novonastala reza režeta pod
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{2}{$\Gamma' \Rightarrow A,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Kot vidimo je zgornji korak indukcije popolnoma simetričen koraku indukcije za $A \sqcap B$, saj sta tudi veznika sama popolnoma simetrična. Prav tako je korak indukcije za $A+B$ popolnoma simetričen koraku indukcije za $A \star B$.
+Kot vidimo je zgornji korak indukcije simetričen koraku indukcije za $A \sqcap B$, saj sta tudi veznika sama simetrična. Enako je korak indukcije za $A+B$ simetričen koraku indukcije za $A \star B$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma',B \Rightarrow \Delta'$}
     \levopravilo{L+}
     \BinaryInfC{$\Gamma,\Gamma',A + B \Rightarrow \Delta,\Delta'$}
 
-    \AxiomC{$\Gamma'' \Rightarrow A,B,\Delta''$}
+    \derivation{2}{$\Gamma'' \Rightarrow A,B,\Delta''$}
     \pravilo{R+}
     \UnaryInfC{$\Gamma'' \Rightarrow A + B,\Delta''$}
 
@@ -81,23 +83,23 @@ Kot vidimo je zgornji korak indukcije popolnoma simetričen koraku indukcije za 
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma'' \Rightarrow A,B,\Delta''$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{2}{$\Gamma'' \Rightarrow A,B,\Delta''$}
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow B,\Delta,\Delta''$}
 
-    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \derivation{1}{$\Gamma',B \Rightarrow \Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
 \end{prooftree}
-Naslednja eliminacija glavnega reza, ki jo je potrebno obravnavati je eliminacija glavnega reza implikacije. Zopet se rez prevede na dva manj kompleksna reza.
+Naslednji primer, ki ga obravnavamo, je veznik $\multimap$. Zopet se rez prevede na dva reza nižje stopnje, na enak način kot pri veznikih $A\star B$ in $A+B$:
 \begin{prooftree}
-	\AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+	\derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma',B \Rightarrow \Delta'$}
     \levopravilo{L$\multimap$}
     \BinaryInfC{$\Gamma,\Gamma',A \multimap B \Rightarrow \Delta,\Delta'$}
 
-    \AxiomC{$\Gamma'',A \Rightarrow B,\Delta''$}
+    \derivation{2}{$\Gamma'',A \Rightarrow B,\Delta''$}
     \pravilo{R$\multimap$}
     \UnaryInfC{$\Gamma'' \Rightarrow A \multimap B,\Delta''$}
 
@@ -106,22 +108,22 @@ Naslednja eliminacija glavnega reza, ki jo je potrebno obravnavati je eliminacij
 \end{prooftree}
 \dol
 \begin{prooftree}
-	\AxiomC{$\Gamma,A \Rightarrow \Delta$}
-	\AxiomC{$\Gamma'',A \Rightarrow B,\Delta''$}
+	\derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+	\derivation{2}{$\Gamma'',A \Rightarrow B,\Delta''$}
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow B,\Delta,\Delta''$}
 
-    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
+    \derivation{1}{$\Gamma',B \Rightarrow \Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow \Delta,\Delta',\Delta''$}
 \end{prooftree}
-Poslednji izmed veznikov, ki ga potrebujemo obravnavati je negacija.
+Poslednji izmed izjavnih veznikov, ki nam ga je potrebno obravnavati je negacija:
 \begin{prooftree}
-    \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+    \derivation{0}{$\Gamma \Rightarrow A,\Delta$}
 	\levopravilo{L$\negacija$}
 	\UnaryInfC{$\Gamma,\negacija A \Rightarrow \Delta$}
 
-	\AxiomC{$\Gamma',A \Rightarrow \Delta'$}
+	\derivation{1}{$\Gamma',A \Rightarrow \Delta'$}
 	\pravilo{R$\negacija$}
 	\UnaryInfC{$\Gamma' \Rightarrow \negacija A,\Delta'$}
 
@@ -130,15 +132,15 @@ Poslednji izmed veznikov, ki ga potrebujemo obravnavati je negacija.
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma \Rightarrow A,\Delta$}
-	\AxiomC{$\Gamma',A \Rightarrow \Delta'$}
+    \derivation{0}{$\Gamma \Rightarrow A,\Delta$}
+	\derivation{1}{$\Gamma',A \Rightarrow \Delta'$}
 	\pravilo{Rez}
 	\BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Pri eliminaciji glavnega reza, kjer režemo propozicijsko konstanto, lahko obravnavamo le konstati $\enota$ ter $\nicla$, saj za $\top$ levo pravilo vpeljave ne obstaja, za $\bot$ pa ni desnega. Glavni rez, kjer režemo $\top$ ali $\bot$ se torej ne more zgoditi.
+Pri eliminaciji glavnega reza, kjer režemo izjavno konstanto, imamo moč obravnavati le konstanti $\enota$ in $\nicla$, saj za $\top$ levo pravilo ne obstaja, za $\bot$ pa ni desnega. Glavni rez, kjer režemo $\top$ ali $\bot$ se torej ne more zgoditi. Za konstanti $\enota$ in $\nicla$ eliminacija glavnega reza izgleda sledeče:
 \begin{center}
     \begin{bprooftree}
-        \AxiomC{$\Gamma \Rightarrow \Delta$}
+        \derivation{}{$\Gamma \Rightarrow \Delta$}
         \levopravilo{L$\enota$}
         \UnaryInfC{$\Gamma,\enota \Rightarrow \Delta$}
 
@@ -154,7 +156,7 @@ Pri eliminaciji glavnega reza, kjer režemo propozicijsko konstanto, lahko obrav
         \levopravilo{L$\nicla$}
         \UnaryInfC{$\nicla \Rightarrow$}
 
-        \AxiomC{$\Gamma \Rightarrow \Delta$}
+        \derivation{}{$\Gamma \Rightarrow \Delta$}
         \pravilo{R$\nicla$}
         \UnaryInfC{$\Gamma \Rightarrow \nicla,\Delta$}
 
@@ -163,17 +165,23 @@ Pri eliminaciji glavnega reza, kjer režemo propozicijsko konstanto, lahko obrav
     \end{bprooftree}
 \end{center}
 \begin{align*}
-    &\downarrow & &\downarrow \\
-    \\
-    \Gamma &\Rightarrow \Delta & \Gamma &\Rightarrow \Delta
+    &\downarrow & &\downarrow
 \end{align*}
-Kot lahko vidimo sta te dva primera dokaj trivialna, saj sam rez ničesar ne naredi. Sedaj si oglejmo eliminacijo glavnega reza obeh kvantifikatorjev. Zopet s $t$ označimo specifičen term¸ z $y$ pa poljubno spremenljivko.
+\begin{center}
+    \begin{bprooftree}
+        \derivation{}{$\Gamma \Rightarrow \Delta$}
+    \end{bprooftree} \qquad \qquad \qquad \quad
+    \begin{bprooftree}
+        \derivation{}{$\Gamma \Rightarrow \Delta$}
+    \end{bprooftree}
+\end{center}
+Kot lahko vidimo sta primera dokaj trivialna, saj je že sam rez take vrste trivialen. Ker smo rez popolnoma eliminirali je indukcijski predpostavki zadoščeno na prazno. Sedaj si oglejmo eliminacijo glavnega reza obeh kvantifikatorjev. Zopet s $t$ označimo specifičen term¸ z $y$ pa neko (svežo) prosto spremenljivko:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A[t/x] \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A[t/x] \Rightarrow \Delta$}
     \levopravilo{L$\forall$}
     \UnaryInfC{$\Gamma,\forall x A \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A[y/x],\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow A[y/x],\Delta'$}
     \pravilo{R$\forall$}
     \UnaryInfC{$\Gamma' \Rightarrow \forall x A,\Delta'$}
 
@@ -182,22 +190,26 @@ Kot lahko vidimo sta te dva primera dokaj trivialna, saj sam rez ničesar ne nar
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A[t/x] \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A[t/x] \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A[y/x],\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow A[y/x],\Delta'$}
     \pravilo{$y:=t$}
     \UnaryInfC{$\Gamma' \Rightarrow A[t/x],\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Kar naredimo v desnem poddrevesu novonastalega drevesa izpeljave je, da spremenljivko $y$ nadomestimo s specifičnim termom $t$. Ker je bil $y$ res poljuben, to lahko naredimo in tako res dobimo enako formulo kot na koncu levega poddrevesa, to pa nato režemo. Formula $A[t/x]$ je pravzaprav le formula $A$, kjer je $x$ substituiran za nek bolj specifičen term, zato podformula formule $\forall x A$. Tako je indukcijski predpostavki zopet zadoščeno in korak indukcije je opravljen. Podobno naredimo za eksistenčni kvantifikator. Postopek je popolnoma simetričen postopku za univerzalni kvantifikator.
+V desnem poddrevesu novonastalega drevesa izpeljave spremenljivko $y$ nadomestimo s specifičnim termom $t$. Ker je bil $y$ \emph{prosta} spremenljivka, to lahko naredimo. Tako dobimo formulo, ki je enaka formuli v levem poddrevesu, in jo zato lahko režemo. V definiciji ranga formule so pomembni le vezniki, ki formulo sestavljajo, ne pa tudi termi, ki se v njej pojavljajo, zato je $\R(A) = \R(A[t/x])$. Dalje je:
+$$
+\R(\forall x A) = \R(A) + 1 = \R(A[t/x]) + 1
+$$
+To pomeni, da je stopnja novega reza nižja od stopnje prvega, torej je indukcijski predpostavki zadoščeno. Postopek pri eliminaciji reza eksistenčnega kvantifikatorja je simetričen:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A[y/x] \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A[y/x] \Rightarrow \Delta$}
     \levopravilo{L$\exists$}
     \UnaryInfC{$\Gamma,\exists x A \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A[t/x],\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow A[t/x],\Delta'$}
     \pravilo{R$\exists$}
     \UnaryInfC{$\Gamma' \Rightarrow \exists x A,\Delta'$}
 
@@ -206,11 +218,11 @@ Kar naredimo v desnem poddrevesu novonastalega drevesa izpeljave je, da spremenl
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A[y/x] \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A[y/x] \Rightarrow \Delta$}
     \levopravilo{$y:=t$}
     \UnaryInfC{$\Gamma,A[t/x] \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow A[t/x],\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow A[t/x],\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 \end{prooftree}

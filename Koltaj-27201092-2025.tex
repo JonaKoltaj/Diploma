@@ -25,66 +25,52 @@
 \title{Cut elimination in linear logic}
 
 % - ime mentorja/mentorice s polnim nazivom:
-%   - doc.~dr.~Ime Priimek
-%   - izr.~prof.~dr.~Ime Priimek
-%   - prof.~dr.~Ime Priimek
-%   za druge variante uporabite ustrezne ukaze
 \mentor{prof.~dr.~Andrej Bauer}
-% \somentor{...}
-% \mentorica{...}
-% \somentorica{...}
-% \mentorja{...}{...}
-% \somentorja{...}{...}
-% \mentorici{...}{...}
-% \somentorici{...}{...}
 
 % - leto diplome
 \letnica{2025}
 
 % - povzetek v slovenščini
-%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
-%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
-\povzetek{Vpeljemo sekventni račun, njegova strukturna pravila ter pravili vpeljave za veznik $\land$, nato pa se omejimo na linearno logiko ter veznik $\land$ razdelimo na dva. Vpeljemo še vse ostale veznike v linearni logiki ter razložimo njihov pomen, nato vpeljemo pravilo reza. Formuliramo izrek o eliminaciji reza ter ga dokažemo z dvojno strukturno indukcijo, zunanjo na strukturi drevesa izpeljave, notranjo na strukturi rezane formule. Definiramo glavni rez in ga eliminiramo za vsak veznik posebej, pri eksponentih pa definiramo in nato eliminiramo še posplošeni rez. Rez (in posplošeni rez) eliminiramo tudi, ko ni glaven, nato pa opravimo še korak baze indukcije. Po končanem dokazu izreka dokažemo še Grishinovo vložitev nelinearnega sekventnega računa v linearni sekventni račun.}
+\povzetek{Vpeljemo sekventni račun, njegova strukturna pravila ter logični pravili za veznik $\land$, nato pa se omejimo na linearno logiko ter veznik $\land$ razdelimo na dva. Vpeljemo še vse ostale veznike v linearni logiki ter razložimo njihov pomen, nato vpeljemo pravilo reza. Formuliramo izrek o eliminaciji reza, nato vsakemu rezu pripišemo mero, imenovano stopnja, in izrek dokažemo z dvojno indukcijo, zunanjo na številu rezov v drevesu izpeljave, notranjo na stopnji reza. Znotraj indukcije ločimo primere glede vrsto reza in rezani veznik. Definiramo glavni rez in mu znižamo stopnjo za vsak veznik posebej, pri eksponentih pa definiramo še posplošeni rez in mu nato znižamo stopnjo. Rezu (in posplošenemu rezu) znižamo stopnjo tudi, ko ni glaven, nato pa se lotimo še baze indukcije, s čimer zaključimo dokaz izreka.}
 
 % - povzetek v angleščini
-\abstract{We introduce sequent calculus, its structural rules and the introduction rules for the logical connective $\land$. We then limit the sequent calculus to linear logic nad split $\land$ into two connectives. We further introduce all other connectives in linear logic and explain their interpretations, then we introduce the cut rule. We formulate the cut elimination theorem and prove it with double structural induction, the outer induction on the structure of the proof tree and the inner induction on the structure of the cut formula. We define the principal cut and eliminate it for each connective seperately. We define and eliminate the generalised cut rule for the exponentials. We eliminate the cut rule (and the generalised cut rule) when it is not principal as well and then proceed to the induction base. After the proof of the cut eliminaiton theorem we also prove the Grishin embedding of the non-linear sequent calculus into the linear one.}
+\abstract{We introduce sequent calculus, its structural rules and the logical rules for the logical connective $\land$. We then limit the sequent calculus to linear logic nad split $\land$ into two connectives. We further introduce all other connectives in linear logic and explain their interpretations, then we introduce the cut rule. We formulate the cut elimination theorem then ascribe a numeric value, called degree, to each cut and prove the theorem using double induction, the outer induction on the number of cuts in the proof tree, the inner induction on the degree of the cut. Within the induction we split cases based on the type of cut and the formula being cut. We define the principal cut and lower its degree it for each connective seperately. We define the generalised cut rule for the exponentials and lower its degree. We lower the degree of the non-principal cut rule (and the non-principal generalised cut rule) and then proceed to the induction base, with which we finish the proof.}
 
 % - klasifikacijske oznake, ločene z vejicami
 %   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
 \klasifikacija{03B47,03F05}
 
 % - ključne besede, ki nastopajo v delu, ločene s \sep
-\kljucnebesede{sekventni račun\sep linearna logika\sep eliminacija rezov\sep Grishinova vložitev}
+\kljucnebesede{sekventni račun\sep linearna logika\sep eliminacija rezov}
 
 % - angleški prevod ključnih besed
-\keywords{sequent calculus\sep linear logic\sep cut elimination\sep Grishin embedding} % angleški prevod ključnih besed
+\keywords{sequent calculus\sep linear logic\sep cut elimination}
 
 % - angleško-slovenski slovar strokovnih izrazov
-% \slovar{
-% \geslo{sequent}{sekvent}
-% \geslo{term}{term}
-% \geslo{atomic formula}{osnovna formula}
-% \geslo{introduction rule}{pravilo vpeljave}
-% \geslo{axiom}{aksiom}
-% \geslo{exchange}{menjava}
-% \geslo{weakening}{ošibitev}
-% \geslo{contraction}{skrčitev}
-% \geslo{intuitionistic logic}{intuicionistična logika}
-% \geslo{exponentials}{eksponenti}
-% \geslo{connective ,,of course''}{veznik ,,seveda''}
-% \geslo{connective ,,why not''}{veznik ,,zakaj ne''}
-% \geslo{cut rule}{pravilo reza}
-% \geslo{cut elimination}{eliminacija rezov}
-% \geslo{proof tree}{drevo izpeljave}
-% \geslo{leaf}{list}
-% \geslo{subtree}{poddrevo}
-% \geslo{principal cut}{glavni rez}
-% \geslo{generalised cut rule}{posplošeno pravilo reza}
-% \geslo{embedding}{vložitev}
-% }
+\slovar{
+\geslo{atomic formula}{osnovna formula}
+\geslo{axiom}{aksiom}
+\geslo{connective ,,of course''}{veznik ,,seveda''}
+\geslo{connective ,,why not''}{veznik ,,zakaj ne''}
+\geslo{contraction}{skrčitev}
+\geslo{cut rule}{pravilo reza}
+\geslo{cut elimination}{eliminacija rezov}
+\geslo{cutrank}{rang rezane formule}
+\geslo{exchange}{menjava}
+\geslo{exponentials}{eksponenti}
+\geslo{generalised cut rule}{posplošeno pravilo reza}
+\geslo{intuitionistic logic}{intuicionistična logika}
+\geslo{level of cut}{višina}
+\geslo{principal cut}{glavni rez}
+\geslo{proof tree}{drevo izpeljave}
+\geslo{rank of formula}{rang formule}
+\geslo{sequent}{sekvent}
+\geslo{term}{term}
+\geslo{weakening}{ošibitev}
+}
 
 % - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
-% \literatura{....bib}
+\literatura{Literatura.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DODATNE DEFINICIJE
@@ -100,6 +86,7 @@
 \newcommand{\R}{\mathfrak{R}}
 \newcommand{\h}{\mathfrak{h}}
 \newcommand{\D}{\mathcal{D}}
+\newcommand{\derivation}[2]{\AxiomC{$\D_{#1}$}\noLine\UnaryInfC{{#2}}}
 
 \theoremstyle{definition}
 \newtheorem*{summary}{Oris dokaza}
@@ -121,15 +108,4 @@
 \section{Izrek o eliminaciji rezov} \label{ier}
 \input{Vsebina/Eliminacija_rezov/MainER.tex}
 
-% \section{Povezava med linearno in nelinearno logiko} \label{cl v cll}
-% \input{Vsebina/Embedding.tex}
-
 \end{document}
-
-%TODO general stvar, maybe introduce the fact da so nad vsemi temi pravili se neka druga drevesa izpeljave
-%TODO pravilo vpeljave -> logično pravilo
-%TODO . -> :
-%TODO levo pravilo -> L* etc
-
-
-%Sources: simpson, troelstra, girard

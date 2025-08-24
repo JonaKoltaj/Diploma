@@ -25,7 +25,7 @@ To dejstvo znatno vpliva tudi na same veznike. Za primer si oglejmo še eno mož
     Če dopustimo uporabo ošibitve in skrčitve, sta levi in desni pravili za $\land$ ter $\land'$ medsebojno izpeljivi.
 \end{lema}
 \begin{dokaz}
-    Začnimo z dokazom medsebojne izpeljivosti levih pravil za veznika $\land$ iz definicije \ref{inl} ter $\land'$ iz definicije \ref{in'l}. To pomeni, da lahko s pomočjo L$\land$ dokažemo L$\land'$ in obratno.
+    Začnimo z dokazom medsebojne izpeljivosti levih pravil za veznika $\land$ iz definicije \ref{inl} ter $\land'$ iz definicije \ref{in'l}. To pomeni, da lahko s pomočjo L$\land$ dokažemo L$\land'$ in obratno:
     \begin{prooftree}
         \AxiomC{$\Gamma,A,B \Rightarrow \Delta$}
         \pravilo{L$\land$}
@@ -35,7 +35,7 @@ To dejstvo znatno vpliva tudi na same veznike. Za primer si oglejmo še eno mož
         \pravilo{C}
         \UnaryInfC{$\Gamma,A \land B \Rightarrow \Delta$}
     \end{prooftree}
-    Najprej torej predpostavko $A \land B$ ,,podvojimo'', s pomočjo skrčitve, nato pa dvakrat uporabimo L$\land$, vsakič ne eni izmed podvojenih predpostavk. Obratna izpeljava pa poteka tako, da najprej uporabimo L$\land'$, nato pa odvečno izmed predpostavk odstranimo s pomočjo ošibitve.
+    Najprej torej predpostavko $A \land B$ ,,podvojimo'', s pomočjo skrčitve, nato pa dvakrat uporabimo L$\land$, vsakič ne eni izmed podvojenih predpostavk. Obratna izpeljava pa poteka tako, da najprej uporabimo L$\land'$, nato pa odvečno izmed predpostavk odstranimo s pomočjo ošibitve:
     \begin{prooftree}
         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
         \pravilo{W}
@@ -43,7 +43,7 @@ To dejstvo znatno vpliva tudi na same veznike. Za primer si oglejmo še eno mož
         \pravilo{L$\land'$}
         \UnaryInfC{$\Gamma,A \land' B \Rightarrow \Delta$}
     \end{prooftree}
-    Podobno dokažemo medsebojno izpeljivost R$\land$ iz definicije \ref{inr} ter R$\land'$ iz definicije \ref{in'r}.
+    Podobno dokažemo medsebojno izpeljivost R$\land$ iz definicije \ref{inr} ter R$\land'$ iz definicije \ref{in'r}:
     \begin{prooftree}
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \levopravilo{W$\times |\Gamma' \cup \Delta'|$}
@@ -56,7 +56,7 @@ To dejstvo znatno vpliva tudi na same veznike. Za primer si oglejmo še eno mož
         \pravilo{R$\land$}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \land B,\Delta,\Delta'$}
     \end{prooftree}
-    Najprej torej uporabimo R$\land$, kar pomeni da predpostavk (in sklepov) ne razdelimo, zato se s pomočjo ošibitve na levi ,,znebimo'' predpostavk $\Gamma'$ in sklepov $\Delta'$. To naredimo tako, da ošibitev iteriramo tolikokrat, kolikor je velikost multimnožice $\Gamma'\cup\Delta'$. Enako naredimo z odvečnimi $\Gamma$ ter $\Delta$ na desni. Ko pa iz R$\land'$ izpeljujemo R$\land$, najprej ,,podvojimo'' vse predpostavke v $\Gamma$ in vse sklepe v $\Delta$, nato pa uporabimo R$\land'$ in podvojena konteksta spet razpolovimo.
+    Najprej torej uporabimo R$\land$, kar pomeni da predpostavk (in sklepov) ne razdelimo, zato se s pomočjo ošibitve na levi ,,znebimo'' predpostavk $\Gamma'$ in sklepov $\Delta'$. To naredimo tako, da ošibitev iteriramo tolikokrat, kolikor je velikost multimnožice $\Gamma'\cup\Delta'$. Enako naredimo z odvečnimi $\Gamma$ ter $\Delta$ na desni. Ko pa iz R$\land'$ izpeljujemo R$\land$, najprej ,,podvojimo'' vse predpostavke v $\Gamma$ in vse sklepe v $\Delta$, nato pa uporabimo R$\land'$ in podvojena konteksta spet razpolovimo:
     \begin{prooftree}
         \AxiomC{$\Gamma \Rightarrow A,\Delta$}
         \AxiomC{$\Gamma \Rightarrow B,\Delta$}
@@ -65,7 +65,7 @@ To dejstvo znatno vpliva tudi na same veznike. Za primer si oglejmo še eno mož
         \pravilo{C$\times |\Gamma \cup \Delta|$}
         \UnaryInfC{$\Gamma \Rightarrow A \land' B, \Delta$}
     \end{prooftree}
-    \vskip -15pt \qedhere
+    \qedhere
 \end{dokaz}
 Kot smo v zgornjem dokazu lahko videli, se za dokaz medsebojne izpeljivost $\land$ ter $\land'$ na bistven način uporabi tako skrčitev kot ošibitev. Brez teh dveh pravil veznika pravzaprav nista medsebojno izpeljiva, zato se ju v linearni logiki obravnava kot ločena veznika.
 

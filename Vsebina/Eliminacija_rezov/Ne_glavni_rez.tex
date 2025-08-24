@@ -1,157 +1,100 @@
-Če rez ni bil glaven, se je moralo na levi ali desni strani tik pred rezom zgoditi pravilo, ki ni vpeljalo ravnokar rezane formule. Denimo, da je bil na levi ravnokar vpeljan veznik $\sqcap$, nato pa smo rezali z veznikom nepovezano formulo $C$.
+V tem podpoglavju bomo obravnavali le eliminacijo navadnega reza, posplošeni rez si bomo ogledali posebej, v naslednjem podpoglavju.
+
+Če rez ni bil glaven, je moralo biti na levi ali desni strani pravilo, ki ni vpeljalo rezane formule. Denimo, da je bil na levi z L$\sqcap$ pravkar vpeljan veznik $\sqcap$ , nato pa smo rezali neko drugo formulo $C$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A,C \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A,C \Rightarrow \Delta$}
     \levopravilo{L$\sqcap$}
     \UnaryInfC{$\Gamma,A \sqcap B,C \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',A \sqcap B \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-To lahko, ne glede na to kakšna je formula $C$ in ne glede na to ali je bila na desni vpeljana kakšna druga formula ali ne, preobrazimo tako, da bo zadoščalo indukcijski predpostavki.
+Ne glede na to kakšna je formula $C$ in ne glede na to kaj je bilo zadnje pravilo v drevesu $\D_1$, lahko to drevo preobrazimo tako, da bo zadoščalo indukcijski predpostavki:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A,C \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{0}{$\Gamma,A,C \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',A \Rightarrow \Delta,\Delta'$}
     \pravilo{L$\sqcap$}
     \UnaryInfC{$\Gamma,\Gamma',A \sqcap B \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Rez smo res premaknili višje v drevesu izpeljave in kot lahko vidimo sama formula $C$ za indukcijski korak ni bila pomembna. Zato namesto glede na rezano formulo, ločimo primere glede na ravnokar vpeljano formulo, ki ni $C$. Seveda tudi ni pomembno, ali se ta vpeljava zgodi v levem ali desnem poddrevesu nad rezom, saj je to asimetrično le če obravnavamo rezano formulo. Pomembno pa je, ali je bil veznik vpeljan z levim pravilom vpeljave ali je bil vpeljan z desnim, zato si oglejmo še drugi primer, ko je vpeljana formula $A \sqcap B$.
+Višina reza je očitno nižja in kot lahko vidimo sama formula $C$ na indukcijski korak ni vplivala. Zato pri rezu, ki ni glaven, namesto glede na rezano formulo, ločimo primere glede na zadnje pravilo pred rezom, ki ne vpelje formule $C$. Seveda tudi ni pomembno, ali se ta vpeljava zgodi v levem ali desnem poddrevesu nad rezom, saj je to asimetrično le, če obravnavamo rezano formulo. Pomembno pa je, ali je bil veznik vpeljan z levim ali desnim pravilom, zato si oglejmo še drugi primer, ko je vpeljana formula $A \sqcap B$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma,C \Rightarrow B,\Delta$}
+    \derivation{0}{$\Gamma,C \Rightarrow A,\Delta$}
+    \derivation{1}{$\Gamma,C \Rightarrow B,\Delta$}
     \levopravilo{R$\sqcap$}
     \BinaryInfC{$\Gamma,C \Rightarrow A \sqcap B,\Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{2}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \sqcap B,\Delta,\Delta'$}
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{0}{$\Gamma,C \Rightarrow A,\Delta$}
+    \derivation{2}{$\Gamma' \Rightarrow C,\Delta'$}
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A,\Delta,\Delta'$}
 
-    \AxiomC{$\Gamma,C \Rightarrow B,\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{1}{$\Gamma,C \Rightarrow B,\Delta$}
+    \derivation{2}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow B,\Delta,\Delta'$}
 
     \pravilo{R$\sqcap$}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \sqcap B,\Delta,\Delta'$}
 \end{prooftree}
-Tu smo sicer pridelali dva reza, a sta oba višje v drevesu izpeljave, zato zadostimo indukcijski predpostavki. Poglejmo si še, kaj se zgodi če na levi vpeljemo veznik $\star$.
+Oba nova reza sta očitno nižje višine kot prvotni rez, zato sta tudi nižjih stopenj. Ker v obeh dosedanjih primerih -- in v vseh prihodnjih -- strukture rezane formule ne obravnavamo, ranga ne bomo mogli znižati. Eliminacija reza, ki ni glaven, torej temelji na tem, da znižamo višino reza. Večina teh primerov je trivialnih, zato si pri veznikih oglejmo le še L$\star$ in R$\star$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A,B,C \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A,B,C \Rightarrow \Delta$}
     \levopravilo{L$\star$}
     \UnaryInfC{$\Gamma,A \star B,C \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',A \star B \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A,B,C \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{0}{$\Gamma,A,B,C \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',A,B \Rightarrow \Delta,\Delta'$}
 
     \pravilo{L$\star$}
     \UnaryInfC{$\Gamma,\Gamma',A \star B \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Kot pri primeru levega pravila vpeljave za veznik $\sqcap$, pravilo reza ter pravilo vpeljave le zamenjamo, zato enostavno zadostimo indukcijski predpostavki.
+Kot v primeru levega pravila za veznik $\sqcap$, pravilo reza ter logično pravilo le zamenjamo, zato enostavno zadostimo indukcijski predpostavki. Primeri R$\sqcup$, R+, L$\multimap$, L$\negacija$ in R$\negacija$ potekajo enako. Oglejmo si torej še desno pravilo za veznik $\star$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+    \derivation{0}{$\Gamma,C \Rightarrow A,\Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow B,\Delta'$}
     \levopravilo{R$\star$}
     \BinaryInfC{$\Gamma,\Gamma',C \Rightarrow A \star B,\Delta,\Delta'$}
 
-    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
+    \derivation{2}{$\Gamma'' \Rightarrow C,\Delta''$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow A \star B,\Delta,\Delta',\Delta''$}
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
+    \derivation{0}{$\Gamma,C \Rightarrow A,\Delta$}
+    \derivation{2}{$\Gamma'' \Rightarrow C,\Delta''$}
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow A,\Delta,\Delta''$}
 
-    \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow B,\Delta'$}
     \pravilo{R$\star$}
     \BinaryInfC{$\Gamma,\Gamma',\Gamma'' \Rightarrow A \star B,\Delta,\Delta',\Delta''$}
 \end{prooftree}
-Pri zgornjem koraku indukcije je pomembno, da se formula $C$, ki jo režemo, kot predpostavka dodatno pojavi le v enem izmed skventov $\Gamma \Rightarrow A,\Delta$ ter $\Gamma' \Rightarrow B,\Delta'$, ne v obeh, saj desno pravilo vpeljave veznika $\star$ združi konteksta in bi morali drugače $C$ iz sekventa rezati dvakrat. To pa nam tudi omogoči zelo enostaven korak indukcije, kot je izveden zgoraj. Primeri za veznika $\sqcup$ ter + so popolnoma simetrični prejšnjim štirim primerom, zato jih prepustimo bralcu. Oglejmo si sedaj primer, ko na levi tik pred rezom vpeljemo implikacijo.
-\begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
-    \levopravilo{L$\multimap$}
-    \BinaryInfC{$\Gamma,\Gamma',C,A \multimap B \Rightarrow \Delta,\Delta'$}
+Pri tem koraku je pomembno, da se formula $C$, ki jo režemo, kot predpostavka dodatno pojavi le v enem izmed skventov $\Gamma \Rightarrow A,\Delta$ in $\Gamma' \Rightarrow B,\Delta'$, ne v obeh. Pravilo R$\star$ namreč združi konteksta, tako da bi drugače morali $C$ iz sekventa rezati dvakrat. To pa nam tudi omogoči zelo enostaven korak indukcije, kot je izveden zgoraj. Enako se obravnava primera L+ in R$\multimap$, primer L$\sqcup$, ki nam med izjavnimi vezniki še edini ostane, pa se obravnava enako kot primer R$\sqcap$.
 
-    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
-    \pravilo{Rez}
-    \BinaryInfC{$\Gamma,\Gamma',\Gamma'',A \multimap B \Rightarrow \Delta,\Delta',\Delta''$}
-\end{prooftree}
-\dol
-\begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma'' \Rightarrow C,\Delta''$}
-    \levopravilo{Rez}
-    \BinaryInfC{$\Gamma,\Gamma'' \Rightarrow A,\Delta,\Delta''$}
-
-    \AxiomC{$\Gamma',B \Rightarrow \Delta'$}
-    \pravilo{L$\multimap$}
-    \BinaryInfC{$\Gamma,\Gamma',\Gamma'',A \multimap B \Rightarrow \Delta,\Delta',\Delta''$}
-\end{prooftree}
-Kot lahko vidimo, je ta primer zelo podoben primeru, ko tik nad rezom vpeljemo $\star$ z desnim pravilom vpeljave. Prav tako je primer, ko je $\multimap$ vpeljan na desni, zelo podoben primeru, ko je $\star$ vpeljan na levi.
-\begin{prooftree}
-    \AxiomC{$\Gamma,C,A \Rightarrow B,\Delta$}
-    \levopravilo{R$\multimap$}
-    \UnaryInfC{$\Gamma,C \Rightarrow A \multimap B,\Delta$}
-
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
-    \pravilo{Rez}
-    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A \multimap B,\Delta,\Delta'$}
-\end{prooftree}
-\dol
-\begin{prooftree}
-    \AxiomC{$\Gamma,C,A \Rightarrow B,\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
-    \pravilo{Rez}
-    \BinaryInfC{$\Gamma,\Gamma',A \Rightarrow B,\Delta,\Delta'$}
-
-    \pravilo{R$\multimap$}
-    \UnaryInfC{$\Gamma,\Gamma' \Rightarrow A \multimap B,\Delta,\Delta'$}
-\end{prooftree}
-Zadnji izmed propozicijskih veznikov je zopet negacija. Obravnavali bomo le levo pravilo vpeljave, saj je desno popolnoma simetrično in je zato tudi postopek eliminacije take vrste reza simetričen.
-\begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \levopravilo{L$\negacija$}
-    \UnaryInfC{$\Gamma,C,\negacija A \Rightarrow \Delta$}
-
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
-    \pravilo{Rez}
-    \BinaryInfC{$\Gamma,\Gamma',\negacija A \Rightarrow \Delta,\Delta'$}
-\end{prooftree}
-\dol
-\begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow A,\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
-    \pravilo{Rez}
-    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A,\Delta,\Delta'$}
-    \pravilo{L$\negacija$}
-    \UnaryInfC{$\Gamma,\Gamma',\negacija A \Rightarrow \Delta,\Delta'$}
-\end{prooftree}
-Oglejmo si še konstante. Tokrat seveda obravnavamo tudi konstanti $\top$ ter $\bot$, saj rez ni glaven in nimamo več težave z dejstvom, da imata vsaka le po eno pravilo vpeljave.
+Oglejmo si še konstante. Tokrat seveda obravnavamo tudi konstanti $\top$ ter $\bot$, saj rez ni glaven in nimamo več težave z dejstvom, da imata vsaka le po eno logično pravilo:
 \begin{prooftree}
     \AxiomC{}
     \levopravilo{R$\top$}
     \UnaryInfC{$\Gamma,C \Rightarrow \top,\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \top,\Delta,\Delta'$}
 \end{prooftree}
@@ -161,103 +104,110 @@ Oglejmo si še konstante. Tokrat seveda obravnavamo tudi konstanti $\top$ ter $\
     \levopravilo{R$\top$}
     \UnaryInfC{$\Gamma,\Gamma' \Rightarrow \top,\Delta,\Delta'$}
 \end{prooftree}
-Ker lahko $\top$ med sklepi vedno dokažemo, lahko končni sekvent dobimo tudi ne da bi rezali formulo $C$, saj je ta že od začetka med predpostavkami nastala ,,umetno''. Korak indukcije za konstanto $\bot$ izvedemo popolnoma simetrično, saj zanjo velja ista lastnost, le da velja med predpostavkami. Pri obravnavi konstante $\enota$ desnega pravila vpeljave ne moremo obravnavati, saj ob formuli $\enota$ v sekventu ni nobene druge formule, ki bi jo lahko rezali. Zato obravnavamo le levo pravilo vpeljave.
+Ker lahko $\top$ med sklepi vedno dokažemo, lahko končni sekvent dobimo tudi ne da bi rezali formulo $C$, saj je ta že od začetka med predpostavkami nastala ,,odvečno''. Korak indukcije za konstanto $\bot$ izvedemo simetrično, saj zanjo velja ista lastnost, tokrat med predpostavkami. Pri obravnavi konstante $\enota$ desno pravilo ne pride v poštev, saj v nastalem sekventu druga formula kot $\enota$ ne more nastopati. Oglejmo si raje L$\enota$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,C \Rightarrow \Delta$}
     \levopravilo{L$\enota$}
     \UnaryInfC{$\Gamma,C,\enota \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\enota \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,C \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{0}{$\Gamma,C \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
 
     \pravilo{L$\enota$}
     \UnaryInfC{$\Gamma,\Gamma',\enota \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Korak indukcije pri konstanti $\nicla$ je simetričen, obravnavamo pa le njeno desno pravilo vpeljave, iz enakih razlogov. Pri kvantifikatorjih je ta korak spet precej enostaven in simetričen za vse štiri primere, zato bomo prikazali le enega, namreč primer, ko na levi tik pred rezom vpeljemo formulo $\forall x A$.
+Seveda je korak indukcije pri konstantni $\nicla$ simetričen. Pri kvantifikatorjih so vsi primeri zopet enaki, zato obravnavajmo le enega:
 \begin{prooftree}
-    \AxiomC{$\Gamma,C,A[t/x] \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,C,A[t/x] \Rightarrow \Delta$}
     \levopravilo{L$\forall$}
     \UnaryInfC{$\Gamma,C,\forall x A \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',\forall x A \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,C,A[t/x] \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{0}{$\Gamma,C,A[t/x] \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',A[t/x] \Rightarrow \Delta,\Delta'$}
 
     \pravilo{L$\forall$}
     \UnaryInfC{$\Gamma,\Gamma',\forall x A \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Lotimo se sedaj eksponentov. Začnimo s primerom, kjer je bila nad rezom ravnokar vpeljana formula $!A$, s skrčitvijo, ošibitvijo ali levim pravilom vpeljave. Vsi ti primeri so si enaki, zato obravnavajmo le skrčitev.
+Lotimo se sedaj eksponentov. Zaradi simetričnosti bomo podrobno spet obravnavali le veznik !. Začnimo s primerom, ko je bila nad rezom vpeljana formula !A s skrčitvijo, ošibitvijo ali levim pravilom. Vsi ti primeri so si enaki, zato obravnavajmo le skrčitev:
 \begin{prooftree}
-    \AxiomC{$\Gamma,C,!A,!A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,C,!A,!A \Rightarrow \Delta$}
     \levopravilo{C!}
     \UnaryInfC{$\Gamma,C,!A \Rightarrow \Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',!A \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,C,!A,!A \Rightarrow \Delta$}
-    \AxiomC{$\Gamma' \Rightarrow C,\Delta'$}
+    \derivation{0}{$\Gamma,C,!A,!A \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma',!A,!A \Rightarrow \Delta,\Delta'$}
     \pravilo{C!}
     \UnaryInfC{$\Gamma,\Gamma',!A \Rightarrow \Delta,\Delta'$}
 \end{prooftree}
-Primeri, ko je bila vpeljana formula $?A$ s skrčitvijo, ošibitvijo ali desnim pravilom vpeljave, so prav tako enaki, zato jih ne bomo obravnavali.
-Pri desnem pravilu vpeljave fomrule $!A$ ter pri levem pravilu vpeljave formule $?A$ pa se je treba malce bolj potruditi. Primera sta zopet simetrična, zato si oglejmo le desno pravilo vpeljave formule $!A$. Da smo lahko kot sklep sploh vpeljali formulo $!A$, je morala biti formula $C$, ki jo režemo, oblike $!C$.
+Pri pravilu R? pa moramo biti bolj pozorni. Da smo lahko desno pravilo za veznik ? sploh uporabili, je morala biti formula $C$, ki jo režemo, oblike $!C$, če je v danem poddrevesu na desni strani sekventa, ali $?C$, če je na levi. Oba primera sta simetrična, zato si poglejmo rezanje formule oblike $!C$:
 \begin{prooftree}
-    \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
+    \derivation{0}{$!\Gamma,!C \Rightarrow A,?\Delta$}
     \levopravilo{R!}
     \UnaryInfC{$!\Gamma,!C \Rightarrow \ !A,?\Delta$}
 
-    \AxiomC{$\Gamma' \Rightarrow \ !C,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow \ !C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$!\Gamma,\Gamma' \Rightarrow \ !A,?\Delta,\Delta'$}
 \end{prooftree}
-Tu pa nastopi težava, saj drevesa izpeljave ne moremo preoblikovati, ne da bi vedeli kaj več o desnem poddrevesu nad rezom.
+Tu pa nastopi težava, saj drevesa izpeljave ne moremo preoblikovati, ne da bi vedeli kaj več o desnem poddrevesu nad rezom:
 \begin{prooftree}
-    \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
-    \AxiomC{$\Gamma' \Rightarrow \ !C,\Delta'$}
+    \derivation{0}{$!\Gamma,!C \Rightarrow A,?\Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow \ !C,\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$!\Gamma,\Gamma' \Rightarrow A,?\Delta,\Delta'$}
     \UnaryInfC{?}
 \end{prooftree}
-Če namreč $\Gamma'$ ni oblike $!\Gamma'$ in $\Delta'$ ni oblike $?\Delta'$, desnega pravila vpeljave za veznik ! ne moremo več uporabiti. Ločiti je treba primera, ko je bila formula $!C$ na desni ravnokar vpeljana z desnim pravilom vpeljave veznika ! in ko ni bila. Če formula $!C$ ni bila ravnokar vpeljana, je moral biti vpeljan nek drug veznik, vse take primere, razen seveda R!, pa smo že obravnavali, ne da bi nam bilo pomembno, kaj se dogaja v drugem poddrevesu. Vendar pa se primer, ko na desni uporabimo pravilo R!, a z njim ne upeljemo formule $!C$, ne more zgoditi. Drevo izpeljave bi namreč želelo izgledati tako:
+Če namreč $\Gamma'$ ni oblike $!\Gamma'$ in $\Delta'$ ni oblike $?\Delta'$, desnega pravila za veznik ! ne moremo več uporabiti. Ločiti je treba tri primere, glede na zadnje pravilo pred sekventom $\Gamma' \Rightarrow \ !C,\Delta'$:
+\begin{enumerate}
+    \item zadnje pravilo je R!,
+    \item zadnje pravilo je L?,
+    \item zadnje je katerokoli drugo pravilo.
+\end{enumerate}
+V tretjem primeru nimamo težav, saj smo vsak tak primer že obravnavali tekom tega podpoglavja. Drugi primer se pravzaprav ne more zgoditi, prvi pa se ne more zgoditi, razen če R! vpelje ravno formulo $!C$:
+\begin{center}
+    \begin{bprooftree}
+        \AxiomC{$!\Gamma' \Rightarrow \ !C,B,?\Delta'$}
+        \levopravilo{\textcolor{red}{R!}}
+        \UnaryInfC{$!\Gamma' \Rightarrow \ !C,!B,?\Delta'$}
+    \end{bprooftree}\qquad
+    ali \qquad
+    \begin{bprooftree}
+        \AxiomC{$!\Gamma',B \Rightarrow \ !C,?\Delta'$}
+        \pravilo{\textcolor{red}{L?}}
+        \UnaryInfC{$!\Gamma',?B \Rightarrow \ !C,?\Delta'$}
+    \end{bprooftree}
+\end{center}
+Zaradi formule $!C$, ki jo želimo rezati, sklepi namreč niso v celoti predznačeni z veznikom ?. Ostane nam torej le primer, ko je formula $!C$ na desni vpeljana tik nad rezom:
 \begin{prooftree}
-    \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
+    \derivation{0}{$!\Gamma,!C \Rightarrow A,?\Delta$}
     \levopravilo{R!}
     \UnaryInfC{$!\Gamma,!C \Rightarrow \ !A,?\Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow \ !C,B,?\Delta'$}
-    \pravilo{\textcolor{red}{R!}}
-    \UnaryInfC{$!\Gamma' \Rightarrow \ !C,?B,?\Delta'$}
-    \pravilo{Rez}
-    \BinaryInfC{$!\Gamma,!\Gamma' \Rightarrow \ !A,?B,?\Delta,?\Delta'$}
-\end{prooftree}
-Toda se rdeče obarvano pravilo R! ni moglo zgoditi, saj kontekst na desni ni bil v celoti predznačen z veznikom ?. Tako je v resnici treba obravnavati le primer, ko je na desni vpeljana prav formula $!C$.
-\begin{prooftree}
-    \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
-    \levopravilo{R!}
-    \UnaryInfC{$!\Gamma,!C \Rightarrow \ !A,?\Delta$}
-
-    \AxiomC{$!\Gamma' \Rightarrow C,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow C,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !C,?\Delta'$}
     \pravilo{Rez}
@@ -265,9 +215,9 @@ Toda se rdeče obarvano pravilo R! ni moglo zgoditi, saj kontekst na desni ni bi
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$!\Gamma,!C \Rightarrow A,?\Delta$}
+    \derivation{0}{$!\Gamma,!C \Rightarrow A,?\Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow C,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow C,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !C,?\Delta'$}
     \pravilo{Rez}
@@ -275,4 +225,3 @@ Toda se rdeče obarvano pravilo R! ni moglo zgoditi, saj kontekst na desni ni bi
     \pravilo{R!}
     \UnaryInfC{$!\Gamma,!\Gamma' \Rightarrow \ !A,?\Delta,?\Delta'$}
 \end{prooftree}
-Enak problem nastane, če je formula $!A$ vpeljana z desnim pravilom vpeljave v desnem poddrevesu nad rezom. V tem primeru je morala formula $C$ biti oblike $?C$ in je bila v levem poddrevesu vpeljana kot predpostavka. To ima seveda enako rešitev kot primer zgoraj.

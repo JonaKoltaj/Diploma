@@ -1,28 +1,30 @@
-Lotimo se sedaj eksponentov. Ker imata oba eksponenta štiri pravila, moramo ločiti glavni rez na več primerov. Pri vezniku ! imamo tri pravila, ki veznik vpeljejo na levi ter eno pravilo, ki veznik vpelje na desni. Zato moramo ločiti glavni rez formule $!A$ na tri primere, po en primer za vsako levo pravilo. Ogljemo si naprej glavni rez, kjer je $!A$ na levi vpeljan s skrčitvijo, na desni pa z desnim pravilom vpeljave.
+Eliminacija glavnega reza eksponentov zahteva posebno obravnavo, saj se dokazovanje tu nekoliko zaplete. Veznika ! in ? sta simetrična, zato bomo podrobno obravnavali le veznik !, bralec pa si lahko sam izpelje dokaze še za veznik ?.
+
+Veznik ! ima štiri logična pravila, ki ga definirajo. Tri pravila veznik vpeljejo na levi strani sekventa, desno pravilo pa ga vpelje na desni. Zato moramo glavni rez formule $!A$ ločiti na tri primere, glede na to kako je bil vpeljan na levi strani. Ogljemo si naprej glavni rez, kjer je $!A$ na levi vpeljan s skrčitvijo:
 \begin{prooftree}
-    \AxiomC{$\Gamma,!A,!A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,!A,!A \Rightarrow \Delta$}
     \levopravilo{C!}
     \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Mikalo nas bi zgornje drevo izpeljave zamenjati s sledečim.
+Mikalo bi nas zgornje drevo izpeljave zamenjati s sledečim:
 \begin{prooftree}
-    \AxiomC{$\Gamma,!A,!A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,!A,!A \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \levopravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma',!A \Rightarrow \Delta,?\Delta'$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
@@ -33,9 +35,16 @@ Mikalo nas bi zgornje drevo izpeljave zamenjati s sledečim.
     \pravilo{C?$\times|\Delta'|$}
     \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad spodnjim izmed novo pridelanih rezov ni poddrevo prvotnih dveh dreves nad rezom, poleg tega pa se je ohranila tudi kompleskonst rezane formule, saj še vedno režemo $!A$. Zavoljo tega, da lahko ta korak indukcije vseeno opravimo, potrebujemo pomožno razširjeno pravilo reza.
+Če označimo z $(\R,\h)$ stopnjo prvotnega reza, z $(\R',\h')$ stopjo zgornjega izmed novih rezov, z $(\R'',\h'')$ pa stopnjo spodnjega, velja:
+\begin{align*}
+    (\R,\h) &= (\R(A) + 1,\h(\D_0) + \h(\D_1) + 5)\\
+    (\R',\h') &= (\R(A) + 1,\h(\D_0) + \h(\D_1) + 4)\\
+    (\R'',\h'') &= (\R(A) + 1,\h(\D_0) + 2*\h(\D_1) + 7)
+\end{align*}
+Takoj lahko vidimo, da je rang rezane formule v vseh primerih enak, zato bi bilo potrebno zmanjšati višino. Zgornji izmed novih rezov ima sicer nižjo višino kot prvotni rez, pri spodnjem pa višina znatno naraste. To pomeni, da koraku indukcije ne zadostimo. Da bi lahko ta korak indukcije vseeno opravili, potrebujemo pomožno (razširjeno) pravilo reza.
+
 \begin{definicija}
-    \emph{Posplošeni pravili reza}, označeni z Rez!$_n$ ter Rez?$_{n}$, sta definirani za vsak $n \in \mathbb{N}$.
+    \emph{Posplošeni pravili reza}, označeni z Rez!$_n$ in Rez?$_{n}$, sta definirani za vsak $n\in\mathbb{N}_{>0}$;
     \begin{prooftree}
         \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
         \AxiomC{$\Gamma' \Rightarrow \ !A,\Delta'$}
@@ -51,7 +60,7 @@ Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad 
 \end{definicija}
 
 \begin{opomba}
-    Formula $(!A)^n$ v definiciji predstavjla $n$ formul $!A$, ločenih z vejico. Pravili Rez!$_{1}$ ter Rez?$_{1}$ sta torej le pravilo Rez, kjer režemo ali formulo $!A$, ali pa formulo $?A$.
+    Formula $(!A)^n$ v definiciji predstavlja $n$ formul $!A$, ločenih z vejico. Pravili Rez!$_{1}$ ter Rez?$_{1}$ sta torej le pravilo Rez, kjer režemo ali formulo $!A$, ali pa formulo $?A$.
 \end{opomba}
 
 \begin{lema}
@@ -59,7 +68,7 @@ Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad 
 \end{lema}
 
 \begin{dokaz}
-    Lemo dokažemo z indukcijo na številu $n$. Primer ko je $n=1$ je seveda le običajno pravilo reza, kot omenjeno že v zgornji opombi. Če predpostavimo, da pravilo Rez!$_n$ že znamo izpeljati, lahko izpeljemo Rez!$_{n+1}$ na naslednji način.
+    Lemo dokažemo z indukcijo na številu $n$. Primer pri $n=1$ je seveda le običajno pravilo reza, kot omenjeno že v zgornji opombi. Če predpostavimo, da pravilo Rez!$_n$ že znamo izpeljati, lahko izpeljemo Rez!$_{n+1}$ na naslednji način.
     \begin{prooftree}
         \AxiomC{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
         \UnaryInfC{$\Gamma,(!A)^{n-1},!A,!A \Rightarrow \Delta$}
@@ -71,23 +80,43 @@ Vendar s tem ne zadostimo indukcijski predpostavki, saj nobeno izmed dreves nad 
         \pravilo{Rez!$_n$}
         \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
     \end{prooftree}
-    Pri indukcijskem koraku iz $n=1$ na $n=2$ moramo paziti, saj se v drugi vrstici dokaza pojavi izraz $(!A)^0$. To enostavno interpretiramo kot prazen nabor formul. Indukcijski korak za Rez?$_{n}$ je simetričen.
+    Pri indukcijskem koraku iz $n=1$ na $n=2$ moramo paziti, saj se v drugi vrstici dokaza pojavi izraz $(!A)^0$. To enostavno interpretiramo kot prazno multimnožico formul. Dokaz dopustnosti pravila Rez?$_{n}$ je simetričen.
 \end{dokaz}
 
-Sedaj izrek \ref{izrek}, ki ga dokazujemo, preoblikujmo, tako da bo namesto le navadnega pravila reza vseboval tudi  posplošeno pravilo reza.
+Če želimo koristiti zgoraj definirano posplošeno pravilo reza, moramo izrek \ref{izrek}, ki ga dokazujemo, preoblikovati tako, da ga bo vseboval.
 \begin{izrek}
-    Vsak sekvent, dokazan z uporabo pravila reza ali posplošenega pravila reza, lahko dokažemo tudi brez uporabe pravila reza ali posplošenega pravila reza.
+    Vsak sekvent, izpeljan z uporabo pravila reza ali posplošenega pravila reza, lahko dokažemo tudi brez uporabe kateregakoli izmed njiju.
 \end{izrek}
 
-Ker je posplošeno pravilo reza dopustno, je novo formulirani izrek ekvivalenten izreku \ref{izrek}. Vendar si sedaj v dokazu lahko pomagamo s posplošenim pravilom reza. Med indukcijskim korakom torej lahko drevo izpeljave preobrazimo tako, da bo zadoščalo indukcijski predpostavki za kateregakoli izmed rezov, navadnega ali posplošenega. A sedaj je potrebno znati eliminirati tudi slednjega. To pomeni, da je potrebno obravnavati korak indukcije tako za pravilo Rez, kot za pravili Rez!$_n$ in Rez?$_n$, vsakič ko obravnavamo rez veznika ! ali ?. V določenih primerih lahko obravnavamo tako posplošeno pravilo reza kot navadno hkrati, saj korak indukcije za Rez!$_n$ lahko izgleda enako tudi pri $n=1$.
+Zaradi dopustnosti posplošenega reza je ta izrek le posledica izreka \ref{izrek}. A ker novi izrek eliminira tako navadni kot posplošeni rez, je izrek \ref{izrek} prav tako le posledica tega, zato sta si izreka na nek način ekvivalentna. Kar je pomembno za nas je slednje; če dokažemo zgornji izrek, dokažemo tudi izrek \ref{izrek}.
 
-Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo, tokrat s posplošenim pravilom reza v žepu.
+Sedaj si lahko v dokazu pomagamo s posplošenim rezom. To pomeni, da lahko drevo izpeljave preobrazimo tako, da bo namesto prvotnega reza vsebovalo enega ali več rezov \emph{ali posplošenih rezov} nižje stopnje. A to pomeni, da moramo znati poleg navadnega reza sedaj eliminirati še posplošenega. V podpoglavju \ref{gl rez vezniki}, torej pri obravnavi glavnega reza vseh veznikov razen eksponentov, glavnega posplošenega reza niti ne moremo obravnavati. Ta namreč lahko nastopi le, če iz formule režemo eksponente. V nadaljevanju dokaza pa bomo morali biti pazljivi in obdelati še vse primere eliminacije posplošenega reza.
+
+Ostane nam le še definicija stopnje posplošenega reza, saj ta trenutno velja le za navadni rez. V ta namen si oglejmo pravilo Rez!$_n$:
 \begin{prooftree}
-    \AxiomC{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,(!A)^n \Rightarrow \Delta$}
+    \derivation{1}{$\Gamma' \Rightarrow \ !A,\Delta'$}
+    \pravilo{Rez!$_n$}
+    \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+\end{prooftree}
+
+\begin{definicija}
+    \emph{Stopnja posplošenega reza} je par števil $(\R,\h)$, kjer je $\R$ rang formule $!A$ (ali $?A$, glede na vrsto posplošenega reza), $\h$ pa višina drevesa. Stopnja zgornjega posplošenega reza je torej enaka:
+    $$
+        (\R,\h) = (\R(A) + 1, \h(\D_0) + \h(\D_1)\} + 3)
+    $$
+\end{definicija}
+\begin{opomba}
+    Iz definicije je razvidno, da število rezanih formul ne vpliva na stopnjo reza. Če v indukcijskem koraku torej Rez!$_n$ zamenjamo z Rez!$_{n+1}$ na isti višini, režemo pa še zmeraj formulo $!A$, smo stopnjo reza ohranili.
+\end{opomba}
+
+Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo, tokrat s posplošenim pravilom reza v žepu. Obravnavamo lahko kar posplošeni rez za poljuben $n\in\mathbb{N}_{>0}$, vključno z $n = 1$, torej navadnim pravilom reza:
+\begin{prooftree}
+    \derivation{0}{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
     \levopravilo{C!}
     \UnaryInfC{$\Gamma,(!A)^n \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
@@ -96,22 +125,22 @@ Lotimo se še enkrat drevesa izpeljave, kjer na levi $!A$ vpeljemo s skrčitvijo
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_{n+1}$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Zgornje seveda velja tudi za $n=1$, torej za navadno pravilo reza. Pri novem drevesu izpeljave je sedaj levo drevo nad rezom poddrevo levega drevesa nad prejšnjim rezom in korak indukcije je opravljen. Oglejmo si sedaj še glavni rez¸ kjer je formula $!A$ na levi vpeljana z ošibitvijo. Tu korak indukcije za posplošeni rez, kjer $n\neq1$, ter navadni rez ni združljiv, zato primera ločimo.
+Zopet se rang formule ohrani, a tokrat je višina novega reza za $1$ nižja od višine prvotnega, torej smo indukcijski predpostavki zadostili. Oglejmo si sedaj glavni rez¸ kjer je formula $!A$ na levi vpeljana z ošibitvijo. Tu korak indukcije za posplošeni rez, kjer $n\neq1$, ter navadni rez ni združljiv, zato primera ločimo, začenši z navadnim pravilom reza:
 \begin{prooftree}
-    \AxiomC{$\Gamma \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma \Rightarrow \Delta$}
     \levopravilo{W!}
     \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
@@ -120,19 +149,19 @@ Zgornje seveda velja tudi za $n=1$, torej za navadno pravilo reza. Pri novem dre
 \end{prooftree}
 \dol
 \begin{prooftree}
-	\AxiomC{$\Gamma \Rightarrow \Delta$}
+	\derivation{0}{$\Gamma \Rightarrow \Delta$}
     \levopravilo{W!$\times|\Gamma'|$}
     \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta$}
     \pravilo{W?$\times|\Delta'|$}
     \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Tako smo v tem primeru korak indukcije opravili za navadni rez, za Rez!$_n$, kjer je $n\geq2$ pa je postopek sledeč.
+Spet smo na prazno zadostili indukcijski predpostavki in se reza v celoti znebili. Za Rez!$_n$, kjer je $n\geq2$, pa je postopek sledeč:
 \begin{prooftree}
-    \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,(!A)^n \Rightarrow \Delta$}
     \levopravilo{W!}
     \UnaryInfC{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
@@ -141,22 +170,22 @@ Tako smo v tem primeru korak indukcije opravili za navadni rez, za Rez!$_n$, kje
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,(!A)^n \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \pravilo{Rez!$_n$}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Pri obravnavi glavnega reza formule $!A$ z levim pravilom vpeljave na levi je zopet potrebno ločiti Rez!$_n$ na primer ko je $n=1$ ter ko $n\neq1$. Ogljemo si zopet najprej navadno pravilo reza.
+Stopnja reza je tu znižana na enak način, kot v primeru, ko na levi $!A$ vpeljemo s skrčitvijo. Pri obravnavi glavnega reza formule $!A$ z levim pravilom je zopet potrebno ločiti Rez!$_n$, kjer $n\geq2$, od navadnega reza:
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
     \levopravilo{L!}
     \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
@@ -165,18 +194,18 @@ Pri obravnavi glavnega reza formule $!A$ z levim pravilom vpeljave na levi je zo
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Za eliminacijo pravila Rez!$_n$, ko je $n\geq2$, pa bo korak indukcije spet malce bolj zahteven.
+Uspelo nam je znižati rang rezane formule, zato je stopnja novega reza nižja. Pri eliminaciji pravila Rez!$_n$, ko je $n\geq2$ se je treba malce bolj potruditi:
 \begin{prooftree}
-    \AxiomC{$\Gamma,(!A)^{n-1},A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,(!A)^{n-1},A \Rightarrow \Delta$}
     \levopravilo{L!}
     \UnaryInfC{$\Gamma,(!A)^n \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
@@ -185,16 +214,16 @@ Za eliminacijo pravila Rez!$_n$, ko je $n\geq2$, pa bo korak indukcije spet malc
 \end{prooftree}
 \dol
 \begin{prooftree}
-    \AxiomC{$\Gamma,(!A)^{n-1},A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,(!A)^{n-1},A \Rightarrow \Delta$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{R!}
     \UnaryInfC{$!\Gamma' \Rightarrow \ !A,?\Delta'$}
 
     \levopravilo{Rez!$_{n-1}$}
     \BinaryInfC{$\Gamma,!\Gamma',A \Rightarrow \Delta,?\Delta'$}
 
-    \AxiomC{$!\Gamma' \Rightarrow A,?\Delta'$}
+    \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,!\Gamma',!\Gamma' \Rightarrow \Delta,?\Delta',?\Delta'$}
     \pravilo{C!$\times|\Gamma'|$}
@@ -202,6 +231,10 @@ Za eliminacijo pravila Rez!$_n$, ko je $n\geq2$, pa bo korak indukcije spet malc
     \pravilo{C?$\times|\Delta'|$}
     \UnaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
 \end{prooftree}
-Novonastalo drevo izpeljave bi nas lahko spominjalo na problem iz začetka tega podpoglavja, a smo tu za spremembo res zadostili indukcijski predpostavki, saj je desno poddrevo nad najnižjim izmed rezov res poddrevo desnega izmed dreves nad prvotnim rezom.
-
-Eliminacija glavnega reza, ki reže formulo $?A$, je popolnoma simetrična in sledi natanko vsem korakom, opisanim v procesu eliminacije glavnega reza, ki reže formulo $!A$, zato je v tem delu ne bomo posebej obravnavali.
+Novonastalo drevo izpeljave bi nas lahko spominjalo na problem iz začetka tega podpoglavja. Oglejmo si stopnje rezov, kjer prvotni rez zopet označimo z $(\R,\h)$, nova reza pa (po vrsti) z $(\R',\h')$ in $(\R'',\h'')$:
+\begin{align*}
+    (\R,\h) &= (\R(A) + 1,\h(\D_0) + \h(\D_1) + 5)\\
+    (\R',\h') &= (\R(A) + 1,\h(\D_0) + \h(\D_1) + 4)\\
+    (\R'',\h'') &= (\R(A),\h(\D_0) + 2*\h(\D_1) + 6)
+\end{align*}
+Pri prvem izmed novih dreves rang rezane formule ostane isti, vendar se višina zmanjša za $1$, torej je stopnja tega reza res nižja od stopnje prvotnega. Pri drugem rezu spet nastopi težava veliko večje višine, a se je, za razliko problema iz začetka podpoglavja, rang formule znižal. Ker je ureditev leksikografska, se lahko višina poljubno veča; čim je rang rezane formule nižji, bo stopnja reza nižja. Indukcijski predpostavki je torej zadoščeno in ta korak indukcije je opravljen.

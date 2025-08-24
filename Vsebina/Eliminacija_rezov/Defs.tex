@@ -4,8 +4,8 @@ Dokaz zgornjega izreka poteka s pomočjo indukcije na drevesih izpeljave nad rez
     Naj bosta $A$ in $B$ poljubni formuli, $P$ pa naj bo neka osnovna formula. \emph{Rang formule}, označen s simbolom $\R$, je definiran sledeče:
     \begin{itemize}
         \item $\R(P) = \R(\top) = \R(\bot) = \R(\enota) = \R(\nicla) = 1$
-        \item $\R(\negacija A) = \R(\forall x A) = \R(\exists x A) = \R(A) + 1$
-        \item $\R(A*B) = \max\{\R(A),\R(B)\} + 1$ ; kjer je $*$ poljuben veznik, ki sprejme dve formuli.
+        \item $\R(\negacija A) = \R(\forall x A) = \R(\exists x A) = \R(!A) = \R(?A) = \R(A) + 1$
+        \item $\R(A*B) = \R(A) + \R(B) + 1$ ; kjer je $*$ poljuben veznik, ki sprejme dve formuli.
     \end{itemize}
 \end{definicija}
 
@@ -22,7 +22,7 @@ Podobno je definirana višina drevesa. Imejmo naslednji dve drevesi, levo označ
     \begin{bprooftree}
         \AxiomC{}
         \pravilo{Pravilo'}
-        \UnaryInfC{$\mathcal{S}$'}
+        \UnaryInfC{$\mathcal{S'}$}
     \end{bprooftree}
 \end{center}
 Tu je $n\in\mathbb{N}$, Pravilo je poljubno pravilo, ki sprejme $n$ sekventov, Pravilo' pa je poljubno pravilo, ki jih ne sprejme nič. Slednje je na primer pravilo aksioma ali nekatera izmed pravil za konstante:
@@ -30,20 +30,17 @@ Tu je $n\in\mathbb{N}$, Pravilo je poljubno pravilo, ki sprejme $n$ sekventov, P
 \begin{definicija}
     \emph{Višina drevesa izpeljave} je označena s simbolom $\h$ in je enaka:
     \begin{itemize}
-        \item$\h(\D) = \max\{\h(\D_0),\h(\D_1),\ldots,\h(\D_n)\} + 1$
+        \item$\h(\D) = \sum_{i=0}^n \h(\D_i) + 1$
         \item$\h(\D') = 1$
     \end{itemize}
+    Rekli bomo, da je višina drevesa enaka $0$, ko je drevo prazno.
 \end{definicija}
 
 Sedaj ko imamo mero tako na formulah kot na drevesih izpeljave, lahko defniramo skupno mero vsakega reza. Oglejmo si poljubno pravilo reza:
 \begin{prooftree} \label{rez general}
-    \AxiomC{$\D_0$}
-    \noLine
-    \UnaryInfC{$\Gamma,A \Rightarrow \Delta$}
+    \derivation{0}{$\Gamma,A \Rightarrow \Delta$}
 
-    \AxiomC{$\D_1$}
-    \noLine
-    \UnaryInfC{$\Gamma' \Rightarrow A,\Delta'$}
+    \derivation{1}{$\Gamma' \Rightarrow A,\Delta'$}
 
     \pravilo{Rez}
     \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
@@ -53,7 +50,7 @@ Tu $\D_0$ in $\D_1$ označujeta drevesi izpeljav, ki sta vodili do sekventov pod
 \begin{definicija} \label{stopnja}
     \emph{Stopnja reza} je par števil $(\R,\h)$, kjer je $\R$ rang rezane formule, $\h$ pa višina samega drevesa. Z zgornjimi oznakami je stopnja reza torej enaka:
     $$
-    (\R,\h) = (\R(A), \max\{\h(\D_0),\h(\D_1)\} + 2)
+    (\R,\h) = (\R(A), \h(\D_0) +\h(\D_1) + 3)
     $$
     Stopnja reza je urejena \emph{leksikografsko}, kar pomeni, da relacijo < na paru $(\R,\h)$ definiramo sledeče:
     $$
@@ -71,7 +68,7 @@ Preden začnemo z dokazom je nazadnje potrebno definirati še eno vrsto reza, in
 \end{definicija}
 
 \begin{primer*} \label{gl rez in}
-    Glavni rez za formulo $A \sqcap B$.
+    Glavni rez za formulo $A \sqcap B$:
     \begin{prooftree}
         \AxiomC{$\Gamma,A \Rightarrow \Delta$}
         \levopravilo{L$\sqcap$}
