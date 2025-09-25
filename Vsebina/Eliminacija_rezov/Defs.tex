@@ -58,7 +58,7 @@ Tu $\D_0$ in $\D_1$ označujeta drevesi izpeljav, ki sta vodili do sekventov pod
     $$
 \end{definicija}
 \begin{definicija} \label{najnizji}
-    Rezu bomo rekli \emph{najnižji rez}, če se nad njim ne pojavi nobeno drugo pravilo reza. To seveda ne pomeni nujno, da ima najnižjo stopnjo ali da je v drevesu izpeljave le en takšen rez.
+    Rezu bomo rekli \emph{vrhnji rez}, če se nad njim ne pojavi nobeno drugo pravilo reza. To seveda ne pomeni nujno, da ima najnižjo stopnjo ali da je v drevesu izpeljave le en takšen rez.
 \end{definicija}
 
 Preden začnemo z dokazom je nazadnje potrebno definirati še eno vrsto reza, in sicer glavni rez.
@@ -68,18 +68,32 @@ Preden začnemo z dokazom je nazadnje potrebno definirati še eno vrsto reza, in
 \end{definicija}
 
 \begin{primer*} \label{gl rez in}
-    Glavni rez za formulo $A \sqcap B$:
-    \begin{prooftree}
-        \AxiomC{$\Gamma,A \Rightarrow \Delta$}
-        \levopravilo{L$\sqcap$}
-        \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
+    Za primer poglejmo glavni rez za formulo $A \sqcap B$ in za njim primer reza, ki ni glaven:
+    \begin{center}
+        \begin{bprooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \levopravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
 
-        \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
-        \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
-        \pravilo{R$\sqcap$}
-        \BinaryInfC{$\Gamma' \Rightarrow A \sqcap B,\Delta'$}
+            \AxiomC{$\Gamma' \Rightarrow A,\Delta'$}
+            \AxiomC{$\Gamma' \Rightarrow B,\Delta'$}
+            \pravilo{R$\sqcap$}
+            \BinaryInfC{$\Gamma' \Rightarrow A \sqcap B,\Delta'$}
 
-        \pravilo{Rez}
-        \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
-    \end{prooftree}
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+        \end{bprooftree}
+        \begin{prooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \levopravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,A \sqcap B \Rightarrow \Delta$}
+
+            \AxiomC{$\Gamma',C \Rightarrow A\sqcap B,\Delta'$}
+            \pravilo{R$\negacija$}
+            \UnaryInfC{$\Gamma' \Rightarrow \ \negacija C, A\sqcap B,\Delta'$}
+
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \ \negacija C,\Delta,\Delta'$}
+        \end{prooftree}
+    \end{center}
 \end{primer*}

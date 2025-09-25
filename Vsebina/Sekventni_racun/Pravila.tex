@@ -14,7 +14,7 @@ Pravila sekventnega računa delimo na \emph{pravilo aksioma}, \emph{logična pra
 
 \subsubsection{Logična pravila}
 
-Logična pravila praviloma sestojijo iz \emph{levega pravila} in \emph{desnega pravila}. Prvo nam pove kako veznik uporabiti med predpostavkami, drugo pa kako dani veznik dokazati. Oglejmo si kot primer logični pravili za veznik $\land$.
+Logična pravila praviloma sestojijo iz \emph{levih pravil} in \emph{desnih pravil}. Prva nam povedo, kako veznik uporabiti med predpostavkami, druga pa kako dani veznik dokazati. Oglejmo si kot primer logični pravili za veznik $\land$.
 
 \begin{definicija} \label{inl}
 	\emph{Levo pravilo za veznik $\land$}, krajše $L\land$:
@@ -31,7 +31,7 @@ Logična pravila praviloma sestojijo iz \emph{levega pravila} in \emph{desnega p
             \UnaryInfC{$\Gamma,A \land B \Rightarrow \Delta$}
         \end{bprooftree}
     \end{center}
-    To pomeni da če znamo nekaj dokazati iz formule $A$, znamo isto dokazati iz $A \land B$ za poljubno formulo $B$. Ker je veznik $\land$ simetričen, je tudi to pravilo simetrično.
+    To pomeni, da če znamo nekaj dokazati iz formule $A$, znamo isto dokazati iz $A \land B$ za poljubno formulo $B$. Ker je veznik $\land$ simetričen, je tudi to pravilo simetrično.
 \end{definicija}
 
 \begin{definicija} \label{inr}
@@ -42,7 +42,7 @@ Logična pravila praviloma sestojijo iz \emph{levega pravila} in \emph{desnega p
         \pravilo{R$\land$}
         \BinaryInfC{$\Gamma \Rightarrow A \land B,\Delta$}
     \end{prooftree}
-    To pa pomeni da če znamo iz nekih predpostavk dobiti formulo $A$ in iz istih predpostavk dobiti formulo $B$, znamo iz teh predpostavk dobiti tudi formulo $A \land B$.
+    To pa pomeni, da če znamo iz nekih predpostavk dobiti formulo $A$ in iz istih predpostavk dobiti formulo $B$, znamo iz teh predpostavk dobiti tudi formulo $A \land B$.
 \end{definicija}
 
 \subsubsection{Strukturna pravila}

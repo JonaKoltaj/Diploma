@@ -1,0 +1,328 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+\usepackage{bussproofs}
+\usepackage{changepage}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usetheme{Szeged}
+\useinnertheme{circles}
+
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}{}
+
+\addtobeamertemplate{block begin}{}{\begin{adjustwidth}{10pt}{10pt} \begin{flushleft}}
+\addtobeamertemplate{block end}{\end{flushleft} \end{adjustwidth}}{}
+
+\definecolor{svetlozelena}{RGB}{204,255,153}
+\definecolor{temnozelena}{RGB}{0,102,0}
+
+\usecolortheme[named=temnozelena]{structure}
+\setbeamercolor{block title}{bg=svetlozelena!60}
+\setbeamercolor{block body}{bg=svetlozelena!40}
+\setbeamercolor{block title alerted}{bg=svetlozelena!50, fg=temnozelena}
+\setbeamercolor{block body alerted}{bg=svetlozelena!20}
+
+\newenvironment{bprooftree}{\leavevmode\hbox\bgroup}{\DisplayProof\egroup}
+
+\newcommand{\oranzna}[1]{\textcolor{RedOrange}{\textit{#1}}}
+\newcommand{\pravilo}[1]{\RightLabel{\footnotesize \textcolor{temnozelena}{#1}}}
+\newcommand{\levopravilo}[1]{\LeftLabel{\footnotesize \textcolor{temnozelena}{#1}}}
+\newcommand{\dol}{\begin{center}$\downarrow$\end{center}}
+\newcommand{\R}{\mathfrak{R}}
+\newcommand{\h}{\mathfrak{h}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\derivation}[2]{\AxiomC{$\D_{#1}$}\noLine\UnaryInfC{{#2}}}
+
+
+\title{Eliminacija rezov v linearni logiki}
+\author{Jona Koltaj\\{\small Mentor: prof. dr. Andrej Bauer}}
+\date{26.9.2025}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Sekvent}
+    \begin{block}{Definicija}
+        Naj bodo $A_0,\dots,A_n,B_0,\dots,B_m$ logične formule. \oranzna{Sekvent} je izraz oblike:
+        $$
+        A_0,\dots,A_n \Rightarrow B_0,\dots,B_m
+        $$
+        Formulam na levi pravimo \oranzna{predpostavke}, označimo jih z $\Gamma$, formulam na desni pa \oranzna{sklepi}, označimo jih z $\Delta$.
+    \end{block}
+    \pause
+    \begin{block}{Opomba}
+        Če $\Gamma$ in $\Delta$ definiramo kot multimnožici nam vrstni red predpostavk in sklepov ni pomemben.
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Logična pravila}
+    \begin{alertblock}{Logični pravili za $\land$}
+        \begin{center}
+            \begin{bprooftree}
+                \AxiomC{$\Gamma, A_0 \Rightarrow \Delta$}
+                \levopravilo{L$\land$}
+                \UnaryInfC{$\Gamma,A_0 \land A_1 \Rightarrow \Delta$}
+            \end{bprooftree}
+            ali
+            \begin{bprooftree}
+                \AxiomC{$\Gamma, A_1 \Rightarrow \Delta$}
+                \pravilo{L$\land$}
+                \UnaryInfC{$\Gamma,A_0 \land A_1 \Rightarrow \Delta$}
+            \end{bprooftree}
+        \end{center}
+        \begin{prooftree}
+            \AxiomC{$\Gamma \Rightarrow A_0,\Delta$}
+            \AxiomC{$\Gamma \Rightarrow A_1,\Delta$}
+            \pravilo{R$\land$}
+            \BinaryInfC{$\Gamma \Rightarrow A_0 \land A_1,\Delta$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Strukturna pravila}
+     \begin{block}{Pravilo aksioma}
+        \oranzna{Aksiom} je sekvent oblike $A \Rightarrow A$. Pravilo aksioma nam pove:
+        \vspace{10pt}
+        \begin{prooftree}
+            \AxiomC{}
+            \pravilo{Ax}
+            \UnaryInfC{$A \Rightarrow A$}
+        \end{prooftree}
+    \end{block}
+    \pause
+    \begin{alertblock}{Pravili \oranzna{ošibitve} in \oranzna{skrčitve}}
+        \begin{center}
+            \begin{bprooftree}
+                \AxiomC{$\Gamma \Rightarrow \Delta$}
+                \levopravilo{W}
+                \UnaryInfC{$\Gamma,A \Rightarrow \Delta$}
+            \end{bprooftree}
+            ali
+             \begin{bprooftree}
+                \AxiomC{$\Gamma \Rightarrow \Delta$}
+                \pravilo{W}
+                \UnaryInfC{$\Gamma \Rightarrow A,\Delta$}
+            \end{bprooftree}\\
+            \medskip
+            \begin{bprooftree}
+                \AxiomC{$\Gamma,A,A \Rightarrow \Delta$}
+                \levopravilo{C}
+                \UnaryInfC{$\Gamma,A \Rightarrow \Delta$}
+            \end{bprooftree}
+            ali
+            \begin{bprooftree}
+                \AxiomC{$\Gamma \Rightarrow A,A,\Delta$}
+                \pravilo{C}
+                \UnaryInfC{$\Gamma \Rightarrow A,\Delta$}
+            \end{bprooftree}
+        \end{center}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Linearna Logika}
+    \begin{block}{Definicija}
+        V \oranzna{linearni logiki} zavržemo pravili skrčitve in ošibitve.
+    \end{block}
+    \pause
+    \begin{alertblock}{Veznika $\star$ (\oranzna{tenzor}) ter $\sqcap$ (\oranzna{in})}
+        \begin{prooftree} \hskip -130pt
+            \AxiomC{$\Gamma,A_0,A_1 \Rightarrow \Delta$}
+            \levopravilo{L$\star$}
+            \UnaryInfC{$\Gamma,A_0 \star A_1 \Rightarrow \Delta$}
+        \end{prooftree}
+        \begin{prooftree} \vskip -41pt \hskip 130pt
+            \AxiomC{$\Gamma, A_i \Rightarrow \Delta$}
+            \pravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,A_0 \sqcap A_1 \Rightarrow \Delta$}
+        \end{prooftree}
+        \begin{prooftree} \hskip -160pt
+            \AxiomC{$\Gamma \Rightarrow A_0,\Delta$}
+            \AxiomC{$\Gamma' \Rightarrow A_1,\Delta'$}
+            \levopravilo{R$\star$}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow A_0 \star A_1,\Delta,\Delta'$}
+        \end{prooftree}
+        \begin{prooftree} \vskip -41pt \hskip 160pt
+            \AxiomC{$\Gamma \Rightarrow A_0,\Delta$}
+            \AxiomC{$\Gamma \Rightarrow A_1,\Delta$}
+            \pravilo{R$\sqcap$}
+            \BinaryInfC{$\Gamma \Rightarrow A_0 \sqcap A_1,\Delta$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Eksponenti}
+    \begin{alertblock}{Logična pravila za ! (\oranzna{seveda}) in ? (\oranzna{zakaj ne})}
+        \begin{prooftree} \hskip -130pt
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \pravilo{L!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{prooftree}
+        \begin{prooftree} \vskip -40pt \hskip 130pt
+            \AxiomC{$\Gamma \Rightarrow A,\Delta$}
+            \pravilo{R?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{prooftree}
+        \begin{prooftree} \hskip -130pt
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{W!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{prooftree}
+        \begin{prooftree} \vskip -40pt \hskip 130pt
+            \AxiomC{$\Gamma \Rightarrow \Delta$}
+            \pravilo{W?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{prooftree}
+        \begin{prooftree} \hskip -130pt
+            \AxiomC{$\Gamma,!A,!A \Rightarrow \Delta$}
+            \pravilo{C!}
+            \UnaryInfC{$\Gamma,!A \Rightarrow \Delta$}
+        \end{prooftree}
+        \begin{prooftree} \vskip -40pt \hskip 130pt
+            \AxiomC{$\Gamma \Rightarrow ?A,?A,\Delta$}
+            \pravilo{C?}
+            \UnaryInfC{$\Gamma \Rightarrow \ ?A,\Delta$}
+        \end{prooftree}
+        \begin{prooftree} \hskip -130pt
+            \AxiomC{$!\Gamma \Rightarrow A,?\Delta$}
+            \pravilo{R!}
+            \UnaryInfC{$!\Gamma \Rightarrow \ !A,?\Delta$}
+        \end{prooftree}
+        \begin{prooftree} \vskip -40pt\hskip 130pt
+            \AxiomC{$!\Gamma, A \Rightarrow ?\Delta$}
+            \pravilo{R?}
+            \UnaryInfC{$!\Gamma,?A \Rightarrow \ ?\Delta$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Rez}
+    \begin{alertblock}{Logično pravilo \oranzna{reza}}
+        \begin{prooftree}
+            \AxiomC{$\Gamma,A \Rightarrow \Delta$}
+            \AxiomC{$\Gamma' \Rightarrow A, \Delta'$}
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+        \end{prooftree}
+    \end{alertblock}
+    \pause
+    \begin{block}{Izrek}
+        Izrek o \oranzna{eliminaciji reza} nam pove, da lahko vsak sekvent, izpeljan z uporabo reza, izpeljemo tudi brez uporabe reza.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Indukcija}
+    \begin{block}{Zunanja indukcija}
+        Začnemo z indukcijo na številu rezov v drevesu izpeljave. Če rezov ni, smo opravili, drugače si izberemo vrhnjega.
+    \end{block}
+    \pause
+    \begin{block}{Notranja indukcija}
+        Znotraj zgornjega koraka indukcije delamo indukcijo na stopnji reza. (Pod)drevo izpeljave preobrazimo tako da vsebuje rez nižje stopnje.
+    \end{block}
+    \pause
+    \begin{block}{Definicija}
+        \oranzna{Stopnja reza} je par $(\R,\h)$, kjer je $\R$ rang rezane formule, $\h$ pa višina drevesa, ki se konča z danim rezom. Stopnje so urejene leksikografsko.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Eliminacija glavnega reza}
+    \begin{alertblock}{Glavni rez veznika $\sqcap$}
+        \begin{prooftree}
+            \derivation{0}{$\Gamma,A_0 \Rightarrow \Delta$}
+            \levopravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,A_0 \sqcap A_1 \Rightarrow \Delta$}
+
+            \derivation{1}{$\Gamma' \Rightarrow A_0,\Delta'$}
+            \derivation{2}{$\Gamma' \Rightarrow A_1,\Delta'$}
+            \pravilo{R$\sqcap$}
+            \BinaryInfC{$\Gamma' \Rightarrow A_0 \sqcap A_1,\Delta'$}
+
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+        \end{prooftree}
+        \dol
+        \begin{prooftree}
+            \derivation{0}{$\Gamma,A_0 \Rightarrow \Delta$}
+            \derivation{1}{$\Gamma' \Rightarrow A_0,\Delta'$}
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Eliminacija reza, ki ni glaven}
+    \begin{alertblock}{Rez formule $C$}
+        \begin{prooftree} \vskip -10pt
+            \derivation{0}{$\Gamma, A_0 \Rightarrow C,\Delta$}
+            \levopravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma, A_0 \sqcap A_1 \Rightarrow C,\Delta$}
+
+            \derivation{1}{$\Gamma',C \Rightarrow \Delta'$}
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma', A_0 \sqcap A_1 \Rightarrow \Delta,\Delta'$}
+        \end{prooftree}
+        \dol
+        \begin{prooftree} \vskip -20pt
+            \derivation{0}{$\Gamma,A_0 \Rightarrow C,\Delta$}
+            \derivation{1}{$\Gamma',C \Rightarrow \Delta'$}
+            \pravilo{Rez}
+            \BinaryInfC{$\Gamma,\Gamma',A_0 \Rightarrow \Delta,\Delta'$}
+            \pravilo{L$\sqcap$}
+            \UnaryInfC{$\Gamma,\Gamma', A_0 \sqcap A_1 \Rightarrow \Delta,\Delta'$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Eliminacija glavnega reza eksponenta}
+    \begin{block}{Opomba}
+        Pri eliminaciji glavnega reza z eksponenti (specifično !) imamo tri možnosti; pare (C!,R!), (L!,R!) in (W!,R!).
+    \end{block}
+    \pause
+    \begin{alertblock}{Posplošeno pravilo reza}
+        \begin{prooftree}
+            \AxiomC{$\Gamma, (!A)^n \Rightarrow \Delta$}
+            \AxiomC{$\Gamma' \Rightarrow !A,\Delta'$}
+            \pravilo{Rez!$_n$}
+            \BinaryInfC{$\Gamma,\Gamma' \Rightarrow \Delta,\Delta'$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Eliminacija glavnega reza eksponentov}
+    \begin{alertblock}{Primer (C!,R!)}
+        \begin{prooftree} \vskip -10pt
+            \derivation{0}{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
+            \levopravilo{C!}
+            \UnaryInfC{$\Gamma,(!A)^n \Rightarrow \Delta$}
+
+            \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
+            \pravilo{R!}
+            \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+
+            \pravilo{Rez!$_n$}
+            \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
+        \end{prooftree}
+        \dol
+        \begin{prooftree} \vskip - 20pt
+            \derivation{0}{$\Gamma,(!A)^{n+1} \Rightarrow \Delta$}
+
+            \derivation{1}{$!\Gamma' \Rightarrow A,?\Delta'$}
+            \pravilo{R!}
+            \UnaryInfC{$!\Gamma' \Rightarrow !A,?\Delta'$}
+
+            \pravilo{Rez!$_{n+1}$}
+            \BinaryInfC{$\Gamma,!\Gamma' \Rightarrow \Delta,?\Delta'$}
+        \end{prooftree}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Konec}
+    \centering \oranzna{HVALA ZA POZORNOST:)}
+\end{frame}
+
+
+\end{document}

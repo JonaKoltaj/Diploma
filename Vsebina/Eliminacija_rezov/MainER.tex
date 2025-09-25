@@ -12,7 +12,7 @@ Poslednje pravilo, ki ga je potrebno vpeljati, je \emph{pravilo reza}. To pravil
 \end{definicija}
 
 \begin{opomba}
-    Sekventni račun brez uporabe pravila reza ima pomembno lastnost, namreč da vsak dokaz sekventa $\Gamma \Rightarrow \Delta$ v svoji izpeljavi uporabi le podformule formul, ki nastopajo v $\Gamma$ in $\Delta$. To je osnova za mnoge algoritme, ki iščejo dokaze, pa tudi sicer ima ta lastnost mnogo koristnih posledic.??lahko dam to tukaj??. Ko vpeljemo pravilo reza, se ta lastnost izgubi, saj lahko na vsakem koraku ,,vrinemo'' poljubno formulo.
+    Sekventni račun brez uporabe pravila reza ima pomembno lastnost, namreč da vsak dokaz sekventa $\Gamma \Rightarrow \Delta$ v svoji izpeljavi uporabi le podformule formul, ki nastopajo v $\Gamma$ in $\Delta$. To je osnova za mnoge algoritme, ki iščejo dokaze, pa tudi sicer ima ta lastnost mnogo koristnih posledic, recimo da je sekventni račun konsistenten. To pomeni, da določenih sekventov, na primer $\Rightarrow \bot$, ne moremo dokazati. Ko vpeljemo pravilo reza, se ta lastnost izgubi, saj lahko na vsakem koraku ,,vrinemo'' poljubno formulo.
 \end{opomba}
 
 Če pravilo reza res interpretiramo kot uporabo leme, bi imelo smisel sklepati, da z uporabo rezov ne moremo pridelati sekventov, ki jih brez tega pravila nismo mogli dokazati. Ravno temu služi naslednji izrek.
@@ -28,7 +28,7 @@ Poslednje pravilo, ki ga je potrebno vpeljati, je \emph{pravilo reza}. To pravil
 
 Izrek 4.3 imenujemo izrek o \emph{eliminaciji} rezov, ker v njegovem dokazu postopoma odstranjujemo (eliminiramo) reze iz drevesa izpeljave, dokler nam na koncu ne ostane drevo izpeljave brez rezov. Dokaz poteka z dvojno indukcijo, zunanjo na številu rezov v dokazu, notranjo pa na stopnji reza, kot je definirana v \ref{stopnja}.
 
-Začnimo z indukcijo na številu rezov. Če je drevo brez rezov, smo dokaz končali. Bazi indukcije, torej primeru ko je $n=0$, smo tako avtomatično zadostili. Sedaj denimo, da imamo v drevesu izpeljave $n+1$ rezov. Ker je to drevo končno, si lahko izberemo enega izmed najnižjih rezov, denimo mu Rez$_0$. Oglejmo si poddrevo, ki se konča z Rez$_0$:
+Začnimo z indukcijo na številu rezov. Če je drevo brez rezov, smo dokaz končali. Bazi indukcije, torej primeru ko je $n=0$, smo tako avtomatično zadostili. Sedaj denimo, da imamo v drevesu izpeljave $n+1$ rezov. Ker je to drevo končno, si lahko izberemo enega izmed vrhnjih rezov, denimo mu Rez$_0$. Oglejmo si poddrevo, ki se konča z Rez$_0$:
 \begin{figure}[h]
     \centering \includegraphics{polj_drevo.png}
 \end{figure}
@@ -38,7 +38,7 @@ Drevesi $\D$ in $\D'$ ne vsebujeta pravila rez. Če znamo torej eliminirati rez 
 Za eliminiacijo zgoraj opisanega reza pa potrebujemo indukcijo na stopnjo reza. Indukcijski ķorak poteka tako, da drevo, ki se konča z rezom stopnje $(\R,\h)$ preobrazimo v drevo, ki vsebuje končno mnogo -- lahko tudi nobenega -- rezov stopenj $(\R_0,\h_0)$, $(\R_1,\h_1)$, $\ldots$ , $(\R_n,\h_n)$, kjer je $(\R_i,\h_i) < (\R,\h)$ za vsak $i\in[n]$. Ker vsakič ,,pridelamo'' le končno mnogo rezov, vsak izmed katerih je strogo nižje stopnje od začetnega, se bo proces zaključil v končno mnogo korakih. Če res pridelamo več rezov in je kateri izmed njih nad drugim, zopet nadaljujemo indukcijo na najnižjem izmed njih. Baza indukcije je primer, ko je $(\R,\h) = (1,h)$, za poljuben $h\in\mathbb{N}_{\geq3}$.
 
 \begin{summary}
-    Ko imamo poljubno drevo izpeljave, iz njega eliminiramo reze tako, da si izberemo poddrevo izpeljave, ki se konča z rezom in nad katerim ni drugih rezov. Nato preobrazimo omenjeno poddrevo v drevo, ki vsebuje reze kvečjemu nižje stopnje in to ponavljamo, dokler rezov iz drevesa ne eliminiramo.
+    Ko imamo poljubno drevo izpeljave, iz njega eliminiramo reze tako, da si izberemo poddrevo izpeljave, ki se konča z vrhnjim rezom. Nato preobrazimo omenjeno poddrevo v drevo, ki vsebuje reze kvečjemu nižje stopnje in to ponavljamo, dokler rezov iz drevesa ne eliminiramo.
 \end{summary}
 
 Pri tem postopku pa moramo ločiti primere glede na to, kakšne vrste rez je bil na dnu našega poddrevesa, namreč če je bil rez glaven, kot definirano v \ref{gl rez}, ali če ni bil. Začnimo z eliminacijo glavnega reza.
